@@ -1,0 +1,76 @@
+<!-- Le modal de modification de catégorie -->
+<div id="modalModcat" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+    <div class="modal-container bg-white w-3/4 md:max-w-md lg:w-3/4 xl:w-3/4 mx-auto rounded shadow-lg z-50 overflow-y-auto p-2">
+        <div class="modal-content py-4 text-left px-6">
+            <div class="flex justify-between items-center pb-3">
+                <p class="text-2xl font-bold">MODIFICATION D'AXE STRATEGIQUE</p>
+                <button id="modal-close" class="modal-close px-3 py-1 rounded-full hover:bg-gray-300">&times;</button>
+            </div>
+
+            @if(isset($categorie))
+
+            <form action="{{ route('categorie_projet.update', $categorie) }}" method="POST" class="space-y-4"
+            enctype="multipart/form-data">
+                    
+                @else
+                <form action="{{ route('categorie_projet.store') }}" method="POST" class="space-y-4"
+                enctype="multipart/form-data">
+                @endif
+
+                @csrf
+
+
+                <div class="max-h-96 overflow-y-auto px-6">
+
+                    <div class="mb-4">
+                        <label for="nom" class="block text-gray-700 font-semibold">Axe Stratégique</label>
+                        <input
+                            type="text"
+                            value="{{$categorie->nom_categorie}}"
+                            name="nom_categorie"
+                            class="form-input w-full rounded-lg"
+                            id="nom" 
+                        >
+                    </div>
+                    
+                </div>
+
+                <div class="mb-4 flex justify-between">
+                    <button type="button" class="modal-close bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
+                        Annuler
+                    </button>
+                    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                        Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const editLinks = document.querySelectorAll('.modCat');
+    const closeModalButton = document.querySelectorAll('.modal-close');
+    const modal = document.getElementById('modalModcat');
+
+    editLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const categorie = link.getAttribute('data-id');
+            modal.classList.remove('hidden');
+            return categorie
+        });
+    });
+
+    closeModalButton.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });
+</script>
