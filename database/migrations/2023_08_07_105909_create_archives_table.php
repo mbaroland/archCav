@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->integer('id_user');
             $table->integer('id_type_archive');
-            $table->integer('id_departement');
+           // $table->integer('id_departement');
             $table->string('titre_archives');
-            $table->string('contenue');
+            //$table->string('contenue');
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_type_archive')->references('id')->on('type_archives');
-            $table->foreign('id_departement')->references('id')->on('departements');
+          //  $table->foreign('id_departement')->references('id')->on('departements');
             $table->timestamps();
         });
     }

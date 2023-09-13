@@ -6,6 +6,7 @@ use App\Models\Archive;
 use App\Models\Fichier;
 use App\Models\TypeArchive;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use function PHPSTORM_META\type;
 
@@ -36,7 +37,7 @@ class ArchiveController extends Controller
      */
     public function store(Request $request)
     {
-        $request['id_user']=1;
+        $request['id_user']=Auth::user()->id;
       //  dd(request());
         //dd($request->id_type_archive);
         $archive = Archive::create($request->all());
@@ -44,7 +45,7 @@ class ArchiveController extends Controller
        //  dd($request->file('fichier_archives'));
      $archive->add_file($request);
       //dd($request->all());
-
+      return redirect()->route('archive.index')->with('success', 'Consultant supprimé avec succès.');
 
     }
 
