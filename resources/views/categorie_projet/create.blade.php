@@ -33,9 +33,9 @@
                 </div>
 
                 <div class="mb-4 flex justify-between">
-                    <button class="modal-close bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
-                        Annuler
-                    </button>
+                    <div>
+                        
+                    </div>
                     <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                         Enregistrer
                     </button>

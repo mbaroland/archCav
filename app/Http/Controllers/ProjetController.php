@@ -16,10 +16,9 @@ class ProjetController extends Controller
     {
         $projets = Projet::latest()->get();
         $categorie_projets=CategorieProjet::latest()->get();
-        //dd($categorie_projets[0]->nom_categorie);
-      //  dd($projets[3]->fichiers);//
+        
         $fichier=Fichier::all();
-       // dd($fichier[0]->id_projet);
+      
         return view('projet.index', compact('projets', 'categorie_projets'));
     }
 
@@ -30,7 +29,7 @@ class ProjetController extends Controller
     {
         $projets = Projet::latest()->get();
         $categorie_projets=CategorieProjet::latest()->get();
-        //dd($categorie_projets[0]->nom_categorie);
+        
         return view('projet.create', compact('projets', 'categorie_projets'));
     }
 
@@ -50,7 +49,9 @@ class ProjetController extends Controller
         $projets->add_pojet($request);
 
 
-        return redirect()->route('projet.index')->with('success', 'Consultant supprimé avec succès.');
+
+
+        return redirect()->route('projet.index')->with('success', 'Projet ajouté avec succès.');
     }
 
     /**
@@ -72,9 +73,15 @@ class ProjetController extends Controller
         $projets = Projet::latest()->get();
         $categorie_projets=CategorieProjet::latest()->get();
 
+
         $cat = CategorieProjet::all()-> pluck('nom_categorie','id');
 
-        return view('projet.edit',compact('projet','cat'));
+        $categorie_old = CategorieProjet::find($projet->id_categorie);
+
+        $fichier=Fichier::find($projet->id);
+        dd($fichier);
+
+        return view('projet.edit',compact('projets','categorie_projets','projet','categorie_old','fichier'));
     }
 
     /**
