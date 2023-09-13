@@ -17,7 +17,7 @@ class TypeArchiveController extends Controller
 
         $type_archives=TypeArchive::all();
         //dd($type_archive);
-        return view('type_archive.index', compact('type_archives'));
+        return view('type_archives.index', compact('type_archives'));
     }
 
 
@@ -26,7 +26,7 @@ class TypeArchiveController extends Controller
      */
     public function create()
     {
-        //
+        return view('type_archives.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class TypeArchiveController extends Controller
     {
         //
         $type=TypeArchive::create($request->all());
-        return redirect()->route('type_archive.index')->with('success', 'Consultant supprimé avec succès.');
+        return redirect()->route('type_archive.index')->with('success', 'typearchive supprimé avec succès.');
     }
 
     /**
