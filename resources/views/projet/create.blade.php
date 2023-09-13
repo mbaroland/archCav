@@ -93,7 +93,7 @@
                     </div>
                 </div>
 
-                <!-- Autres champs du formulaire -->
+                
 
                 <div class="mb-4 flex justify-between">
                     <button class="modal-close bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">

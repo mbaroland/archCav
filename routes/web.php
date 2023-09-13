@@ -30,6 +30,13 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    Route::resources([
+        'roles' => \App\Http\Controllers\RoleController::class,
+        'users' => \App\Http\Controllers\UserController::class,
+    ]);
+    
+
+
     Route::prefix('projet')->group(function () {
         Route::get('/index', [projetController::class, 'index'])->name('projet.index');
         Route::post('/store', [projetController::class, 'store'])->name('projet.store');

@@ -34,7 +34,7 @@ class CategorieProjetController extends Controller
     public function store(Request $request)
     {
         $categorie_projet = CategorieProjet::create($request->all());
-        return redirect()->route('categorie_projet.index')->with('success', 'Consultant supprimé avec succès.');
+        return redirect()->route('categorie_projet.index')->with('success', 'Axe stratégique ajouté avec succès.');
     }
 
     /**
@@ -53,7 +53,7 @@ class CategorieProjetController extends Controller
     public function edit(CategorieProjet $categorie_projet)
     {   
         $projets = Projet::latest()->get();
-        return view('categorie_projet.index', compact('categorie_projet',));
+        return view('categorie_projet.edit', compact('categorie_projet','projets'));
     }
 
     /**
@@ -61,9 +61,10 @@ class CategorieProjetController extends Controller
      */
     public function update(Request $request, CategorieProjet $categorie_projet)
     {
+        
         $categorie_projet->update($request->all());
         
-        return redirect()->route('categorie_projet.index')->with('success', 'categorie_projet mis à jour avec succès.');
+        return redirect()->route('categorie_projet.index')->with('success', 'Axe stratégique mis à jour avec succès.');
     }
 
     /**
@@ -72,8 +73,14 @@ class CategorieProjetController extends Controller
 
     public function destroy(CategorieProjet $categorie_projet)
     {
-        //dd($categorie_projet);
-        $categorie_projet->delete();
-        return redirect()->route('categorie_projet.index')->with('success', 'Consultant supprimé avec succès.');
+        try {
+            $categorie_projet->delete();
+            return redirect()->route('categorie_projet.index')->with('success', 'Axe stratégique  supprimé avec succès.');
+        } catch (\Throwable $th) {
+
+            return redirect()->route('categorie_projet.index')->with('error', 'impossible de supprimer cet Axe stratégique, des projets lui sont rattachés');
+
+        }
+        
     }
 }
