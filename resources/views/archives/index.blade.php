@@ -19,9 +19,12 @@
         placeholder="Rechercher..."
         class="w-56 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"
     />
-            <button id="open-modal" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
-               Ajouter
-            </button>
+    <a href="{{route('archive.create')}}">
+        <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+            Ajouter
+         </button>
+    </a>
+
         </div>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg object-center ">
@@ -29,26 +32,15 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                     TITRE
+                     TITRE_ARCHIVES
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    OBJECTIF GLOBAL
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    FINANCEMENT
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    BUDGET
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    ZONE
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    DUREE
+                    ARCHIVES
                 </th>
                 <th scope="col" class="px-6 py-3">
                     ACTION
                 </th>
+
             </tr>
         </thead>
         <tbody>
@@ -93,8 +85,30 @@
     </table>
 </div>
 </div>
-@include('projet.create')
 
 
+
+{{-- <script>
+
+
+const openModalButtonArchive = document.getElementById('open-modal-archive');
+        const closeModalButtonarchive = document.getElementById('close-modal-archive');
+        const modalarchive = document.getElementById('modalarchive');
+
+        openModalButtonArchive.addEventListener('click', () => {
+            modalarchive.classList.remove('hidden');
+        });
+
+        closeModalButtonarchive.addEventListener('click', () => {
+            modalarchive.classList.add('hidden');
+        });
+
+        modalarchive.addEventListener('click', (e) => {
+            if (e.target === modalarchive) {
+                modalarchive.classList.add('hidden');
+            }
+        });
+
+</script> --}}
 
 @endsection

@@ -36,7 +36,7 @@ Route::middleware([
         Route::DELETE('/destroy/{projet}', [ProjetController::class, 'destroy'])->name('projet.destroy');
         Route::get('/{projet}/edit', [ProjetController::class, 'edit'])->name('projet.edit');
         Route::get('/{projet}/show', [ProjetController::class, 'show'])->name('projet.show');
-        Route::post('/{projet}/update', [ProjetController::class, 'update'])->name('projet.update');    
+        Route::post('/{projet}/update', [ProjetController::class, 'update'])->name('projet.update');
     });
 
     Route::prefix('categorie_projet')->group(function () {
@@ -46,8 +46,8 @@ Route::middleware([
         Route::post('/store', [CategorieProjetController::class, 'store'])->name('categorie_projet.store');
         Route::get('/{categorie_projet}/edit', [CategorieProjetController::class, 'edit'])->name('categorie_projet.edit');
         Route::post('/{categorie_projet}/update', [CategorieProjetController::class, 'update'])->name('categorie_projet.update');
-    
-    
+
+
     Route::prefix('archive')->group(function () {
         //archive
         Route::get('/index', [ArchiveController::class, 'index'])->name('archive.index');
@@ -61,10 +61,12 @@ Route::middleware([
         // type archive
     Route::prefix('type_archive')->group(function () {
         Route::get('/index', [TypeArchiveController::class, 'index'])->name('type_archive.index');
+        Route::get('/create', [TypeArchiveController::class, 'create'])->name('type_archive.create');
         Route::post('/store', [TypeArchiveController::class, 'store'])->name('type_archive.store');
         Route::DELETE('/destroy/{type_archive}', [TypeArchiveController::class, 'destroy'])->name('type_archive.destroy');
         Route::get('/{type_archive}/edit', [TypeArchiveController::class, 'edit'])->name('type_archive.edit');
         Route::post('/{type_archive}', [TypeArchiveController::class, 'update'])->name('type_archive.update');
+
     });
 
 });

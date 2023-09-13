@@ -18,7 +18,7 @@ class ArchiveController extends Controller
     {
         $archives=Archive::latest()->get();
      //   dd($archives[0]->titre_archives);
-        return view("archive.index", compact("archives"));
+        return view("archives.index", compact("archives"));
     }
 
     /**
@@ -28,7 +28,7 @@ class ArchiveController extends Controller
     {
         $type_archive=TypeArchive::all();
         //dd($type_archive[0]->nom_type);
-       return view("archive.create", compact('type_archive'));
+       return view("archives.create", compact('type_archive'));
     }
 
     /**
