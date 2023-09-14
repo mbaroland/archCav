@@ -98,9 +98,10 @@
         type="text"
         placeholder="Rechercher..."
         class="w-56 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"/>
-            <button id="open-modal" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+            <a href="{{ route('users.create') }}"><button id="open-modal" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                Ajouter
             </button>
+            </a>
         </div>
 
         @if(session('success'))
@@ -118,19 +119,19 @@
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                      ID
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                     NOM
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                     EMAIL
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                     ROLE
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-center">
                     ACTION
                 </th>
             </tr>
@@ -140,9 +141,9 @@
             @if(isset($data) && count($data) > 0)
             @foreach ($data as $key => $user)
                 <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
+                    <td class="text-center"><a href="{{ route('users.show',$user) }}">{{ $user->id }}</a></td>
+                    <td class="text-center"><a href="{{ route('users.show',$user) }}">{{ $user->name }}</a></td>
+                    <td class="text-center"><a href="{{ route('users.show',$user) }}">{{ $user->email }}</a></td>
                     <td>
                         @if(!empty($user->getRoleNames()))
                             @foreach($user->getRoleNames() as $v)
@@ -169,7 +170,7 @@
             @else
             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                 <td colspan="7" class="px-6 py-4 text-center text-gray-500 dark:text-white">
-                    Aucun projet.
+                    Aucun utilisateur.
                 </td>
             </tr>
             @endif

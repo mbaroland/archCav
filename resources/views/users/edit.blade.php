@@ -10,18 +10,6 @@
             </a>
         </div>
     </div>
-    
-    <nav class="breadcrumb">
-        <ol class="list-none p-0 inline-flex">
-            <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ route('users.index') }}">{{ __('Users') }}</a>
-            </li>
-            <li class="breadcrumb-item active">{{ __('Edit User') }}</li>
-        </ol>
-    </nav>
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -34,7 +22,7 @@
         </div>
     @endif
     
-    <div class="card shadow mb-4">
+    
         <div class="card-body">
             <form method="POST" action="{{ route('users.update', $user->id) }}">
                 @csrf
@@ -69,12 +57,23 @@
                     </select>
                 </div>
 
-                <div class="mt-4">
-                    <button type="submit" class="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">{{ __('Edit') }}</button>
+                <div class="mb-4 flex justify-between">
+                    <a href="{{ route('users.index') }}">
+                        <button type="button"
+                            class=" bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
+                            Annuler
+                        </button>
+                    </a>
+
+                    <button type="submit"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                        Enregistrer
+                    </button>
                 </div>
             </form>
+        
         </div>
-    </div>
+    
 </div>
 </div>
 

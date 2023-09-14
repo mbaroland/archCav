@@ -3,16 +3,24 @@ namespace App\Http\Controllers;use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Jetstream\Jetstream;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
-use App\Models\User;class UserController extends Controller
+
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+
+class UserController extends Controller
+
 {
+    
     function __construct()
     {
         $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
         $this->middleware('permission:user-create', ['only' => ['create','store']]);
         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        
     }public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(5);
@@ -25,7 +33,7 @@ use App\Models\User;class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::all();
         return view('users.create',compact('roles'));
     }/**
      * Store a newly created resource in storage.
@@ -35,11 +43,12 @@ use App\Models\User;class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'roles' => 'required',
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ]);
     
         $input = $request->all();
@@ -81,13 +90,16 @@ use App\Models\User;class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
+
+        
+        
     
         $input = $request->all();
         if(!empty($input['password'])){ 
