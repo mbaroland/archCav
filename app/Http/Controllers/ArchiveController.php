@@ -19,7 +19,19 @@ class ArchiveController extends Controller
     {
         $archives=Archive::latest()->get();
      //   dd($archives[0]->titre_archives);
+
+
+    //  foreach ($archives as $archive) {
+    //     // Accédez aux fichiers associés à chaque archive
+    //     $fichiers = $archive->fichiers;
+
+    //     // Utilisez un dump and die (dd) pour afficher les fichiers pour chaque archive
+    //     dd($fichiers);
+    // }
+
+
         return view("archives.index", compact("archives"));
+
     }
 
     /**
@@ -55,6 +67,7 @@ class ArchiveController extends Controller
     public function show(Archive $archive)
     {
         //
+
     }
 
     /**

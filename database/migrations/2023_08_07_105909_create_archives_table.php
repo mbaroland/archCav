@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('titre_archives');
             //$table->string('contenue');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_type_archive')->references('id')->on('type_archives');
+            $table->foreign('id_type_archive')->references('id')->on('type_archives')->cascadeOnDelete();
           //  $table->foreign('id_departement')->references('id')->on('departements');
             $table->timestamps();
         });
