@@ -8,6 +8,7 @@
 
 
 
+
             <div class="flex justify-between m-5">
                 <input id="search-input" type="text" placeholder="Rechercher..."
                     class="w-56 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500" />
@@ -78,27 +79,5 @@
 
 
 
-        {{-- <script>
-
-
-const openModalButtonArchive = document.getElementById('open-modal-archive');
-        const closeModalButtonarchive = document.getElementById('close-modal-archive');
-        const modalarchive = document.getElementById('modalarchive');
-
-        openModalButtonArchive.addEventListener('click', () => {
-            modalarchive.classList.remove('hidden');
-        });
-
-        closeModalButtonarchive.addEventListener('click', () => {
-            modalarchive.classList.add('hidden');
-        });
-
-        modalarchive.addEventListener('click', (e) => {
-            if (e.target === modalarchive) {
-                modalarchive.classList.add('hidden');
-            }
-        });
-
-</script> --}}
 
     @endsection
