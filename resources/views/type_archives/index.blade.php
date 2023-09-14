@@ -6,7 +6,7 @@
 @section('content')
 
 <div class="p-4 sm:ml-64">
-    <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700">
+    <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
 
 
 
@@ -19,11 +19,14 @@
         placeholder="Rechercher..."
         class="w-56 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"
     />
-    <a href="{{route('type_archive.create')}}"
+    @can('type_archive-create')
+        
+    <a href="{{route('type_archive.create')}}">
         <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
             Ajouter
          </button>
     </a>
+    @endcan
 
         </div>
 
