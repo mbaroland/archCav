@@ -34,7 +34,7 @@ Route::middleware([
         'roles' => \App\Http\Controllers\RoleController::class,
         'users' => \App\Http\Controllers\UserController::class,
     ]);
-    
+
 
 
     Route::prefix('projet')->group(function () {

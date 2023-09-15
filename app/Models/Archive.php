@@ -60,4 +60,11 @@ class Archive extends Model
            $fichier->delete();
          }
     }
+
+
+
 }
+
+
+
+
