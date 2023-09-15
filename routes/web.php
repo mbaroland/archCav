@@ -4,6 +4,7 @@ use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\CategorieProjetController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\TypeArchiveController;
+use App\Models\Archive;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +66,8 @@ Route::middleware([
         Route::post('/{archive}/update', [ArchiveController::class, 'update'])->name('archive.update');
 
     });
+
+    Route::get('/{archive}/download', [Archive::class, 'download_file'])->name('archive.download_file');
         // type archive
     Route::prefix('type_archive')->group(function () {
         Route::get('/index', [TypeArchiveController::class, 'index'])->name('type_archive.index');

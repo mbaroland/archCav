@@ -7,21 +7,21 @@
     <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
     <div class="modal-container bg-white w-3/4 md:max-w-md lg:w-3/4 xl:w-3/4 mx-auto rounded shadow-lg z-50 overflow-y-auto p-2">
-        
+
 
         <div class="modal-content py-4 text-left px-6">
             <div class="flex justify-between items-center pb-3">
                 <p class="text-2xl font-bold">ENREGISTREMENT D'UN PROJET</p>
                 <button id="close-modal" class="modal-close px-3 py-1 rounded-full hover:bg-gray-300">&times;</button>
             </div>
-            
+
             <!-- formulaire-->
             <form action="{{ route('projet.store') }}" class="space-y-4" method="POST" enctype="multipart/form-data">
-               
+
                 @csrf
-               
+
                 <div class="max-h-96 overflow-y-auto px-6">
-                
+
                         <div class="container mx-auto mt-4">
                             <label for="select-box" class="block text-gray-700 font-semibold">AXE STRATEGIQUE</label>
                             <select  name="id_categorie" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 bg-white text-gray-700">
@@ -33,7 +33,7 @@
                                     <option value="" disabled selected>Aucune catégorie disponible</option>
                                 @endif
                             </select>
-                            
+
                         </div>
                         <div class="container mx-auto mt-4">
                             <label for="nom" class="block text-gray-700 font-semibold">Nom du Projet</label>
@@ -69,14 +69,14 @@
                     <div class="container mx-auto mt-4">
                         <label for="date" class="block text-gray-600 font-medium">Date de début du Projet :</label>
                         <input type="date"  name="date_debut" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">
-    
-                    </div> 
-                    
+
+                    </div>
+
                     <div class="container mx-auto mt-4">
                         <label for="date" class="block text-gray-600 font-medium">Date de fin du Projet :</label>
                         <input type="date"  name="date_fin" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">
-    
-                    </div> 
+
+                    </div>
 
                     <div class="container mx-auto mt-4">
                     <label class="block text-gray-600 font-medium">
@@ -93,7 +93,7 @@
                     </div>
                 </div>
 
-                
+
 
                 <div class="mb-4 flex justify-between">
                     <button class="modal-close bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
@@ -107,3 +107,7 @@
         </div>
     </div>
 </div>
+
+
+
+
