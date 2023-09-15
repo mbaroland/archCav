@@ -49,10 +49,17 @@ class ArchiveController extends Controller
      */
     public function store(Request $request)
     {
-        $request['id_user']=Auth::user()->id;
+       $request['id_user']=Auth::user()->id;
       //  dd(request());
         //dd($request->id_type_archive);
-        $archive = Archive::create($request->all());
+        $request->validate(Archive::rules());
+        // Archive::create([
+        //     //'titre_archives' => $request->input('titre_archives'),
+        //    // 'id_user'=>Auth::user()->id
+        // ]);
+
+
+        $archive = Archive::create($request ->all());
       //  $projets = Projet::create($request->all());
        //  dd($request->file('fichier_archives'));
      $archive->add_file($request);

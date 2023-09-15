@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 class Archive extends Model
 {
@@ -56,10 +57,32 @@ class Archive extends Model
            }
     }
     public function delete_file(){
+       // dd($this->fichiers);
          foreach($this->fichiers as $fichier){
+            dd($fichier);
            $fichier->delete();
          }
     }
+
+    public static function rules()
+    {
+        return [
+            'titre_archives' => [
+                'required', // Le champ est requis
+                'min:3',    // Au moins 3 caractères
+            ],
+            // Ajoutez d'autres règles de validation pour les autres champs si nécessaire
+        ];
+    }
+    public static function messages()
+    {
+        return [
+            'titre_archives.required' => 'Le champ "Nom de l\'archive" est obligatoire.',
+            'titre_archives.min' => 'Le "Nom de l\'archive" doit avoir au moins :min caractères.',
+            // Personnalisez les messages pour les autres règles au besoin.
+        ];
+    }
+
 
 
 
