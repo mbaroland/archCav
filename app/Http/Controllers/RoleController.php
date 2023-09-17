@@ -38,23 +38,32 @@ use Spatie\Permission\Models\Permission;class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required',
-        ]);
+{
+    // Valide les données du formulaire
+    $request->validate([
+        'name' => 'required|unique:roles,name',
+        'permission' => 'required|array',
+    ]);
+
     
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
-    
-        return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
-    }/**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    // Crée un nouveau rôle
+    $role = Role::create(['name' => $request->input('name')]);
+
+    // Associe les permissions au rôle
+
+    $role->syncPermissions($request->get('permission'));
+
+    // Redirige avec un message de succès
+    return redirect()->route('roles.index')
+        ->with('success', 'Role created successfully');
+}
+
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
     public function show($id)
     {
         $role = Role::find($id);
