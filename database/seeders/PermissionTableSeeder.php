@@ -23,7 +23,22 @@ class PermissionTableSeeder extends Seeder
             'role-create',
             'role-edit',
             'role-delete',
+            'archive-list',
             'archive-create',
+            'archive-edit',
+            'archive-delete',
+            'projet-list',
+            'projet-create',
+            'projet-edit',
+            'projet-delete',
+            'type_archive-list',
+            'type_archive-create',
+            'type_archive-edit',
+            'type_archive-delete',
+            'type_projet-list',
+            'type_projet-create',
+            'type_projet-edit',
+            'type_projet-delete',
             
         ];
      
