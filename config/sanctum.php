@@ -2,6 +2,7 @@
 
 use Laravel\Sanctum\Sanctum;
 
+
 return [
 
     /*
@@ -21,6 +22,8 @@ return [
         Sanctum::currentApplicationUrlWithPort()
     ))),
 
+    
+
     /*
     |--------------------------------------------------------------------------
     | Sanctum Guards
@@ -34,6 +37,7 @@ return [
     */
 
     'guard' => ['web'],
+    'authorization_model' => App\Models\Permission::class,
 
     /*
     |--------------------------------------------------------------------------

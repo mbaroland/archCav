@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nom_fichier');
             $table->timestamps();
             $table->foreign('id_projet')->references('id')->on('projets');
-            $table->foreign('id_archive')->references('id')->on('archives');
+            $table->foreign('id_archive')->references('id')->on('archives')->cascadeOnDelete();
         });
     }
 

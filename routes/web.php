@@ -4,6 +4,7 @@ use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\CategorieProjetController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\TypeArchiveController;
+use App\Models\Archive;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,16 +20,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::middleware([
-    'auth:sanctum',
+    'auth:web',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resources([
+        'roles' => \App\Http\Controllers\RoleController::class,
+        'users' => \App\Http\Controllers\UserController::class,
+    ]);
+
+
 
     Route::prefix('projet')->group(function () {
         Route::get('/index', [projetController::class, 'index'])->name('projet.index');
@@ -58,6 +66,8 @@ Route::middleware([
         Route::post('/{archive}/update', [ArchiveController::class, 'update'])->name('archive.update');
 
     });
+
+    Route::get('/{archive}/download', [Archive::class, 'download_file'])->name('archive.download_file');
         // type archive
     Route::prefix('type_archive')->group(function () {
         Route::get('/index', [TypeArchiveController::class, 'index'])->name('type_archive.index');
