@@ -72,7 +72,7 @@
                   <path d="M7 4h4v2H7zM5 7h8v2H5zM5 10h8v2H5z"/>
               </svg>
               
-                <span class="ml-4 whitespace-nowrap">Archives</span>
+                <span class="ml-4 whitespace-nowrap">Archives</span
 
                 @if(isset($projets) && count($projets) > 0)
              <span class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">{{ count($projets) }}</span>

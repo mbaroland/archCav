@@ -19,10 +19,30 @@
                 </div>
 
 
+
                 <div class="container mx-auto mt-4">
                     <label for="nom" class="block text-gray-700 font-semibold">Titre Archive</label>
-                    <input type="text" id="nom" name="titre_archives" class="form-input w-full rounded-lg">
+                    <input type="text" id="nom" name="titre_archives" class="form-input w-full rounded-lg" >
                 </div>
+
+                @if(session('error'))
+            <div class="bg-red-200 border-l-4 border-red-500 text-red-700 p-4 mt-4 my-4">
+                {{ session('error') }}
+            </div>
+        @endif
+
+
+        @if ($errors->any())
+        <div class="bg-red-200 border-l-4 border-red-500 text-red-700 p-4 mt-4 my-4 flex items-center">
+            <span class="text-xl mr-2">⚠️</span>
+            <ul class="list-disc pl-3">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 
                 <div class="container mx-auto mt-4">
                     <label>fichier archive</label>
@@ -30,7 +50,7 @@
                         file</label>
                     <input
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                        id="file_input" type="file" name="fichier_archives[]">
+                        id="file_input" type="file" name="fichier_archives[]" multiple>
                 </div>
 
                 <div class="mb-4 flex justify-between">
