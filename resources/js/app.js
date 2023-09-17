@@ -1,4 +1,5 @@
 import './bootstrap';
+//import 'flowbite';
 
 
 const openModalButton = document.getElementById('open-modal');

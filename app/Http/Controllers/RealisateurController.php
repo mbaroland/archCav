@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\realisateur;
 use Illuminate\Http\Request;
 
+
 class RealisateurController extends Controller
 {
     /**
@@ -62,4 +63,28 @@ class RealisateurController extends Controller
     {
         //
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
