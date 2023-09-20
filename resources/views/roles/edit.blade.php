@@ -6,13 +6,9 @@
        <div class="col-md-12">                  
             <div class="row align-items-center my-4">
                 <div class="col">
-                    <h2 class="h3 mb-0 page-title">{{ __('Edit Role') }}</h2>
+                    <h2 class="block text-gray-700 font-bold">MISE À JOUR DU ROLE</h2>
                 </div>
-                <div class="col-auto">
-                    <a href="{{ route('roles.index') }}" class="btn btn-primary" style="color:rgb(59, 71, 199)">
-                        {{ __('Back') }}
-                    </a>
-                </div>
+                
             </div>                  
             
             @if (count($errors) > 0)
@@ -26,20 +22,21 @@
                 </div>
             @endif
 
-            <div class="card shadow mb-4">
+            
                 <div class="card-body">
                     <form action="{{ route('roles.update', $role->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700">{{ __('Name') }}</label>
-                            <input type="text" name="name" id="name" value="{{ $role->name }}" class="form-input w-full">
+                        <div class="container mx-auto mt-4">
+                            <label for="nom" class="block text-gray-700 font-semibold">ROLE :</label>
+                            <input type="text" id="nom" name="name" class="form-input w-full rounded-lg" value="{{ $role->name }}" required/>
+                            
                         </div>
 
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">{{ __('Permission') }}</label>
-                            <br/>
+                        <div class="container mx-auto mt-4">
+                            <label class="block text-gray-700 font-semibold my-2">PERMISSIONS :</label>
+                          
                             @foreach($permission as $value)
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" name="permission[]" value="{{ $value->id }}" 
@@ -50,15 +47,24 @@
                                 <br/>
                             @endforeach
                         </div>
+                        </div>
 
-                        <div class="text-center">
-                            <button type="submit" class="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">
-                                {{ __('Edit') }}
+                        <div class="mb-4 flex justify-between mt-6">
+                            <a href="{{ route('roles.index') }}">
+                                <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
+                                    Annuler
+                                </button>
+                            </a>
+                            
+                            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                                Enregistrer
                             </button>
+                        
                         </div>
                     </form>
                 </div>
-            </div> <!-- / .card -->
+            
     </div> <!-- .row -->
 </div> <!-- .container-fluid -->
 @endsection
+

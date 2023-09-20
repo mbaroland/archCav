@@ -20,9 +20,11 @@
         type="text"
         placeholder="Rechercher..."
         class="w-56 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"/>
+        @can('projet-create')
             <button id="open-modal" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                Ajouter
             </button>
+        @endcan
         </div>
 
         @if(session('success'))
@@ -30,6 +32,7 @@
                 {{ session('success') }}
             </div>
         @endif
+
         @if(session('error'))
             <div class="bg-red-200 border-l-4 border-red-500 text-red-700 p-4 mt-4 my-4">
                 {{ session('error') }}
@@ -58,9 +61,11 @@
                 <th scope="col" class="px-6 py-3">
                     DUREE
                 </th>
+                @can('projet-create')
                 <th scope="col" class="px-6 py-3">
                     ACTION
                 </th>
+                @endcan
             </tr>
         </thead>
         <tbody>
@@ -87,6 +92,7 @@
                     <td class="px-6 py-4">
                         {{ $projet->find_duration() }} mois
                     </td>
+                    @can('projet-create')
                     <td class="px-6 py-4 flex justify-center">
                         <a href="{{ route('projet.edit',$projet) }}">
                             <button type="button" class="text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Edit</button>                        
@@ -101,6 +107,7 @@
                         </form>
 
                     </td>
+                    @endcan
                 </tr>
                 @endforeach
             @else
@@ -114,7 +121,9 @@
 
         </tbody>
     </table>
+    
 </div>
+
 </div>
 @include('projet.create')
 
