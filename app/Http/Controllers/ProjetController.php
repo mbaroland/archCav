@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\CategorieProjet;
 use App\Models\Fichier;
 use App\Models\Projet;
+use Faker\Core\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProjetController extends Controller
@@ -42,12 +45,12 @@ class ProjetController extends Controller
         $validatedProjetData = $this->validateProjetData($request);
         //$validatedFileUpload = $this->validateFileUpload($request);
 
-        if ($validatedProjetData->fails() || $validatedFileUpload->fails()) {
+        if ($validatedProjetData->fails()) {
             // Validation failed, handle errors and return response
             // For example: return back()->withErrors($validatedProjetData)->withErrors($validatedFileUpload);
         }
 
-        $request['id_user']=1;
+        $request['id_user']=Auth::user()->id;
 
          $projets = Projet::create($request->all());
         //$projets="";
@@ -79,6 +82,7 @@ class ProjetController extends Controller
 
         $projets = Projet::latest()->get();
         $categorie_projets=CategorieProjet::latest()->get();
+        
 
 
         $cat = CategorieProjet::all()-> pluck('nom_categorie','id');
@@ -86,7 +90,7 @@ class ProjetController extends Controller
         $categorie_old = CategorieProjet::find($projet->id_categorie);
 
         $fichier=Fichier::find($projet->id);
-        dd($fichier);
+         
 
         return view('projet.edit',compact('projets','categorie_projets','projet','categorie_old','fichier'));
     }
@@ -97,7 +101,11 @@ class ProjetController extends Controller
     public function update(Request $request, Projet $projet)
     {
         //
+        
+
         $projet->update($request->all());
+
+        $projet->add_pojet($request);
 
 
         return redirect()->route('projet.index')->with('success', 'Consultant supprimé avec succès.');
@@ -108,6 +116,15 @@ class ProjetController extends Controller
     public function destroy(Projet $projet)
     {
        //dd($categorie_projet);
+       $fichiers=Fichier::where("id_projet",$projet->id)->get();
+        foreach ($fichiers as $fichier) {
+            if (Fichier::exists('fichier/'.$fichier->nom_fichier)) {
+                Storage::delete('fichier/'.$fichier->nom_fichier);
+                
+                
+            }
+        }
+        
        $projet->delete();
        return redirect()->route('projet.index')->with('success', 'Consultant supprimé avec succès.');
     }
