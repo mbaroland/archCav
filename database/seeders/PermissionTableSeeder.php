@@ -1,10 +1,10 @@
 <?php
-  
+
 namespace Database\Seeders;
-  
+
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
-  
+
 class PermissionTableSeeder extends Seeder
 {
     /**
@@ -14,7 +14,7 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
-        $permissions = [            
+        $permissions = [
             'user-list',
             'user-create',
             'user-edit',
@@ -39,9 +39,9 @@ class PermissionTableSeeder extends Seeder
             'type_projet-create',
             'type_projet-edit',
             'type_projet-delete',
-            
+
         ];
-     
+
         foreach ($permissions as $permission) {
              Permission::create(['name' => $permission]);
         }

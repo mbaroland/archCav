@@ -63,7 +63,7 @@ class Projet extends Model
     public function add_pojet($request){
         $i=0;
         //dd($request->all());
-        if ($request->file('fichier_projet') ){
+        $request->file('fichier_projet');
          foreach($request->file('fichier_projet') as $file){
 
              //dd($file);
@@ -78,17 +78,45 @@ class Projet extends Model
                      'id_projet'=>$this->id,
                  ]
                  );
-            }
-        }else{
-         dd('save');
+
         }
 
     }
 
 
+<<<<<<< HEAD
+
+    public static function rules()
+    {
+        return [
+            'titre_projet' => [
+                'required', // Le champ est requis
+                'min:3',    // Au moins 3 caractères
+            ],
+            // Ajoutez d'autres règles de validation pour les autres champs si nécessaire
+            'objectif_global'=>[
+                'required', 'min:3',
+            ],
+
+        ];
+    }
+    public static function messages()
+    {
+        return [
+            'titre_projet.required' => 'Le champ "Nom de l\'archive" est obligatoire.',
+            'titre_projet.min' => 'Le "Nom de l\'archive" doit avoir au moins :min caractères.',
+            'objectif_global.required' => 'Le champ "objectif_global" est obligatoire.',
+            'objectif_global.min' => 'Le "objectif_global" doit avoir au moins :min caractères.',
+            // Personnalisez les messages pour les autres règles au besoin.
+        ];
+    }
+
+
+=======
     
 
     
+>>>>>>> 903434d957abc34bed8ea0d420abade2ed5f8c48
 
 }
 
