@@ -113,6 +113,8 @@ class ArchiveController extends Controller
      */
     public function destroy(Archive $archive)
     {
+        $archive->delete_file();
+
         $archive->delete();
         return redirect()->route('archive.index')->with('success', 'Consultant supprimé avec succès.');
     }

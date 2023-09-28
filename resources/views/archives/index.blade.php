@@ -43,25 +43,26 @@
                                     </td>
                                     <td>
 
-                                            {{-- < button type="submit"
+                                        {{-- < button type="submit"
                                                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                                                 Telecharger
                                             /button>
  --}}
 
-                                            <div class="dropdown">
-                                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
-                                                <div class="dropdown-content">
-                                                @foreach ($archive->fichiers as $fichier )
-
-                                                    <a download href="/storage/{{$fichier->nom_fichier}}"> {{$fichier->nom_fichier}}</a>
+                                        <div class="dropdown">
+                                            <button
+                                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
+                                            <div class="dropdown-content">
+                                                @foreach ($archive->fichiers as $fichier)
+                                                    <a download href="/storage/{{ $fichier->nom_fichier }}">
+                                                        {{ $fichier->nom_fichier }}</a>
                                                 @endforeach
 
 
 
-                                                </div>
-                                              </div>
-                                              @include('archives.style')
+                                            </div>
+                                        </div>
+                                        @include('archives.style')
 
 
 
@@ -102,54 +103,56 @@
         </div>
 
 
-<div class="overflow-x-auto shadow-md sm:rounded-lg object-center ">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                     TITRE_ARCHIVES
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    ARCHIVES
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    ACTION
-                </th>
+        <div class="overflow-x-auto shadow-md sm:rounded-lg object-center ">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            TITRE_ARCHIVES
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            ARCHIVES
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            ACTION
+                        </th>
 
-            </tr>
-        </thead>
-        <tbody>
+                    </tr>
+                </thead>
+                <tbody>
 
-            @if(isset($archives) && count($archives) > 0)
-                @foreach ($archives as $archive)
-                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $archive->titre_archives }}
+                    @if (isset($archives) && count($archives) > 0)
+                        @foreach ($archives as $archive)
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $archive->titre_archives }}
 
-                    </th>
-                  
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                </tr>
-                @endforeach
-            @else
-            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-white">
-                    Aucune archive.
-                </td>
-            </tr>
-            @endif
+                                </th>
 
-
-        </tbody>
-    </table>
-</div>
-</div>
+                                <td class="px-6 py-4">
+                                    <a href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-white">
+                                Aucune archive.
+                            </td>
+                        </tr>
+                    @endif
 
 
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-{{-- <script>
+
+
+    {{-- <script>
 
 
 const openModalButtonArchive = document.getElementById('open-modal-archive');
