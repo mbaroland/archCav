@@ -74,16 +74,17 @@ enctype="multipart/form-data">
 <div class="container mx-auto mt-4">
     <label for="date" class="block text-gray-600 font-medium">Date de début du Projet :</label>
     <input type="date"  name="date_debut" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"
-    value="{{ $projet->date_debut }}">
+    value="{{ $projet->date_debut->format('Y-m-d') }}">
 
 </div> 
 
 <div class="container mx-auto mt-4">
     <label for="date" class="block text-gray-600 font-medium">Date de fin du Projet :</label>
     <input type="date"  name="date_fin" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"
-    value="{{ $projet->date_debut }}">
+    value="{{ $projet->date_fin->format('Y-m-d') }}">
 
 </div> 
+
 
 <div class="container mx-auto mt-4">
 <label class="block text-gray-600 font-medium">
@@ -96,7 +97,7 @@ enctype="multipart/form-data">
       file:bg-violet-50 file:text-violet-700
       hover:file:bg-violet-100
     " name="fichier_projet[]" multiple
-    value="{{ $fichier }}"/>
+    />
   </label>
 </div>
 

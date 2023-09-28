@@ -56,6 +56,7 @@ class Archive extends Model
                }
            }
     }
+    
     public function delete_file(){
        // dd($this->fichiers);
          foreach($this->fichiers as $fichier){
