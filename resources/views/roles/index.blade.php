@@ -9,7 +9,7 @@
 
 
 
-        <div class="flex justify-between m-5">
+        <div class="flex justify-between m-5 ">
             <input
         id="search-input"
         type="text"

@@ -2,21 +2,20 @@
 @section('content')
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
-    <div class="my-4">
-        <div class="flex items-center">
-            <h2 class="text-3xl font-semibold">{{ __('Edit User') }}</h2>
-            <a href="{{ route('users.index') }}" class="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                {{ __('Back') }}
-            </a>
-        </div>
-    </div>
+       <div class="col-md-12">                  
+            <div class="row align-items-center my-4">
+                <div class="col">
+                    <h2 class="block text-gray-700 font-bold">MISE À JOUR DU COMPTE</h2>
+                </div>
+                
+            </div>  
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                    <li class="text-red-600">{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
