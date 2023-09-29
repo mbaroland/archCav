@@ -42,12 +42,12 @@ class ProjetController extends Controller
         $validatedProjetData = $this->validateProjetData($request);
         //$validatedFileUpload = $this->validateFileUpload($request);
 
-        if ($validatedProjetData->fails() || $validatedFileUpload->fails()) {
+        if ($validatedProjetData->fails()) {
             // Validation failed, handle errors and return response
             // For example: return back()->withErrors($validatedProjetData)->withErrors($validatedFileUpload);
         }
 
-        $request['id_user']=1;
+        $request['id_user']=Auth::user()->id;
 
          $projets = Projet::create($request->all());
         //$projets="";
@@ -139,33 +139,16 @@ class ProjetController extends Controller
 
 
 
-        public function search(Request $request)
-        {
-            $key = trim($request->get('q'));
-    
-            $posts = Projet::query()
-                ->where('titre_projet', 'like', "%{$key}%")
-                ->orWhere('objectif-global', 'like', "%{$key}%")
-                ->orderBy('created_at', 'desc')
-                ->get();
-    
-            $categories = Category::all();
-    
-            $tags = Tag::all();
-    
-            $recent_posts = Post::query()
-                ->where('is_published', true)
-                ->orderBy('created_at', 'desc')
-                ->take(5)
-                ->get();
-    
-            return view('search', [
-                'key' => $key,
-                'posts' => $posts,
-                'categories' => $categories,
-                'tags' => $tags,
-                'recent_posts' => $recent_posts
-            ]);
-        }
+        public function rechercheProjet(Request $request)
+{
+    $termesRecherche = $request->input('q');
+
+    $projets = Projet::where('titre_projet', 'like', '%' . $termesRecherche . '%')
+        ->orWhere('nom_categorie', 'like', '%' . $termesRecherche . '%')
+        ->orWhere('zone', 'like', '%' . $termesRecherche . '%')
+        ->get();
+
+    return response()->json(['resultat' => $projets]);
+}
 
 }
