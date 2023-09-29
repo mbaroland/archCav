@@ -15,10 +15,12 @@
 
         <div class="flex justify-between m-5">
             <input
-        id="search-input"
+        id="recherche-projet"
         type="text"
         placeholder="Rechercher..."
         class="w-56 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"/>
+
+        
         @can('projet-create')
             <button id="open-modal" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                Ajouter
@@ -37,6 +39,15 @@
                 {{ session('error') }}
             </div>
         @endif
+
+        @if(isset($resultat))
+        <div class="bg-red-200 border-l-4 border-red-500 text-red-700 p-4 mt-4 my-4">
+        <ul id="resultats-recherche"></ul>
+        </div>
+        @endif
+
+
+        
 
 <div class="overflow-x-auto shadow-md sm:rounded-lg object-center ">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -125,6 +136,37 @@
 
 </div>
 @include('projet.create')
+
+<script>
+
+$(document).ready(function () {
+    $('#recherche-projet').on('input', function () {
+        var termeRecherche = $(this).val();
+
+        $.ajax({
+            url: '/recherche-projet',
+            method: 'GET',
+            data: { q: termeRecherche },
+            success: function (data) {
+                var resultat = data.resultat;
+                var resultatHtml = '';
+
+                $.each(resultat, function (index, projet) {
+                    resultatHtml += '<li>';
+                    resultatHtml += '<h2>' + projet.titre_projet + '</h2>';
+                    resultatHtml += '<p>Catégorie : ' + projet.nom_categorie + '</p>';
+                    resultatHtml += '<p>Zone : ' + projet.zone + '</p>';
+                    // Ajoutez d'autres détails du projet ici
+                    resultatHtml += '</li>';
+                });
+
+                $('#resultats-recherche').html(resultatHtml);
+            }
+        });
+    });
+});
+
+</script>
 
 
 
