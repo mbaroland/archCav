@@ -61,11 +61,13 @@ class Archive extends Model
        // return view('archives.index', ['archives' => $archives]);
 
     }
+
     public function delete_file()
     {
         foreach ($this->fichiers as $fichier) {
             $fichier->delete();
         }
+
     }
 
     public static function rules()
