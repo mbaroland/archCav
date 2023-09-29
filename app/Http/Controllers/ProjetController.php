@@ -70,7 +70,9 @@ class ProjetController extends Controller
     public function show(Projet $projet)
     {
         //
-        return view('projet.edit',compact('projets','categorie_projets','projet','cat'));
+        $projets = Projet::latest()->get();
+        $categorie_projets=CategorieProjet::latest()->get();
+        return view('projet.show',compact('projets','categorie_projets','projet'));
     }
 
     /**
