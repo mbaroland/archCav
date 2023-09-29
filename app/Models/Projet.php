@@ -84,7 +84,6 @@ class Projet extends Model
     }
 
 
-<<<<<<< HEAD
 
     public static function rules()
     {
@@ -112,11 +111,6 @@ class Projet extends Model
     }
 
 
-=======
-    
-
-    
->>>>>>> 903434d957abc34bed8ea0d420abade2ed5f8c48
 
 }
 

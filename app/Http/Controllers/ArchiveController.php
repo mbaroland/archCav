@@ -91,7 +91,7 @@ class ArchiveController extends Controller
        // dd($archive[1]);
 
        $fichier=Fichier::all();
-       return view('archive.edit',compact('archive', 'type_archive', 'fichier'));
+       return view('archives.edit',compact('archive', 'type_archive', 'fichier'));
     }
 
     /**
@@ -100,6 +100,7 @@ class ArchiveController extends Controller
     public function update(Request $request, Archive $archive)
     {
         //
+        $request->validate(Archive::rules());
 
         $archive->update($request->all());
         $archive->add_file($request);
