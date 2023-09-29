@@ -81,7 +81,4 @@ Route::middleware([
 
     Route::get('/recherche-projet', 'RechercheController@rechercheProjet')->name('recherche.projet');
 
-});
-
-});
 
