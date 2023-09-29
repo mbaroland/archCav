@@ -38,31 +38,36 @@ class Archive extends Model
         return $this->hasmany(Fichier::class, 'id_archive');
     }
 
-    public function add_file($request){
-        $i=0;
-        if ($request->file('fichier_archives') ){
+    public function add_file($request)
+    {
+        $i = 0;
+        if ($request->file('fichier_archives')) {
+
             $this->delete_file();
-            foreach($request->file('fichier_archives') as $file){
-                $path=$this->titre_archives.++$i.".".$file->extension();
-                $path="archives/".$path;
-                //dd($this);
-                $file->storeAs('public/',$path );
+            foreach ($request->file('fichier_archives') as $file) {
+                $orginalName = $file->getClientOriginalName();
+                $path =  $orginalName;
+                $path = "archives/" . $path;
+                $file->storeAs('public/', $path);
                 Fichier::create(
                     [
-                        'nom_fichier'=>$path,
-                        'id_archive'=>$this->id,
+                        'nom_fichier' => $path,
+                        'nom_fichier_original' => $this->titre_archives . $i ,
+                        'id_archive' => $this->id,
                     ]
-                    );
-               }
-           }
+                );
+            }
+        }
+       // return view('archives.index', ['archives' => $archives]);
+
     }
-    
-    public function delete_file(){
-       // dd($this->fichiers);
-         foreach($this->fichiers as $fichier){
-            dd($fichier);
-           $fichier->delete();
-         }
+
+    public function delete_file()
+    {
+        foreach ($this->fichiers as $fichier) {
+            $fichier->delete();
+        }
+
     }
 
     public static function rules()
@@ -83,12 +88,4 @@ class Archive extends Model
             // Personnalisez les messages pour les autres règles au besoin.
         ];
     }
-
-
-
-
 }
-
-
-
-

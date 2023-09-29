@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ProjetController extends Controller
 {
@@ -42,26 +43,15 @@ class ProjetController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedProjetData = $this->validateProjetData($request);
-        //$validatedFileUpload = $this->validateFileUpload($request);
-
-        if ($validatedProjetData->fails()) {
-            // Validation failed, handle errors and return response
-            // For example: return back()->withErrors($validatedProjetData)->withErrors($validatedFileUpload);
-        }
-
-        $request['id_user']=Auth::user()->id;
-
-         $projets = Projet::create($request->all());
-        //$projets="";
-        //dd($request->file('fichier_projet'));
-
-        $projets->add_pojet($request);
 
 
+    $request['id_user'] =Auth::user()->id;
+    $request->validate(Projet::rules());
+    $projets = Projet::create($request->all());
+    $projets->add_pojet($request);
 
+    return redirect()->route('projet.index')->with('success', 'Projet ajouté avec succès.');
 
-        return redirect()->route('projet.index')->with('success', 'Projet ajouté avec succès.');
     }
 
     /**
