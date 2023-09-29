@@ -9,7 +9,11 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="container mx-auto mt-4">
-                                    <label for="nom" class="block text-gray-700 font-semibold">PROJET : <h3 class="text-green-500">{{ $projet->titre_projet }}</h3></label>
+                                        
+                                        
+                                        
+                                    <label for="nom" class="block text-gray-700 font-semibold">PROJET : </label>
+                                    <h1 class='text-2xl font-bold'>{{ $projet->titre_projet }}</h1>
                                     
                                 </div>
                             </div>
@@ -19,27 +23,68 @@
                                         <label for="nom" class="block text-gray-700 font-semibold">OBJECTIF GLOBAL :</label>
                                         
                                     </div>
-                                    <div class="container mx-auto mt-4 block">
+                                <div class="container mx-auto mt-4 block">
                                         <p>{{ $projet->objectif_global }}</p>
                                     
                                 </div>
 
-                                <label for="nom" class="block text-gray-700 font-semibold">OBJECTIFS SPECIFIQUES :</label>
+
+
+                                <div class="container mx-auto mt-4">
+                                    <label for="nom" class="block text-gray-700 font-semibold">OBJECTIFS SPECIFIQUES :</label>
                                         
-                                        </div>
-                                        <div class="container mx-auto mt-4 block">
-                                            <p>{{ $projet->objectif_global }}</p>
-                                        
-                                    </div>
+                                </div>
+                                <div class="container mx-auto mt-4 block">
+                                    <p>{{ $projet->objectif_specifiques }}</p>
+                                    
                                 </div>
 
-                                <ul class="mt-4">
-                <li><strong>Financement:</strong> {{ $projet->financement }}</li>
-                <li><strong>Budget:</strong> {{ $projet->budjet }} FCFA</li>
-                <li><strong>Zone:</strong> {{ $projet->zone }}</li>
-                <li><strong>Durée:</strong> {{ $projet->find_duration() }} mois</li>
-                <!-- Ajoutez d'autres détails du projet ici -->
-            </ul>
+
+                                <div class="container mx-auto mt-4">
+                                    <label for="nom" class="block text-gray-700 font-semibold">FINANCEMENT :</label>
+                                        
+                                </div>
+                                <div class="container mx-auto mt-4 block">
+                                    <p>{{ $projet->financement }}</p>
+                                    
+                                </div>
+
+
+
+                                <div class="container mx-auto mt-4">
+                                    <label for="nom" class="block text-gray-700 font-semibold">BUDGET :</label>
+                                        
+                                </div>
+                                <div class="container mx-auto mt-4 block">
+                                    <p>{{ $projet->budjet }} FCFA</p>
+                                    
+                                </div>
+
+                                <div class="container mx-auto mt-4">
+                                    <label for="nom" class="block text-gray-700 font-semibold">ZONE :</label>
+                                        
+                                </div>
+                                <div class="container mx-auto mt-4 block">
+                                    <p>{{ $projet->zone }}</p>
+                                    
+                                </div>
+
+                                <div class="container mx-auto mt-4">
+                                    <label for="nom" class="block text-gray-700 font-semibold">DUREE :</label>
+                                        
+                                </div>
+                                <div class="container mx-auto mt-4 block">
+                                    <p>{{ $projet->find_duration()}} mois</p>
+                                    
+                                </div>
+                                    
+                                </div>
+
+                                
+
+                                
+
+
                     
                             </div>
                     </div>
