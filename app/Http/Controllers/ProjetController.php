@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
+
+
+
 class ProjetController extends Controller
 {
     /**
@@ -73,7 +76,7 @@ class ProjetController extends Controller
 
         $projets = Projet::latest()->get();
         $categorie_projets=CategorieProjet::latest()->get();
-        
+
 
 
         $cat = CategorieProjet::all()-> pluck('nom_categorie','id');
@@ -81,7 +84,7 @@ class ProjetController extends Controller
         $categorie_old = CategorieProjet::find($projet->id_categorie);
 
         $fichier=Fichier::find($projet->id);
-         
+
 
         return view('projet.edit',compact('projets','categorie_projets','projet','categorie_old','fichier'));
     }
@@ -92,7 +95,7 @@ class ProjetController extends Controller
     public function update(Request $request, Projet $projet)
     {
         //
-        
+
 
         $projet->update($request->all());
 
@@ -111,11 +114,11 @@ class ProjetController extends Controller
         foreach ($fichiers as $fichier) {
             if (Fichier::exists('fichier/'.$fichier->nom_fichier)) {
                 Storage::delete('fichier/'.$fichier->nom_fichier);
-                
-                
+
+
             }
         }
-        
+
        $projet->delete();
        return redirect()->route('projet.index')->with('success', 'Consultant supprimé avec succès.');
     }
@@ -147,16 +150,33 @@ class ProjetController extends Controller
 
 
 
-        public function rechercheProjet(Request $request)
-{
-    $termesRecherche = $request->input('q');
+        public function search(Request $request)
+        {
+            $key = trim($request->get('q'));
 
-    $projets = Projet::where('titre_projet', 'like', '%' . $termesRecherche . '%')
-        ->orWhere('nom_categorie', 'like', '%' . $termesRecherche . '%')
-        ->orWhere('zone', 'like', '%' . $termesRecherche . '%')
-        ->get();
+            $posts = Projet::query()
+                ->where('titre_projet', 'like', "%{$key}%")
+                ->orWhere('objectif-global', 'like', "%{$key}%")
+                ->orderBy('created_at', 'desc')
+                ->get();
 
-    return response()->json(['resultat' => $projets]);
-}
+            $categories = Category::all();
+
+            $tags = Tag::all();
+
+            $recent_posts = Post::query()
+                ->where('is_published', true)
+                ->orderBy('created_at', 'desc')
+                ->take(5)
+                ->get();
+
+            return view('search', [
+                'key' => $key,
+                'posts' => $posts,
+                'categories' => $categories,
+                'tags' => $tags,
+                'recent_posts' => $recent_posts
+            ]);
+        }
 
 }
