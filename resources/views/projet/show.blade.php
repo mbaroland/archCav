@@ -96,6 +96,7 @@
             </a>
 
 
+
         </div>
 
         <div class="dropdown">
@@ -114,5 +115,8 @@
         </div>
 
     </div> <!-- .row -->
-    </div> <!-- .container-fluid -->
+
+</div> <!-- .container-fluid -->
+@include('archives.style')
+
 @endsection
