@@ -95,11 +95,29 @@
                                 Retour
                             </button>
                         </a>
+                        <div>
+
+                            <div class="dropdown">
+                                <button
+                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
+                                <div class="dropdown-content">
+                                    @foreach ($projet->fichiers as $fichier)
+                                        <a download href="/storage/{{ $fichier->nom_fichier }}">
+                                            {{ substr($fichier->nom_fichier, 9) }}
+                                        </a>
+                                    @endforeach
+    
+                                </div>
+    
+                        </div>
+                        
+                        </div>
 
 
                     </div>
 
     </div> <!-- .row -->
 </div> <!-- .container-fluid -->
+@include('archives.style')
 @endsection
 
