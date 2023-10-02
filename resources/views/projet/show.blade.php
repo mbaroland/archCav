@@ -96,6 +96,7 @@
             </a>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     <div class="mb-4 flex justify-between mt-6">
                         <a href="{{ route('projet.index') }}">
@@ -121,6 +122,9 @@
                         
                         </div>
 >>>>>>> 21a7197931e8924f53a323d3b90c57cd68b16eec
+=======
+
+>>>>>>> b965c40b00ff02e365d770976a1f3f9688225ee6
 
         </div>
 
@@ -141,9 +145,16 @@
 
     </div> <!-- .row -->
 <<<<<<< HEAD
+<<<<<<< HEAD
     </div> <!-- .container-fluid -->
 =======
 </div> <!-- .container-fluid -->
 @include('archives.style')
 >>>>>>> 21a7197931e8924f53a323d3b90c57cd68b16eec
+=======
+
+</div> <!-- .container-fluid -->
+@include('archives.style')
+
+>>>>>>> b965c40b00ff02e365d770976a1f3f9688225ee6
 @endsection
