@@ -1,0 +1,7 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{ Introduction }{3}{0}{1}
+\beamer@sectionintoc {2}{ Analyse et Conception de l'application }{5}{0}{2}
+\beamer@sectionintoc {3}{D\IeC {\'e}monstration technique}{8}{0}{3}
+\beamer@sectionintoc {4}{Difficult\IeC {\'e}s rencontr\IeC {\'e}es}{9}{0}{4}
+\beamer@sectionintoc {5}{Solutions}{11}{0}{5}
+\beamer@sectionintoc {6}{Bilan du projet}{12}{0}{6}
