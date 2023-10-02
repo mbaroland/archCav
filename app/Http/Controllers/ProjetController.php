@@ -62,9 +62,9 @@ class ProjetController extends Controller
     public function show(Projet $projet)
     {
         //
-        $projets = Projet::latest()->get();
+        //ddd($projet);
         $categorie_projets=CategorieProjet::latest()->get();
-        return view('projet.show',compact('projets','categorie_projets','projet'));
+        return view('projet.show',compact('categorie_projets','projet'));
     }
 
     /**
@@ -150,33 +150,33 @@ class ProjetController extends Controller
 
 
 
-        public function search(Request $request)
-        {
-            $key = trim($request->get('q'));
+        // public function search(Request $request)
+        // {
+        //     $key = trim($request->get('q'));
 
-            $posts = Projet::query()
-                ->where('titre_projet', 'like', "%{$key}%")
-                ->orWhere('objectif-global', 'like', "%{$key}%")
-                ->orderBy('created_at', 'desc')
-                ->get();
+        //     $posts = Projet::query()
+        //         ->where('titre_projet', 'like', "%{$key}%")
+        //         ->orWhere('objectif-global', 'like', "%{$key}%")
+        //         ->orderBy('created_at', 'desc')
+        //         ->get();
 
-            $categories = Category::all();
+        //     $categories = Category::all();
 
-            $tags = Tag::all();
+        //     $tags = Tag::all();
 
-            $recent_posts = Post::query()
-                ->where('is_published', true)
-                ->orderBy('created_at', 'desc')
-                ->take(5)
-                ->get();
+        //     $recent_posts = Post::query()
+        //         ->where('is_published', true)
+        //         ->orderBy('created_at', 'desc')
+        //         ->take(5)
+        //         ->get();
 
-            return view('search', [
-                'key' => $key,
-                'posts' => $posts,
-                'categories' => $categories,
-                'tags' => $tags,
-                'recent_posts' => $recent_posts
-            ]);
-        }
+        //     return view('search', [
+        //         'key' => $key,
+        //         'posts' => $posts,
+        //         'categories' => $categories,
+        //         'tags' => $tags,
+        //         'recent_posts' => $recent_posts
+        //     ]);
+        // }
 
 }
