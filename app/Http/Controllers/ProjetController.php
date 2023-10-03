@@ -144,7 +144,9 @@ class ProjetController extends Controller
             'zone.min' => 'Le champ Zone doit comporter au moins 3 caractères.',
             'date_debut.required' => 'Le champ Date de début du Projet est requis.',
             'date_fin.required' => 'Le champ Date de fin du Projet est requis.',
-        ]);}
+        ]
+    );
+}
 
 
 
