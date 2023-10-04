@@ -66,8 +66,8 @@ class Projet extends Model
         $request->file('fichier_projet');
          foreach($request->file('fichier_projet') as $file){
 
-             //dd($file);
-             $path=$this->titre_projet.++$i.".".$file->extension();
+            $orginalName = $file->getClientOriginalName();
+            $path =  $orginalName;
              $path="fichier/".$path;
              // dd($path);
 
@@ -83,7 +83,7 @@ class Projet extends Model
 
     }
 
-    
+
 
 
 
