@@ -61,12 +61,16 @@ class Projet extends Model
         return($duration);
     }
     public function add_pojet($request){
-        $this->delete_file();
-            foreach ($request->file('fichier_archives') as $file) {
-                $orginalName = $file->getClientOriginalName();
-                $path =  $orginalName;
-                $path = "projets/" . $path;
-                $file->storeAs('public/', $path);
+        $i=0;
+        //dd($request->all());
+        $request->file('fichier_projet');
+         foreach($request->file('fichier_projet') as $file){
+
+            $orginalName = $file->getClientOriginalName();
+            $path =  $orginalName;
+             $path="fichier/".$path;
+             // dd($path);
+
              $file->storeAs('public/',$path );
              Fichier::create(
                  [

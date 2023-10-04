@@ -120,7 +120,7 @@ class ProjetController extends Controller
         }
 
        $projet->delete();
-       return redirect()->route('projet.index')->with('success', 'Consultant supprimé avec succès.');
+       return redirect()->route('projet.index')->with('success', 'projet supprimé avec succès.');
     }
 
 
