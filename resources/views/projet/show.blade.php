@@ -98,16 +98,17 @@
                         <div>
 
                             <div class="dropdown">
-                                <button
-                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
+                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
                                 <div class="dropdown-content">
                                     @foreach ($projet->fichiers as $fichier)
                                         <a download href="/storage/{{ $fichier->nom_fichier }}">
-                                            {{ substr($fichier->nom_fichier, 9) }}
+                                            <img src="{{ $projet->getPreviewIconForFile(pathinfo($fichier->nom_fichier, PATHINFO_EXTENSION), '/storage/' . $fichier->nom_fichier) }}" alt="Prévisualisation" class="preview-icon">
+                                            {{ substr($fichier->nom_fichier, 8) }}
                                         </a>
                                     @endforeach
-
                                 </div>
+                            </div>
+
 
                         </div>
 

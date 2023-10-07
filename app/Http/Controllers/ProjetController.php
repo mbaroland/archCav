@@ -63,8 +63,9 @@ class ProjetController extends Controller
     {
         //
         //ddd($projet);
+        $projets = Projet::latest()->get();
         $categorie_projets=CategorieProjet::latest()->get();
-        return view('projet.show',compact('categorie_projets','projet'));
+        return view('projet.show',compact('categorie_projets','projet', 'projets'));
     }
 
     /**
@@ -178,5 +179,28 @@ class ProjetController extends Controller
         //         'recent_posts' => $recent_posts
         //     ]);
         // }
+
+
+
+        // function getPreviewIconForFile($fileExtension, $filePath)
+        // {
+        //     if ($fileExtension === 'pdf') {
+        //         // Chemin de l'aperçu généré
+        //         $previewPath = "/storage/previews/preview_$fileExtension.png";
+
+        //         // Vérifiez si l'aperçu existe, sinon générez-le
+        //         if (!file_exists(public_path($previewPath))) {
+        //             // Utilisez Ghostscript pour extraire la première page du PDF
+        //             $command = "gs -dNOPAUSE -sDEVICE=pngalpha -r300 -o " . public_path($previewPath) . " " . public_path($filePath) . "[0]";
+        //             shell_exec($command);
+        //         }
+
+        //         return $previewPath;
+        //     } else {
+        //         // Pour d'autres types de fichiers, utilisez l'icône générique
+        //         return 'logo.png'; // Utilisez une icône générique par défaut
+        //     }
+        // }
+
 
 }
