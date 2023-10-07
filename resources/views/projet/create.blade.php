@@ -39,9 +39,9 @@
                         <label for="nom" class="block text-gray-700 font-semibold">Nom du Projet</label>
                         <input type="text" id="nom" name="titre_projet" class="form-input w-full rounded-lg">
 
-                        @error('objectif_global')
-                        <span class="text-red-600 text-xs">{{ $message }}</span>
-                    @enderror
+                        @error('titre_projet')
+                            <span class="text-red-600 text-xs">{{ $message }}</span>
+                        @enderror
 
 
                     </div>
@@ -93,7 +93,7 @@
                         <label for="date" class="block text-gray-600 font-medium">Date de début du Projet :</label>
                         <input type="date" name="date_debut"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">
-                        @error('date_fin')
+                        @error('date_debut')
                             <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
@@ -102,7 +102,9 @@
                         <label for="date" class="block text-gray-600 font-medium">Date de fin du Projet :</label>
                         <input type="date" name="date_fin"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">
-
+                        @error('date_fin')
+                            <span class="text-red-600 text-xs">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="container mx-auto mt-4">
@@ -147,7 +149,3 @@
         });
     });
 </script>
-
-
-
-
