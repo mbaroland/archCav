@@ -211,10 +211,12 @@
 
     {{-- ---------------------------------restes des fichiers ici ------------------------------------- --}}
 
+
     <main>
         @yield('content')
     </main>
     {{-- <div class=" sm:ml-64">
+
     <div class="p-4 border-2  rounded-lg dark:border-gray-700 border-blue-900">
 
 

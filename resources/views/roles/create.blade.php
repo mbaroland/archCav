@@ -1,7 +1,5 @@
-@extends('dashboard')
-
-@section('content')
-<div class="p-4 sm:ml-64">
+@extends('accueil')
+@section('content1')
     <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
         
             <div class="my-4">
