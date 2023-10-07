@@ -81,11 +81,8 @@
 </div>
 </div>
 @endsection --}}
-
-@extends('dashboard')
-@section('content')
-
-<div class="p-4 sm:ml-64">
+@extends('accueil')
+@section('content1')
     <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
        
 
@@ -116,7 +113,7 @@
         @endif
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg object-center ">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 relative">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3 text-center">
@@ -140,7 +137,7 @@
 
             @if(isset($data) && count($data) > 0)
             @foreach ($data as $key => $user)
-                <tr>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                     <td class="text-center"><a href="{{ route('users.show',$user) }}">{{ $user->id }}</a></td>
                     <td class="text-center"><a href="{{ route('users.show',$user) }}">{{ $user->name }}</a></td>
                     <td class="text-center"><a href="{{ route('users.show',$user) }}">{{ $user->email }}</a></td>

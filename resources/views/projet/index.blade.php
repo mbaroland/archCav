@@ -1,12 +1,13 @@
-@extends('dashboard')
-@section('content')
+@extends('accueil')
+@section('content1')
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
 
-    <div class="p-4 sm:ml-64">
+    
         <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
 
-            <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700">
+            
 
 
 
