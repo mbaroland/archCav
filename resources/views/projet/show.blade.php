@@ -95,16 +95,6 @@
                 </button>
             </a>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                    <div class="mb-4 flex justify-between mt-6">
-                        <a href="{{ route('projet.index') }}">
-                            <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
-                                Retour
-                            </button>
-                        </a>
-                        <div>
 
                             <div class="dropdown">
                                 <button
@@ -121,40 +111,7 @@
                         </div>
                         
                         </div>
->>>>>>> 21a7197931e8924f53a323d3b90c57cd68b16eec
-=======
-
->>>>>>> b965c40b00ff02e365d770976a1f3f9688225ee6
-
-        </div>
-
-        <div class="dropdown">
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
-
-            <div class="dropdown-content">
-
-                @foreach ($projet->fichiers as $fichier)
-                    <a download href="/storage/{{ $fichier->nom_fichier }}">
-                        {{ substr($fichier->nom_fichier, 9) }}
-                    </a>
-                @endforeach
-
-            </div>
-
-        </div>
-
-    </div> <!-- .row -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-    </div> <!-- .container-fluid -->
-=======
-</div> <!-- .container-fluid -->
-@include('archives.style')
->>>>>>> 21a7197931e8924f53a323d3b90c57cd68b16eec
-=======
-
 </div> <!-- .container-fluid -->
 @include('archives.style')
 
->>>>>>> b965c40b00ff02e365d770976a1f3f9688225ee6
 @endsection

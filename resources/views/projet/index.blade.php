@@ -17,6 +17,8 @@
             <input
         id="recherche-projet"
         type="text"
+        onkeyup="rechercher()" 
+        v-model="q"
         placeholder="Rechercher..."
         class="w-56 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"/>
 
@@ -138,51 +140,43 @@
 @include('projet.create')
 
 <script>
+   const openModalButton = document.getElementById('open-modal');
+        const closeModalButton = document.getElementById('close-modal');
+        const modal = document.getElementById('modal');
 
-$(document).ready(function () {
-    $('#recherche-projet').on('input', function () {
-        var termeRecherche = $(this).val();
+        openModalButton.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
 
-        $.ajax({
-            url: '/recherche-projet',
-            method: 'GET',
-            data: { q: termeRecherche },
-            success: function (data) {
-                var resultat = data.resultat;
-                var resultatHtml = '';
+        closeModalButton.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
 
-                $.each(resultat, function (index, projet) {
-                    resultatHtml += '<li>';
-                    resultatHtml += '<h2>' + projet.titre_projet + '</h2>';
-                    resultatHtml += '<p>Catégorie : ' + projet.nom_categorie + '</p>';
-                    resultatHtml += '<p>Zone : ' + projet.zone + '</p>';
-                    // Ajoutez d'autres détails du projet ici
-                    resultatHtml += '</li>';
-                });
-
-                $('#resultats-recherche').html(resultatHtml);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
             }
         });
-    });
-});
 
-</script>
-
-
-
-
-
-
-<script>
-    let modal = document.getElementById('modal');
-    let errors = '{!! $errors !!}';
+        let errors = '{!! $errors !!}';
     console.log(errors);
     console.log(errors.length);
     if ((errors.length)>2) {
      console.log(errors.length);
-    modal.classList.remove('hidden');
-    }
+    modal.classList.remove('hidden');}
 
 
+    function rechercher(){
+            alert('okOK');
+        }
 </script>
+
+
+
+
+
+
+
+
+
 @endsection
