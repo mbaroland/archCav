@@ -1,1 +1,1 @@
-<img src="{{ asset('bon.png') }}" alt="">
+<img src="{{ asset('logo.png') }}" alt="">

@@ -13,9 +13,9 @@ class TypeArchiveController extends Controller
      */
     public function index()
     {
-      //  dd('baki');
+        //  dd('baki');
 
-        $type_archives=TypeArchive::all();
+        $type_archives = TypeArchive::all();
         //dd($type_archive);
         return view('type_archives.index', compact('type_archives'));
     }
@@ -35,7 +35,7 @@ class TypeArchiveController extends Controller
     public function store(Request $request)
     {
         //
-        $type=TypeArchive::create($request->all());
+        $type = TypeArchive::create($request->all());
         return redirect()->route('type_archive.index')->with('success', 'typearchive supprimé avec succès.');
     }
 
@@ -50,31 +50,31 @@ class TypeArchiveController extends Controller
     // /**
     //  * Show the form for editing the specified resource.
     //  */
-     public function edit(TypeArchive $type_archive)
+    public function edit(TypeArchive $type_archive)
     {
-      // dd($type_archive);
-        $id_archive=$type_archive;
-        return view('type_archive.edit', compact('id_archive'));
-
-     }
+        // dd($type_archive);
+        $id_archive = $type_archive;
+        return view('type_archives.edit', compact('id_archive', 'type_archive'));
+    }
 
     // /**
     //  * Update the specified resource in storage.
     //  */
-     public function update(Request $request, TypeArchive $type_archive)
-     {
+    public function update(Request $request, TypeArchive $type_archive)
+    {
+
         $type_archive->update($request->all());
+        //dd($type_archive);
+
         return redirect()->route('type_archive.index');
-     }
+    }
 
     // /**
     //  * Remove the specified resource from storage.
     //  */
-     public function destroy(TypeArchive $type_archive)
+    public function destroy(TypeArchive $type_archive)
     {
         $type_archive->delete();
         return redirect()->route('type_archive.index')->with('success', 'Consultant supprimé avec succès.');
-
-
     }
 }

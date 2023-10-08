@@ -1,14 +1,15 @@
-@extends('dashboard')
-@section('content')
+@extends('accueil')
+@section('content1')
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-    <div class="p-4 sm:ml-64">
+    
         <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
 
 
 
-            <div class="flex justify-between m-5">
-                <input id="search-input" type="text" placeholder="Rechercher..."
-                    class="w-56 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500" />
+            <div class="flex justify-between m-5 ">
+                <div></div>
                 @can('archive-create')
                     <a href="{{ route('archive.create') }}">
                         <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
@@ -21,7 +22,7 @@
 
 
             <div class="overflow-x-auto shadow-md sm:rounded-lg object-center">
-                <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+                <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400" id="table">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th class="p-2">
@@ -116,5 +117,29 @@
     </div>
 
 
+    <style>
+        .custom-search input[type="search"] {
+            /* background-color: gray; */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            red padding: 5px;
+            margin: 25px;
+            width: 200px;
+    </style>
+
+    <script>
+        new DataTable('#table', {
+            // Options de configuration de DataTables
+            lengthChange: false, // Désactiver la sélection du nombre de lignes
+            info: false,
+            dom: '<"custom-search"f>t',
+            paging: false,
+            language: {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",
+                "search": "",
+                "searchPlaceholder": "rechercher"
+            }
+        });
+    </script>
 
 @endsection

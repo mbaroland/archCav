@@ -1,6 +1,5 @@
-@extends('dashboard')
-@section('content')
-    <div class="p-4 sm:ml-64">
+@extends('accueil')
+@section('content1')
         <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
 
 
@@ -88,30 +87,38 @@
             </div>
         </div>
 
-        <div class="mb-4 flex justify-between mt-6">
-            <a href="{{ route('projet.index') }}">
-                <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
-                    Retour
-                </button>
-            </a>
 
+                    <div class="mb-4 flex justify-between mt-6">
+                        <a href="{{ route('projet.index') }}">
+                            <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
+                                Retour
+                            </button>
+                        </a>
+                        <div>
 
                             <div class="dropdown">
-                                <button
-                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
+                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
                                 <div class="dropdown-content">
                                     @foreach ($projet->fichiers as $fichier)
                                         <a download href="/storage/{{ $fichier->nom_fichier }}">
-                                            {{ substr($fichier->nom_fichier, 9) }}
+                                            <img src="{{ $projet->getPreviewIconForFile(pathinfo($fichier->nom_fichier, PATHINFO_EXTENSION), '/storage/' . $fichier->nom_fichier) }}" alt="Prévisualisation" class="preview-icon">
+                                            {{ substr($fichier->nom_fichier, 8) }}
                                         </a>
                                     @endforeach
-    
                                 </div>
-    
+                            </div>
+
+
                         </div>
-                        
+
                         </div>
+
+
+
+
+
 </div> <!-- .container-fluid -->
 @include('archives.style')
+
 
 @endsection
