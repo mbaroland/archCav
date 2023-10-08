@@ -11,17 +11,21 @@
      
         @keyframes changeBackground {
             0% {
-                background-image: url('https://tecdn.b-cdn.net/img/new/slides/041.jpg');
+                background-image: url('{{ asset('cav1.jpg') }}');
             }
+
             33.33% {
-                background-image: url('https://tecdn.b-cdn.net/img/new/slides/042.jpg');
+                background-image: url('{{ asset('cav2.jpg') }}');
             }
+
             66.66% {
-                background-image: url('https://tecdn.b-cdn.net/img/new/slides/043.jpg');
+                background-image: url('{{ asset('cav3.jpg') }}');
             }
+
             100% {
                 background-image: url('https://tecdn.b-cdn.net/img/new/slides/044.jpg');
             }
+        
         }
      </style>
     <div class="p-4 sm:ml-64 h-screen" id="back" >

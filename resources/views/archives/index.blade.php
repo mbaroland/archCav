@@ -9,7 +9,7 @@
 
 
             <div class="flex justify-between m-5 ">
-                <div></div>
+                <div> </div>
                 @can('archive-create')
                     <a href="{{ route('archive.create') }}">
                         <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
@@ -63,8 +63,8 @@
                                                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
                                             <div class="dropdown-content">
                                                 @foreach ($archive->fichiers as $fichier)
-                                                    <a download href="/storage/{{ $fichier->nom_fichier }}">
-                                                        {{ substr($fichier->nom_fichier, 9) }}
+                                                    <a  href="/storage/{{ $fichier->nom_fichier }}" download="{{ substr($fichier->nom_fichier, 9) }}">
+                                                    {{ substr($fichier->nom_fichier, 9) }}
                                                     </a>
                                                 @endforeach
 

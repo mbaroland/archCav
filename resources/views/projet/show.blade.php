@@ -5,26 +5,26 @@
 
 
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="container mx-auto mt-4">
-
-
-
-                    <label for="nom" class="block text-gray-700 font-semibold">PROJET : </label>
-                    <h1 class='text-2xl font-bold'>{{ $projet->titre_projet }}</h1>
-
-                </div>
-            </div>
-            <div class="flex ">
-                <div class="mb-4">
-                    <div class="container mx-auto mt-4">
-                        <label for="nom" class="block text-gray-700 font-semibold">OBJECTIF GLOBAL :</label>
-
-                    </div>
-                    <div class="container mx-auto mt-4 block">
-                        <p>{{ $projet->objectif_global }}</p>
-
-                    </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="container mx-auto mt-4">
+                                        
+                                        
+                                        
+                                    <label for="nom" class="block text-gray-700 font-semibold">PROJET : </label>
+                                    <h1 class='text-2xl font-bold'>{{ $projet->titre_projet }}</h1>
+                                    
+                                </div>
+                            </div>
+                            <div class="flex ">
+                                <div class="mb-4">
+                                    <div class="container mx-auto mt-4">
+                                        <label for="nom" class="block text-gray-700 font-semibold">OBJECTIF GLOBAL :</label>
+                                        
+                                    </div>
+                                <div class="container mx-auto mt-4 block">
+                                        <p>{{ $projet->objectif_global }}</p>
+                                    
+                                </div>
 
 
 
@@ -100,10 +100,9 @@
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
                                 <div class="dropdown-content">
                                     @foreach ($projet->fichiers as $fichier)
-                                        <a download href="/storage/{{ $fichier->nom_fichier }}">
-                                            <img src="{{ $projet->getPreviewIconForFile(pathinfo($fichier->nom_fichier, PATHINFO_EXTENSION), '/storage/' . $fichier->nom_fichier) }}" alt="Prévisualisation" class="preview-icon">
-                                            {{ substr($fichier->nom_fichier, 8) }}
-                                        </a>
+                                    <a  href="/storage/{{ $fichier->nom_fichier }}" download="{{ substr($fichier->nom_fichier, 8) }}">
+                                                    {{ substr($fichier->nom_fichier, 8) }}
+                                                    </a>
                                     @endforeach
                                 </div>
                             </div>

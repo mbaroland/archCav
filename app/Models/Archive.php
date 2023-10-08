@@ -70,6 +70,15 @@ class Archive extends Model
 
     }
 
+    public function download($file_name)
+    {
+        //Storage::disk('local')->put('example.txt', 'Contents');
+        $file = Storage::disk('public')->get($file_name);
+        $filepath = storage_path("app/{$data->file}");
+        
+        return \Response::download($filepath);
+    }
+
     public static function rules()
     {
         return [

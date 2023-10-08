@@ -22,6 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+
+
+Route::get('/download', function (){
+    return Storage::download('public/fichier/hopital1.jpg');
+});
+
 Route::middleware([
     'auth:web',
     config('jetstream.auth_session'),
@@ -67,8 +73,8 @@ Route::middleware([
         });
         Route::get('archive/{archive}/edit', [ArchiveController::class, 'edit'])->name('archive.edit');
 
-        Route::get('/{archive}/download', [Archive::class, 'download_file'])->name('archive.download_file');
-        // type archive
+        Route::post('download/{id}',[Archive::class, 'download']);
+                // type archive
         Route::prefix('type_archive')->group(function () {
             Route::get('/index', [TypeArchiveController::class, 'index'])->name('type_archive.index');
             Route::get('/create', [TypeArchiveController::class, 'create'])->name('type_archive.create');
