@@ -75,6 +75,8 @@
                         <p>{{ $projet->find_duration() }} mois</p>
 
                     </div>
+                    
+
 
                 </div>
 
@@ -103,6 +105,7 @@
                                     <a  href="/storage/{{ $fichier->nom_fichier }}" download="{{ substr($fichier->nom_fichier, 8) }}">
                                                     {{ substr($fichier->nom_fichier, 8) }}
                                                     </a>
+                                                <embed src="/storage/{{ $fichier->nom_fichier }}" type="application/pdf" width="600" height="800">
                                     @endforeach
                                 </div>
                             </div>

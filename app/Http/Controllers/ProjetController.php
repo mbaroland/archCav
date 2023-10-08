@@ -103,7 +103,7 @@ class ProjetController extends Controller
         $projet->add_pojet($request);
 
 
-        return redirect()->route('projet.index')->with('success', 'Consultant supprimé avec succès.');
+        return redirect()->route('projet.index')->with('success', 'projet mis à jour avec succès.');
     }
     /**
      * Remove the specified resource from storage.
