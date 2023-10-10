@@ -72,43 +72,46 @@
 
                     </div>
                     <div class="container mx-auto mt-4 block">
-                        <p>{{ $projet->find_duration() }} mois</p>
+                        <p>{{ $projet->find_duration() }} </p>
+
 
                     </div>
 
                     <div class="container mx-auto mt-4 block">
+                    <!-- <div class="dropdown">
+                                <div class="dropdown-content">
+                    
                     @foreach ($projet->fichiers as $fichier)
+                    <div class="dropdown">
+                        <p>{{ substr($fichier->nom_fichier, 8) }}</p>
+                                <div class="dropdown-content">
 
-                                    <button id='open-modal'>{{ substr($fichier->nom_fichier, 8) }}</button>
+                                    <a  href="/storage/{{ $fichier->nom_fichier }}" download="{{ substr($fichier->nom_fichier, 8) }}">
+                                                    {{ substr($fichier->nom_fichier, 8) }}
+
+                                                    </a>
+
+                                                <embed src="/storage/{{ $fichier->nom_fichier }}" type="application/pdf" width="600" height="800">
+                                    @endforeach
+
+                                    </div>
+                                    </div> -->
+
+
+                                    @foreach ($projet->fichiers as $fichier)
+                                    <a  href="/preview?file=/storage/{{ $fichier->nom_fichier }}" target='blank'>
+                                                    <p>{{ substr($fichier->nom_fichier, 8) }}</p> 
                                                     
 
-                                
-                    @endforeach
+                                                    </a>
+                                                    <hr>
+
+                                    @endforeach
 
                     </div>
                     
 
-        <script>
-            
-        const openModalButton = document.getElementById('open-modal');
-        const closeModalButton = document.getElementById('close-modal');
-        const modal = document.getElementById('modal');
-
-        openModalButton.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-        });
-
-        closeModalButton.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.add('hidden');
-            }
-        });
-
-            </script>
+        
 
 
                 </div>
@@ -129,25 +132,13 @@
                                 Retour
                             </button>
                         </a>
-                        <div>
+                        
 
-                            <div class="dropdown">
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Télécharger</button>
-                                <div class="dropdown-content">
-                                    @foreach ($projet->fichiers as $fichier)
-                                    <a  href="/storage/{{ $fichier->nom_fichier }}" download="{{ substr($fichier->nom_fichier, 8) }}">
-                                                    {{ substr($fichier->nom_fichier, 8) }}
+                            
 
-                                                    </a>
+                           
 
-                                                <embed src="/storage/{{ $fichier->nom_fichier }}" type="application/pdf" width="600" height="800">
-                                    @endforeach
-
-                                </div>
-
-                            </div>
-
-                        </div>
+                
 
                         </div>
 
@@ -160,23 +151,7 @@
 @include('archives.style')
 
 
-<div id="modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
-    <div
-        class="modal-container bg-white w-3/4 md:max-w-md lg:w-3/4 xl:w-3/4 mx-auto rounded shadow-lg z-50 overflow-y-auto p-2">
-
-
-        <div class="modal-content py-4 text-left px-6">
-            <div class="flex justify-between items-center pb-3">
-                <p class="text-2xl font-bold">ENREGISTREMENT D'UN PROJET</p>
-                <button id="close-modal" class="modal-close px-3 py-1 rounded-full hover:bg-gray-300">&times;</button>
-            </div>
-
-
-        </div>
-    </div>
-</div>
 
 
 
