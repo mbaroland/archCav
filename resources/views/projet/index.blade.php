@@ -141,37 +141,7 @@
             </div>
             @include('projet.create')
 
-            <script>
-                $(document).ready(function() {
-                    $('#recherche-projet').on('input', function() {
-                        var termeRecherche = $(this).val();
-
-                        $.ajax({
-                            url: '/recherche-projet',
-                            method: 'GET',
-                            data: {
-                                q: termeRecherche
-                            },
-                            success: function(data) {
-                                var resultat = data.resultat;
-                                var resultatHtml = '';
-
-                                $.each(resultat, function(index, projet) {
-                                    resultatHtml += '<li>';
-                                    resultatHtml += '<h2>' + projet.titre_projet + '</h2>';
-                                    resultatHtml += '<p>Catégorie : ' + projet.nom_categorie +
-                                        '</p>';
-                                    resultatHtml += '<p>Zone : ' + projet.zone + '</p>';
-                                    // Ajoutez d'autres détails du projet ici
-                                    resultatHtml += '</li>';
-                                });
-
-                                $('#resultats-recherche').html(resultatHtml);
-                            }
-                        });
-                    });
-                });
-            </script>
+            
 
 
 
@@ -203,6 +173,26 @@
                         "searchPlaceholder": "rechercher"
                     }
                 });
+            </script>
+            <script>
+                const openModalButton = document.getElementById('open-modal');
+        const closeModalButton = document.getElementById('close-modal');
+        const modal = document.getElementById('modal');
+
+        openModalButton.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+
             </script>
 
             <script>

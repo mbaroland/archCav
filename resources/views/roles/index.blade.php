@@ -49,6 +49,7 @@
 
             @if(isset($roles) && count($roles) > 0)
             @foreach ($roles as $key => $role)
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                     <td class="text-center"><a href="{{ route('roles.show',$role) }}">{{ $role->id }}</a></td>
                     <td class="text-center"><a href="{{ route('roles.show',$role) }}">{{ $role->name }}</a></td>
                     

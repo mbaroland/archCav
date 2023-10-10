@@ -100,6 +100,7 @@
 
 
 
+                            </div>
 
 
             <div class="dropdown">
@@ -245,62 +246,34 @@
         });
     </script>
 
+                        </div>
 
     {{-- ----------------------------- --}}
 
 
+</div>
 
-    {{-- ________________________ emned js _________________ --}}
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const visualiserButtons = document.querySelectorAll('.visualiser-button');
-            const pdfModal = document.getElementById('pdfModal');
-            const embedContainer = document.getElementById('embed-container');
-            const closeModal = document.getElementById('closeModal');
-
-            visualiserButtons.forEach((button) => {
-                button.addEventListener('click', function() {
-                    const src = button.getAttribute('data-src');
-                    const embed = document.createElement('embed');
-                    embed.src = src;
-                    embed.type = 'application/pdf';
-                    embed.width = '100%';
-                    embed.height = '600';
-                    embedContainer.innerHTML = '';
-                    embedContainer.appendChild(embed);
-                    pdfModal.classList.remove('hidden');
-                });
-            });
-
-            closeModal.addEventListener('click', function() {
-                pdfModal.classList.add('hidden');
-            });
-        });
-    </script>
+@include('archives.style')
 
 
-    {{-- ________________________ emned js _________________ --}}
+<div id="modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+    <div
+        class="modal-container bg-white w-3/4 md:max-w-md lg:w-3/4 xl:w-3/4 mx-auto rounded shadow-lg z-50 overflow-y-auto p-2">
 
 
-    <style>
-        .modal-box {
-            max-width: 80%;
-            /* Vous pouvez ajuster la largeur du modal selon vos besoins */
-            background-color: white;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+        <div class="modal-content py-4 text-left px-6">
+            <div class="flex justify-between items-center pb-3">
+                <p class="text-2xl font-bold">ENREGISTREMENT D'UN PROJET</p>
+                <button id="close-modal" class="modal-close px-3 py-1 rounded-full hover:bg-gray-300">&times;</button>
+            </div>
 
 
-        .custom-modal-width {
-            max-width: 100%;
-            /* Largeur personnalisée (ajustez selon vos besoins) */
-        }
+        </div>
+    </div>
+</div>
 
-        .custom-modal-height {
-            max-height: 180vh;
-            /* Hauteur personnalisée (ajustez selon vos besoins) */
-        }
-    </style>
+
+
 @endsection
