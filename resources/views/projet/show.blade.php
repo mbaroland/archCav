@@ -178,7 +178,7 @@
                         const pdfHeight = pdfEmbed.clientHeight;
 
                         // Définir la taille du modal en fonction des dimensions du PDF
-                        pdfModal.style.width = pdfWidth +30+ 'px';
+                        pdfModal.style.width = pdfWidth + 30 + 'px';
                         pdfModal.style.height = pdfHeight + 'px';
 
                         // Afficher le modal
@@ -264,7 +264,7 @@
                     const src = button.getAttribute('data-src');
                     const embed = document.createElement('embed');
                     embed.src = src;
-                    embed.type = 'application/pdf';
+                    embed.type = 'application/*';
                     embed.width = '100%';
                     embed.height = '600';
                     embedContainer.innerHTML = '';
