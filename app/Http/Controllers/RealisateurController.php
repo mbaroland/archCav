@@ -21,6 +21,9 @@ class RealisateurController extends Controller
      */
     public function create()
     {
+       // $realisateur= Realisateur::all();
+        return view("partenaires.create");
+
         //
     }
 
@@ -30,6 +33,9 @@ class RealisateurController extends Controller
     public function store(Request $request)
     {
         //
+        $archive = Realisateur::create($request ->all());
+        return redirect()->route('partenaire.index')->with('success', 'partenaires supprimé avec succès.');
+
     }
 
     /**

@@ -122,6 +122,11 @@
 
 
 
+                        // Définir la taille du modal en fonction des dimensions du PDF
+                        pdfModal.style.width = pdfWidth + 30 + 'px';
+                        pdfModal.style.height = pdfHeight + 'px';
+
+
             </div>
         
 
@@ -149,10 +154,6 @@
 </div>
 
 @include('archives.style')
-
-
-
-
 
 
 @endsection
