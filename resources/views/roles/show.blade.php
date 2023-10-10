@@ -1,6 +1,8 @@
 @extends('accueil')
 @section('content1')
-    <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
+<div class="rounded-lg bg-white">
+    <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16 ">
+        
        
             
             
@@ -44,6 +46,7 @@
             
                     </div>
             
-    </div> <!-- .row -->
-</div> <!-- .container-fluid -->
+    </div>
+    </div>
+    </div>
 @endsection
