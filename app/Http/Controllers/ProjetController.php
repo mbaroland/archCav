@@ -153,35 +153,7 @@ class ProjetController extends Controller
 
 
 
-        public function rechercher(Request $request)
-        {
-            $key = trim($request->get('q'));
-
-            $posts = Projet::query()
-                ->where('titre_projet', 'like', "%{$key}%")
-                ->orWhere('objectif-global', 'like', "%{$key}%")
-                ->orderBy('created_at', 'desc')
-                ->get();
-
-            $categories = Category::all();
-
-            $tags = Tag::all();
-
-            $recent_posts = Post::query()
-                ->where('is_published', true)
-                ->orderBy('created_at', 'desc')
-                ->take(5)
-                ->get();
-
-            return view('search', [
-                'key' => $key,
-                'posts' => $posts,
-                'categories' => $categories,
-                'tags' => $tags,
-                'recent_posts' => $recent_posts
-            ]);
-        }
-
+       
 
 
         // function getPreviewIconForFile($fileExtension, $filePath)

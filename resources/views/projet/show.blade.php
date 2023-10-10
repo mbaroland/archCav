@@ -113,6 +113,11 @@
 
 
 
+                        // Définir la taille du modal en fonction des dimensions du PDF
+                        pdfModal.style.width = pdfWidth + 30 + 'px';
+                        pdfModal.style.height = pdfHeight + 'px';
+
+
             </div>
         
 
@@ -149,6 +154,24 @@
 
 @include('archives.style')
 
+
+            visualiserButtons.forEach((button) => {
+                button.addEventListener('click', function() {
+                    const src = button.getAttribute('data-src');
+                    const embed = document.createElement('embed');
+                    embed.src = src;
+                    embed.type = 'application/*';
+                    embed.width = '100%';
+                    embed.height = '600';
+                    embedContainer.innerHTML = '';
+                    embedContainer.appendChild(embed);
+                    pdfModal.classList.remove('hidden');
+                });
+            });
+
+
+    <div
+        class="modal-container bg-white w-3/4 md:max-w-md lg:w-3/4 xl:w-3/4 mx-auto rounded shadow-lg z-50 overflow-y-auto p-2">
 
 
 

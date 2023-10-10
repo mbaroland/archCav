@@ -5,6 +5,7 @@ use App\Http\Controllers\CategorieProjetController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\TypeArchiveController;
 use App\Models\Archive;
+use App\Models\Realisateur;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/download', function (){
+Route::get('/download', function () {
     return Storage::download('public/fichier/hopital1.jpg');
 });
 
@@ -53,38 +54,41 @@ Route::middleware([
         Route::post('/{projet}/update', [ProjetController::class, 'update'])->name('projet.update');
     });
 
-    Route::prefix('categorie_projet')->group(function () {
-        // categorie_projet
-        Route::get('/index', [CategorieProjetController::class, 'index'])->name('categorie_projet.index');
-        Route::DELETE('/destroy/{categorie_projet}', [CategorieProjetController::class, 'destroy'])->name('categorie_projet.destroy');
-        Route::post('/store', [CategorieProjetController::class, 'store'])->name('categorie_projet.store');
-        Route::get('/{categorie_projet}/edit', [CategorieProjetController::class, 'edit'])->name('categorie_projet.edit');
-        Route::post('/{categorie_projet}/update', [CategorieProjetController::class, 'update'])->name('categorie_projet.update');}
+    Route::prefix('categorie_projet')->group(
+        function () {
+            // categorie_projet
+            Route::get('/index', [CategorieProjetController::class, 'index'])->name('categorie_projet.index');
+            Route::DELETE('/destroy/{categorie_projet}', [CategorieProjetController::class, 'destroy'])->name('categorie_projet.destroy');
+            Route::post('/store', [CategorieProjetController::class, 'store'])->name('categorie_projet.store');
+            Route::get('/{categorie_projet}/edit', [CategorieProjetController::class, 'edit'])->name('categorie_projet.edit');
+            Route::post('/{categorie_projet}/update', [CategorieProjetController::class, 'update'])->name('categorie_projet.update');
+        }
 
     );
-        Route::prefix('archive')->group(function () {
-            //archive
-            Route::get('/index', [ArchiveController::class, 'index'])->name('archive.index');
-            Route::DELETE('/destroy/{archive}', [ArchiveController::class, 'destroy'])->name('archive.destroy');
-            Route::get('/create', [ArchiveController::class, 'create'])->name('archive.create');
-            Route::post('/store', [ArchiveController::class, 'store'])->name('archive.store');
+    Route::prefix('archive')->group(function () {
+        //archive
+        Route::get('/index', [ArchiveController::class, 'index'])->name('archive.index');
+        Route::DELETE('/destroy/{archive}', [ArchiveController::class, 'destroy'])->name('archive.destroy');
+        Route::get('/create', [ArchiveController::class, 'create'])->name('archive.create');
+        Route::post('/store', [ArchiveController::class, 'store'])->name('archive.store');
 
-            Route::post('/{archive}/update', [ArchiveController::class, 'update'])->name('archive.update');
-        });
-        Route::get('archive/{archive}/edit', [ArchiveController::class, 'edit'])->name('archive.edit');
-
-        Route::post('download/{id}',[Archive::class, 'download']);
-                // type archive
-        Route::prefix('type_archive')->group(function () {
-            Route::get('/index', [TypeArchiveController::class, 'index'])->name('type_archive.index');
-            Route::get('/create', [TypeArchiveController::class, 'create'])->name('type_archive.create');
-            Route::post('/store', [TypeArchiveController::class, 'store'])->name('type_archive.store');
-            Route::DELETE('/destroy/{type_archive}', [TypeArchiveController::class, 'destroy'])->name('type_archive.destroy');
-            Route::get('/{type_archive}/edit', [TypeArchiveController::class, 'edit'])->name('type_archive.edit');
-            Route::post('/{type_archive}', [TypeArchiveController::class, 'update'])->name('type_archive.update');
-        });
+        Route::post('/{archive}/update', [ArchiveController::class, 'update'])->name('archive.update');
     });
+    Route::get('archive/{archive}/edit', [ArchiveController::class, 'edit'])->name('archive.edit');
 
-    Route::get('/recherche-projet', 'RechercheController@rechercheProjet')->name('recherche.projet');
+    Route::post('download/{id}', [Archive::class, 'download']);
+    // type archive
+    Route::prefix('type_archive')->group(function () {
+        Route::get('/index', [TypeArchiveController::class, 'index'])->name('type_archive.index');
+        Route::get('/create', [TypeArchiveController::class, 'create'])->name('type_archive.create');
+        Route::post('/store', [TypeArchiveController::class, 'store'])->name('type_archive.store');
+        Route::DELETE('/destroy/{type_archive}', [TypeArchiveController::class, 'destroy'])->name('type_archive.destroy');
+        Route::get('/{type_archive}/edit', [TypeArchiveController::class, 'edit'])->name('type_archive.edit');
+        Route::post('/{type_archive}', [TypeArchiveController::class, 'update'])->name('type_archive.update');
+    });
+});
 
+Route::get('/recherche-projet', 'RechercheController@rechercheProjet')->name('recherche.projet');
 
+Route::get('partenaires/index', [Realisateur::class, 'index'])->name('realisateurs.index');
+Route::get('partenaires/create', [Realisateur::class, 'create'])->name('realisateurs.create');
