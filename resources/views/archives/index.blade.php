@@ -100,17 +100,20 @@
             @endcan
 
             </tr>
+
             @endforeach
-        @else
+            @else
+
             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+
                 <td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-white">
                     Aucune archive.
-
-
-
                 </td>
+
             </tr>
+
             @endif
+
             </tbody>
             </table>
         </div>
