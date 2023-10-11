@@ -28,6 +28,10 @@ Route::get('/', function () {
 
 
 
+Route::get('/preview', function () {
+    return view('projet.preview');
+})->name('preview');
+
 Route::middleware([
     'auth:web',
     config('jetstream.auth_session'),

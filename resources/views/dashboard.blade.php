@@ -6,8 +6,6 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/alpine.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     <button data-drawer-target="cta-button-sidebar" data-drawer-toggle="cta-button-sidebar"
@@ -101,7 +99,7 @@
                             <path d="M7 4h4v2H7zM5 7h8v2H5zM5 10h8v2H5z" />
                         </svg>
 
-                        <span class="ml-4 whitespace-nowrap">Archives</span {{-- @if (isset($projets) && count($projets) > 0)
+                        <span class="ml-4 whitespace-nowrap">Archives</span> {{-- @if (isset($projets) && count($projets) > 0)
              <span class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">{{ count($projets) }}</span>
              @else
              <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"></span>
