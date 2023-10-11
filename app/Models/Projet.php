@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Carbon\Carbon;
 use App\Models\Fichier;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Projet extends Model
 {
@@ -38,9 +39,8 @@ class Projet extends Model
         return $this->belongsTo(CategorieProjet::class);
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
-
         return $this->belongsTo(User::class);
     }
 

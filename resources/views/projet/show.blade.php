@@ -72,10 +72,23 @@
 
                     </div>
                     <div class="container mx-auto mt-4 block">
-                        <p>{{ $projet->find_duration() }} </p>
+                        <p>{{ $projet->find_duration() }} mois </p>
 
 
                     </div>
+
+                    <div class="container mx-auto mt-4">
+                        <label for="nom" class="block text-gray-700 font-semibold">Responsable du projet :</label>
+
+                    </div>
+
+                    <div class="container mx-auto mt-4 block">
+
+                        <p>{{ $utilisateur->name }} <br> {{$utilisateur->prenom}}</p>
+
+
+                    </div>
+
 
                     <div class="container mx-auto mt-4 block">
                     <!-- <div class="dropdown">
@@ -122,10 +135,7 @@
 
 
 
-                        // Définir la taille du modal en fonction des dimensions du PDF
-                        pdfModal.style.width = pdfWidth + 30 + 'px';
-                        pdfModal.style.height = pdfHeight + 'px';
-
+                        
 
             </div>
 
@@ -151,7 +161,11 @@
 
 
 
+
+                       
 </div>
+
+
 
 @include('archives.style')
 

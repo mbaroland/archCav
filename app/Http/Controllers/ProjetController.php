@@ -6,6 +6,7 @@ use App\Models\CategorieProjet;
 use App\Models\Fichier;
 use App\Models\Projet;
 use App\Models\Realisateur;
+use App\Models\User;
 use Faker\Core\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -82,7 +83,8 @@ class ProjetController extends Controller
         //ddd($projet);
         $projets = Projet::latest()->get();
         $categorie_projets = CategorieProjet::latest()->get();
-        return view('projet.show', compact('categorie_projets', 'projet', 'projets'));
+        $utilisateur = User::find($projet->id_user);
+        return view('projet.show', compact('categorie_projets', 'projet', 'projets','utilisateur'));
     }
 
     /**
@@ -104,7 +106,9 @@ class ProjetController extends Controller
         $fichier = Fichier::find($projet->id);
 
         $partenaire = Realisateur::all();
-        return view('projet.edit', compact('partenaire' ,'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier'));
+        $part = Realisateur::find($projet->id);
+
+        return view('projet.edit', compact('partenaire' ,'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier','part'));
     }
 
     /**

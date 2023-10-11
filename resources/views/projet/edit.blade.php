@@ -1,7 +1,7 @@
 
 @extends('accueil')
 @section('content1')
-    <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
+    <div class="bg-white p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
 
 
 @if(isset($projet))
@@ -51,19 +51,19 @@ enctype="multipart/form-data">
 
 <div class="mb-4">
     <label for="nom" class="block text-gray-700 font-semibold">Financement</label>
-    <input type="text"  name="financement" class="form-input w-full rounded-lg"
-    value="{{ $projet->financement }}">
-</div>
-
-@foreach($partenaire as $value)
+    @foreach($partenaire as $value)
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" name="financement[]" value="{{ $value->id }}"
-                                        {{ in_array($value->id, $rolePermissions) ? 'checked' : '' }}
+                                        {{ in_array($value->id,$part->pluck('id')->toArray()) ? 'checked' : '' }}
                                         class="form-checkbox text-indigo-600 h-5 w-5">
-                                    <span class="ml-2">{{ $value->name }}</span>
+                                    <span class="ml-2">{{ $value->nom_realisateur }}</span>
                                 </label>
                                 <br/>
-                            @endforeach
+    @endforeach
+
+</div>
+
+
 
 
 <div class="mb-4">
