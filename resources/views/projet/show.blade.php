@@ -71,14 +71,30 @@
                 <div class="container mx-auto mt-4">
                     <label for="nom" class="block text-gray-700 font-semibold">DUREE :</label>
 
-                </div>
-                <div class="container mx-auto mt-4 block">
-                    <p>{{ $projet->find_duration() }} </p>
+
+                    </div>
+                    <div class="container mx-auto mt-4 block">
+                        <p>{{ $projet->find_duration() }} mois </p>
 
 
                 </div>
 
-                <div class="container mx-auto mt-4 block">
+
+                    <div class="container mx-auto mt-4">
+                        <label for="nom" class="block text-gray-700 font-semibold">Responsable du projet :</label>
+
+                    </div>
+
+                    <div class="container mx-auto mt-4 block">
+
+                        <p>{{ $utilisateur->name }} <br> {{$utilisateur->prenom}}</p>
+
+
+                    </div>
+
+
+                    <div class="container mx-auto mt-4 block">
+
                     <!-- <div class="dropdown">
                                     <div class="dropdown-content">
 
@@ -120,7 +136,6 @@
 
 
 
-
         </div>
 
 
@@ -143,6 +158,13 @@
 
     </div>
 
+
+                       
+</div>
+
+
+
+@include('archives.style')
 
 
     </div>
