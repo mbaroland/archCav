@@ -54,7 +54,7 @@ class RealisateurController extends Controller
      */
     public function edit(realisateur $realisateur)
     {
-        //
+        return view("partenaires.edit", compact('realisateur'));
     }
 
     /**
@@ -63,6 +63,8 @@ class RealisateurController extends Controller
     public function update(Request $request, realisateur $realisateur)
     {
         //
+        $realisateur->update($request->all());
+        return redirect()->route('partenaires.index');
     }
 
     /**

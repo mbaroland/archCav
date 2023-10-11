@@ -80,9 +80,10 @@ class ProjetController extends Controller
     {
         //
         //ddd($projet);
+        $partenaire = Realisateur::all();
         $projets = Projet::latest()->get();
         $categorie_projets = CategorieProjet::latest()->get();
-        return view('projet.show', compact('categorie_projets', 'projet', 'projets'));
+        return view('projet.show', compact('partenaire', 'categorie_projets', 'projet', 'projets'));
     }
 
     /**
