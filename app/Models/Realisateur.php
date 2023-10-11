@@ -16,6 +16,6 @@ class Realisateur extends Model
     ];
     public function realisateur()
     {
-    return $this->BelongsTo(Projet::class);
+    return $this->BelongsToMany(Projet::class);
     }
 }

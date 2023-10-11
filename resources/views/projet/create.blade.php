@@ -13,7 +13,7 @@
                 <button id="close-modal" class="modal-close px-3 py-1 rounded-full hover:bg-gray-300">&times;</button>
             </div>
 
-            { { dump($realisateurs)  }}
+
             <!-- formulaire-->
             <form action="{{ route('projet.store') }}" class="space-y-4" method="POST" enctype="multipart/form-data">
 
@@ -64,21 +64,24 @@
                         @enderror
                     </div>
 
-                    <div class="mb-4">
-                        <label for="nom" class="block text-gray-700 font-semibold">Financement</label>
-                        <select name="id_categorie"
-                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 bg-white text-gray-700">
 
-                            @foreach ($realisateurs as $realisateur)
-                                <option value="{{ $realisateur->id }}" class="py-2">{{ $realisateur->nom_realisateur }}
-                                </option>
-                            @endforeach
 
-                    </select>g">
-                        @error('financement')
-                            <span class="text-red-600 text-xs">{{ $message }}</span>
-                        @enderror
+                    <div class="container mx-auto mt-4"> <label class="block font-semibold">{{ __('Partenaire') }}
+                            :</label>
+                        <br>
+                        @foreach ($realisateurs as $realisateur)
+                            <label>
+                                <input type="checkbox" name="financement[]" value="{{ $realisateur->id }}"
+                                    class="name">
+                                {{ $realisateur->nom_realisateur }}
+                            </label>
+                            <br>
+                        @endforeach
                     </div>
+                    @error('financement')
+                        <span class="text-red-600 text-xs">{{ $message }}</span>
+                    @enderror
+
 
 
                     <div class="mb-4">
