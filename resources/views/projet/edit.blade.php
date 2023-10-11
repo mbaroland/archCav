@@ -2,7 +2,7 @@
 @extends('accueil')
 @section('content1')
     <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
-       
+
 
 @if(isset($projet))
 <form action="{{ route('projet.update',$projet) }}"method="POST" class="space-y-4"
@@ -15,7 +15,7 @@ enctype="multipart/form-data">
 @csrf
 
 
-                
+
     <div class="container mx-auto mt-4">
         <label for="select-box" class="block text-gray-700 font-semibold">AXE STRATEGIQUE</label>
         <select  name="id_categorie" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 bg-white text-gray-700">
@@ -28,7 +28,7 @@ enctype="multipart/form-data">
                 <option value="" disabled >Aucune catégorie disponible</option>
             @endif
         </select>
-        
+
     </div>
     <div class="container mx-auto mt-4">
         <label for="nom" class="block text-gray-700 font-semibold">Nom du Projet</label>
@@ -55,6 +55,16 @@ enctype="multipart/form-data">
     value="{{ $projet->financement }}">
 </div>
 
+@foreach($partenaire as $value)
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="financement[]" value="{{ $value->id }}"
+                                        {{ in_array($value->id, $rolePermissions) ? 'checked' : '' }}
+                                        class="form-checkbox text-indigo-600 h-5 w-5">
+                                    <span class="ml-2">{{ $value->name }}</span>
+                                </label>
+                                <br/>
+                            @endforeach
+
 
 <div class="mb-4">
     <label for="nom" class="block text-gray-700 font-semibold">Budget</label>
@@ -74,14 +84,14 @@ enctype="multipart/form-data">
     <input type="date"  name="date_debut" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"
     value="{{ $projet->date_debut->format('Y-m-d') }}">
 
-</div> 
+</div>
 
 <div class="container mx-auto mt-4">
     <label for="date" class="block text-gray-600 font-medium">Date de fin du Projet :</label>
     <input type="date"  name="date_fin" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"
     value="{{ $projet->date_fin->format('Y-m-d') }}">
 
-</div> 
+</div>
 
 
 <div class="container mx-auto mt-4">
@@ -105,7 +115,7 @@ enctype="multipart/form-data">
             Annuler
         </button>
     </a>
-    
+
     <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
         Enregistrer
     </button>

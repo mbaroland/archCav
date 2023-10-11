@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Carbon\Carbon;
@@ -28,7 +29,8 @@ class Projet extends Model
     ];
     protected $casts = [
         "date_debut" => "datetime",
-        "date_fin" => "datetime"
+        "date_fin" => "datetime",
+        "financement" => "array"
     ];
     public function categorie_projet(): BelongsTo
     {
@@ -42,9 +44,9 @@ class Projet extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function realisateur(): HasMany
+    public function realisateur(): BelongsToMany
     {
-        return $this->hasmany(Realisateur::class);
+        return $this->BelongsToMany(Realisateur::class);
     }
 
 
@@ -104,7 +106,13 @@ class Projet extends Model
         }
     }
 
+    public function getRealisateursList()
+    {
+        $realisateurs = $this->realisateur; // Relation many-to-many
+        $realisateursList = $realisateurs->pluck('nom_realisateur')->implode(', ');
 
+        return $realisateursList;
+    }
 
 
     public static function rules()
@@ -123,9 +131,9 @@ class Projet extends Model
                 'required', 'min:3',
             ],
             // Ajoutez d'autres règles de validation pour les autres champs si nécessaire
-            'financement' => [
-                'required', 'min:3',
-            ],
+            // 'financement' => [
+            //     'required', 'min:3',
+            // ],
             // Ajoutez d'autres règles de validation pour les autres champs si nécessaire
             'budjet' => [
                 'required',
@@ -154,8 +162,8 @@ class Projet extends Model
             'objectif_global.min' => 'Le "objectif_global" doit avoir au moins :min caractères.',
             'objectif_specifiques.required' => 'Le champ objectif_specifiques" est obligatoire.',
             'objectif_specifiques.min' => 'Le champs objectif_specifiques" doit avoir au moins :min caractères.',
-            'financement.required' => 'Le champ "financement" est obligatoire.',
-            'financement.min' => 'Le champs"financement" doit avoir au moins :min caractères.',
+            // 'financement.required' => 'Le champ "financement" est obligatoire.',
+            // 'financement.min' => 'Le champs"financement" doit avoir au moins :min caractères.',
             'budjet.required' => 'Le champ "budjet" est obligatoire.',
             'budjet.min' => 'Le champs "budjet" doit avoir au moins :min caractères.',
             'date_debut.required' => 'Le champ "Date de début" est obligatoire.',
