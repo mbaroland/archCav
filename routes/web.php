@@ -97,3 +97,5 @@ Route::get('partenaires/index', [RealisateurController::class, 'index'])->name('
 Route::get('partenaires/create', [RealisateurController::class, 'create'])->name('partenaires.create');
 Route::post('partenaires/store', [RealisateurController::class, 'store'])->name('partenaires.store');
 Route::DELETE('/destroy/{realisateur}', [RealisateurController::class, 'destroy'])->name('partenaires.destroy');
+Route::get('/{realisateur}/edit', [RealisateurController::class, 'edit'])->name('realisateur.edit');
+Route::post('/{realisateur}/update', [RealisateurController::class, 'update'])->name('realisateur.update');
