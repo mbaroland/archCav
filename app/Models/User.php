@@ -10,7 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -32,7 +32,7 @@ class User extends Authenticatable
         'nom',
         'prenom',
         'profil'
-        
+
     ];
 
     /**
@@ -46,6 +46,21 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
+
+
+    protected $primaryKey = 'id';
+    protected $table = "archives";
+
+    public function archive(): HasMany
+    {
+        return $this->hasMany(Archive::class, 'id_archive');
+    }
+
+    public function projet(): HasMany
+    {
+        return $this->hasMany(Projet::class, 'id_projet');
+    }
+
 
     /**
      * The attributes that should be cast.
