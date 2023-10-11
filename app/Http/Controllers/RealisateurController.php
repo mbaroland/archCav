@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\realisateur;
+use App\Models\Realisateur;
 use Illuminate\Http\Request;
-
+use Laravel\Ui\Presets\React;
 
 class RealisateurController extends Controller
 {
@@ -13,7 +13,8 @@ class RealisateurController extends Controller
      */
     public function index()
     {
-        //
+        $realisateurs= Realisateur::all();
+        return view("partenaires.index", compact("realisateurs"));
     }
 
     /**
@@ -21,7 +22,8 @@ class RealisateurController extends Controller
      */
     public function create()
     {
-       // $realisateur= Realisateur::all();
+        // dd("baki");
+        // $realisateur= Realisateur::all();
         return view("partenaires.create");
 
         //
@@ -33,9 +35,10 @@ class RealisateurController extends Controller
     public function store(Request $request)
     {
         //
-        $archive = Realisateur::create($request ->all());
-        return redirect()->route('partenaire.index')->with('success', 'partenaires supprimé avec succès.');
 
+
+        $partenaire = Realisateur::create($request->all());
+        return redirect()->route('partenaires.index', compact('partenaire'));
     }
 
     /**
@@ -67,30 +70,7 @@ class RealisateurController extends Controller
      */
     public function destroy(realisateur $realisateur)
     {
-        //
+        $realisateur->delete();
+        return redirect()->route('partenaires.index')->with('success', 'partenaires supprimé avec succès.');
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

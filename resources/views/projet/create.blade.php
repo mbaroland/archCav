@@ -13,6 +13,7 @@
                 <button id="close-modal" class="modal-close px-3 py-1 rounded-full hover:bg-gray-300">&times;</button>
             </div>
 
+            { { dump($realisateurs)  }}
             <!-- formulaire-->
             <form action="{{ route('projet.store') }}" class="space-y-4" method="POST" enctype="multipart/form-data">
 
@@ -65,7 +66,15 @@
 
                     <div class="mb-4">
                         <label for="nom" class="block text-gray-700 font-semibold">Financement</label>
-                        <input type="text" name="financement" class="form-input w-full rounded-lg">
+                        <select name="id_categorie"
+                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 bg-white text-gray-700">
+
+                            @foreach ($realisateurs as $realisateur)
+                                <option value="{{ $realisateur->id }}" class="py-2">{{ $realisateur->nom_realisateur }}
+                                </option>
+                            @endforeach
+
+                    </select>g">
                         @error('financement')
                             <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror

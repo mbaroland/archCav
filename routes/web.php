@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\CategorieProjetController;
 use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\RealisateurController;
 use App\Http\Controllers\TypeArchiveController;
 use App\Models\Archive;
 use App\Models\Realisateur;
@@ -25,9 +26,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/download', function () {
-    return Storage::download('public/fichier/hopital1.jpg');
-});
+
 
 Route::middleware([
     'auth:web',
@@ -90,5 +89,7 @@ Route::middleware([
 
 Route::get('/recherche-projet', 'RechercheController@rechercheProjet')->name('recherche.projet');
 
-Route::get('partenaires/index', [Realisateur::class, 'index'])->name('realisateurs.index');
-Route::get('partenaires/create', [Realisateur::class, 'create'])->name('realisateurs.create');
+Route::get('partenaires/index', [RealisateurController::class, 'index'])->name('partenaires.index');
+Route::get('partenaires/create', [RealisateurController::class, 'create'])->name('partenaires.create');
+Route::post('partenaires/store', [RealisateurController::class, 'store'])->name('partenaires.store');
+Route::DELETE('/destroy/{realisateur}', [RealisateurController::class, 'destroy'])->name('partenaires.destroy');

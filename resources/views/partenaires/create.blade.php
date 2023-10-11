@@ -3,12 +3,12 @@
     <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
 
 
-        <form action="{{ route('realisateur.store') }}" method="POST">
+        <form action="{{ route('partenaires.store') }}" method="POST">
             @csrf
 
             <div class="container mx-auto mt-4">
-                <label for="nom" class="block text-white font-semibold">Nom</label>
-                <input type="text" id="nom_type" name="nom_type" class="form-input w-full rounded-lg my-4">
+                <label for="nom" class="block text-white font-semibold">Nom Partenaire</label>
+                <input type="text" id="nom_type" name="nom_realisateur" class="form-input w-full rounded-lg my-4">
             </div>
 
             <div class="mb-4 flex justify-between">

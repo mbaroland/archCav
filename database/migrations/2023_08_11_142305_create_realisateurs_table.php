@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('realisateurs', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_projet');
+          //  $table->integer('id_projet');
             $table->string('nom_realisateur');
-            $table->foreign('id_projet')->references('id')->on('projets');
+           // $table->foreign('id_projet')->references('id')->on('projets');
             $table->timestamps();
         });
     }

@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\CategorieProjet;
 use App\Models\Fichier;
 use App\Models\Projet;
+use App\Models\Realisateur;
 use Faker\Core\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-
 
 
 
@@ -25,8 +25,9 @@ class ProjetController extends Controller
         $categorie_projets=CategorieProjet::latest()->get();
 
         $fichier=Fichier::all();
+        $realisateurs=Realisateur::latest()->get();
 
-        return view('projet.index', compact('projets', 'categorie_projets'));
+        return view('projet.index', compact('projets', 'categorie_projets', 'realisateurs'));
     }
 
     /**
@@ -36,8 +37,9 @@ class ProjetController extends Controller
     {
         $projets = Projet::latest()->get();
         $categorie_projets=CategorieProjet::latest()->get();
+        $realisateurs=Realisateur::latest()->get();
 
-        return view('projet.create', compact('projets', 'categorie_projets'));
+        return view('projet.create', compact('projets', 'categorie_projets', 'realisateurs'));
     }
 
     /**
@@ -153,7 +155,7 @@ class ProjetController extends Controller
 
 
 
-       
+
 
 
         // function getPreviewIconForFile($fileExtension, $filePath)
