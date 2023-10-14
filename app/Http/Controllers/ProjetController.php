@@ -28,8 +28,22 @@ class ProjetController extends Controller
         $fichier = Fichier::all();
         $partenaire = Realisateur::all();
         $realisateurs = Realisateur::latest()->get();
+    
+        if(count($projets)>0){
 
+        foreach ($projets as $projet) {
+
+            $utilisateur = User::find($projet->id_user);
+        }
+        
+        
+
+        return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs','utilisateur'));
+    }
+    else {
         return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs'));
+        }
+    
     }
 
     /**
@@ -86,7 +100,7 @@ class ProjetController extends Controller
         $categorie_projets = CategorieProjet::latest()->get();
       
         $utilisateur = User::find($projet->id_user);
-        return view('projet.show', compact('categorie_projets', 'projet', 'projets','utilisateur'));
+        return view('projet.show', compact('categorie_projets', 'projet', 'projets','utilisateur','partenaire'));
 
     }
 
@@ -137,8 +151,8 @@ class ProjetController extends Controller
         //dd($categorie_projet);
         $fichiers = Fichier::where("id_projet", $projet->id)->get();
         foreach ($fichiers as $fichier) {
-            if (Fichier::exists('fichier/' . $fichier->nom_fichier)) {
-                Storage::delete('fichier/' . $fichier->nom_fichier);
+            if (Fichier::exists( $fichier->nom_fichier)) {
+                Storage::delete($fichier->nom_fichier);
             }
         }
 
@@ -156,6 +170,7 @@ class ProjetController extends Controller
             [
                 'titre_projet' => 'required|string|min:3',
                 'objectif_global' => 'required|string|min:5',
+                'objectif_specifiques' => 'required|string|min:5',
                 'financement' => 'required|string|min:3',
                 'budjet' => 'required|numeric',
                 'zone' => 'required|string|min:3',

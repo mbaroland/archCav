@@ -50,7 +50,7 @@ class User extends Authenticatable
 
 
     protected $primaryKey = 'id';
-    protected $table = "archives";
+    
 
     public function archive(): HasMany
     {
@@ -82,9 +82,6 @@ class User extends Authenticatable
     ];
     
     
-    public function projet(): HasOne
-    {
-        return $this->HasOne(Projet::class);
-    }
+    
     
 }
