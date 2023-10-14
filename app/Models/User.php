@@ -50,7 +50,7 @@ class User extends Authenticatable
 
 
     protected $primaryKey = 'id';
-    protected $table = "archives";
+    
 
     public function archive(): HasMany
     {
@@ -82,6 +82,4 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-
-  
 }

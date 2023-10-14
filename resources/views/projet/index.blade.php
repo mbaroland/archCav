@@ -71,6 +71,10 @@
                         <th scope="col" class="px-6 py-3">
                             DUREE
                         </th>
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        CHARRGE DU PROJET
+                    </th>
                         @can('projet-create')
                             <th scope="col" class="px-6 py-3">
                                 ACTION
@@ -80,7 +84,7 @@
                 </thead>
                 <tbody>
 
-                    @if (isset($projets) && count($projets) > 0)
+                    @if (isset($projets) && isset($utilisateur) && count($projets) > 0)
                         @foreach ($projets as $projet)
                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                 <th scope="row"
@@ -110,6 +114,8 @@
                                 <td class="px-6 py-4">
                                     {{ $projet->find_duration() }} mois
                                 </td>
+                                <td class="px-6 py-4">{{ $utilisateur->name }} <br> {{$utilisateur->prenom}}</td>
+
                                 @can('projet-create')
                                     <td class="px-6 py-4 flex justify-center">
                                         <a href="{{ route('projet.edit', $projet) }}">
@@ -132,7 +138,7 @@
                         @endforeach
                     @else
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                            <td colspan="7" class="px-6 py-4 text-center text-gray-500 dark:text-white">
+                            <td colspan="8" class="px-6 py-4 text-center text-gray-500 dark:text-white">
                                 Aucun projet.
                             </td>
                         </tr>
