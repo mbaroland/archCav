@@ -63,6 +63,7 @@ class User extends Authenticatable
     }
 
 
+
     /**
      * The attributes that should be cast.
      *
@@ -80,11 +81,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    
-    
-    public function projet(): HasOne
-    {
-        return $this->HasOne(Projet::class);
-    }
-    
+
+
+  
 }
