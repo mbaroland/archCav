@@ -41,7 +41,7 @@
 
                 <!-- Menu "Projets" -->
 
-                @can('projet-create')
+                @can('projet-list')
                     <div x-data="{ openProjets: false }">
                         <button @click="openProjets = !openProjets"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full">
@@ -71,7 +71,7 @@
                         <div x-show="openProjets" @click.away="openProjets = false" class="pl-4">
 
                             <!-- Contenu du sous-menu "Projets" -->
-                            @can('projet-create')
+                            @can('projet-list')
                                 <a href="{{ route('projet.index') }}"
                                     class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">Projets</a>
                             @endcan
