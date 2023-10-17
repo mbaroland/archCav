@@ -50,16 +50,16 @@ class User extends Authenticatable
 
 
     protected $primaryKey = 'id';
-    
+
 
     public function archive(): HasMany
     {
         return $this->hasMany(Archive::class, 'id_archive');
     }
 
-    public function projet(): HasMany
+    public function projets(): HasMany
     {
-        return $this->hasMany(Projet::class, 'id_projet');
+        return $this->hasMany(Projet::class, 'id_user');
     }
 
 

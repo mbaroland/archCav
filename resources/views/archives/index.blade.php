@@ -26,10 +26,10 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th class="p-2">
-                            TITRE_ARCHIVES
+                            TITRE_DOCUMENT
                         </th>
                         <th class="p-2">
-                            ARCHIVES
+                            DOCUMENTS
                         </th>
                         @can('archive-create')
                             <th class="p-2">
@@ -107,7 +107,7 @@
         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
 
             <td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-white">
-                Aucune archive.
+                Aucun document.
             </td>
 
         </tr>

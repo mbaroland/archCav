@@ -6,8 +6,7 @@
                 @csrf
                 <div class="container mx-auto mt-4">
                     <label for="type" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">choisir le type
-                        de
-                        l'archives</label>
+                        du Document</label>
                     <select id="countries" name="id_type_archive"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @foreach ($type_archive as $type)
@@ -20,7 +19,7 @@
 
 
                 <div class="container mx-auto mt-4">
-                    <label for="nom" class="block text-gray-700 font-semibold">Titre Archive</label>
+                    <label for="nom" class="block text-gray-700 font-semibold">Titre Du Documents</label>
                     <input type="text" id="nom" name="titre_archives" class="form-input w-full rounded-lg" >
                 </div>
 

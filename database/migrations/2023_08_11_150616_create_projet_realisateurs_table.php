@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('projet_realisateurs', function (Blueprint $table) {
             $table->integer('id_projet');
             $table->integer('id_realisateur');
-
-            $table->foreign('id_projet')->references('id')->on('projets');
-            $table->foreign('id_realisateur')->references('id')->on('realisateurs');
+            $table->foreign('id_projet')->references('id')->on('projets')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_realisateur')->references('id')->on('realisateurs')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
             $table->primary(['id_projet', 'id_realisateur']);
 
