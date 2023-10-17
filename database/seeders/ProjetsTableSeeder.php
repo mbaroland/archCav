@@ -29,7 +29,7 @@ class ProjetsTableSeeder extends Seeder
         ]);
         DB::table('projets')->insert([
             'id_categorie' => 2,
-            'id_user' => 2,
+            'id_user' => 1,
             'titre_projet' => 'Projet 2',
             'objectif_global' => 'Objectif global du projet 1',
             'objectif_specifiques' => 'Objectifs spécifiques du projet 1',
@@ -40,5 +40,24 @@ class ProjetsTableSeeder extends Seeder
             'date_fin' => '2022-01-05',
 
         ]);
+
+
+        DB::table('realisateurs')->insert(
+            [
+                'nom_realisateur' => 'GIZ'
+            ]
+        );
+
+        DB::table('realisateurs')->insert(
+            [
+                'nom_realisateur' => 'PADEF'
+            ]
+        );
+
+        DB::table('realisateurs')->insert(
+            [
+                'nom_realisateur' => 'IFNTI'
+            ]
+        );
     }
 }

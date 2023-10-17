@@ -43,8 +43,9 @@
 
                 </div>
                 <div class="container mx-auto mt-4 block">
-                    @foreach ($projet->financement as $financement)
-                        {{ $partenaire->where('id', $financement)->first()->nom_realisateur }}
+                    @foreach ($projet->realisateurs as $financement)
+                        {{-- {{ $partenaire->where('id', $financement)->first()->nom_realisateur }} --}}
+                        {{ $financement->nom_realisateur }}
                     @endforeach
                 </div>
 
@@ -159,7 +160,7 @@
     </div>
 
 
-                       
+
 </div>
 
 

@@ -16,9 +16,9 @@ return new class extends Migration
             $table->integer('id_categorie');
             $table->integer('id_user');
             $table->string('titre_projet');
-            $table->string('objectif_global');
-            $table->string('objectif_specifiques');
-            $table->string('financement');
+            $table->text('objectif_global');
+            $table->text('objectif_specifiques');
+            $table->string('financement')->nullable();
             $table->string('budjet');
             $table->string('zone');
             $table->string('date_debut');

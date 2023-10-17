@@ -1,6 +1,6 @@
 @extends('accueil')
 @section('content1')
-    <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
+    <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16 bg-white">
     <div class="flex justify-center">
         <div class="w-full md:w-2/3">
             <div class="my-4">
@@ -13,7 +13,7 @@
                     </a>
                 </div>
             </div>
-            
+
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
                     <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -32,27 +32,27 @@
                             <x-label for="name" value="{{ __('Name') }}" />
                             <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         </div>
-            
+
                         <div>
                             <x-label for="prenom" value="{{ __('Prenom') }}" />
                             <x-input id="prenom" class="block mt-1 w-full" type="text" name="prenom" :value="old('prenom')" required autofocus autocomplete="prenom" />
                         </div>
-            
+
                         <div>
                             <x-label for="profil" value="{{ __('Profil') }}" />
                             <x-input id="profil" class="block mt-1 w-full" type="text" name="profil" :value="old('profil')" required autofocus autocomplete="profil" />
                         </div>
-            
+
                         <div class="mt-4">
                             <x-label for="email" value="{{ __('Email') }}" />
                             <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
                         </div>
-            
+
                         <div class="mt-4">
                             <x-label for="password" value="{{ __('Password') }}" />
                             <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
                         </div>
-            
+
                         <div class="mt-4">
                             <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                             <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
@@ -76,6 +76,6 @@
             </div> <!-- / .card -->
         </div> <!-- .col-12 -->
     </div> <!-- .row -->
-</div> <!-- .container-fluid -->     
-</div>   
+</div> <!-- .container-fluid -->
+</div>
 @endsection

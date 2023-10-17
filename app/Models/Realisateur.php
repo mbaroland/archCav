@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Realisateur extends Model
 {
     use HasFactory;
-    protected $fillable=[
+    protected $fillable = [
         'nom_realisateur'
     ];
-    public function realisateur()
+    public function projets()
     {
-    return $this->BelongsToMany(Projet::class);
+        return $this->belongsToMany(Realisateur::class, 'projet_realisateurs', 'id_projet', 'id_realisateur');
     }
 }

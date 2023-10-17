@@ -20,7 +20,7 @@ class Projet extends Model
         'titre_projet',
         'objectif_global',
         'objectif_specifiques',
-        'financement',
+        //'financement',
         'budjet',
         'zone',
         'date_debut',
@@ -31,7 +31,7 @@ class Projet extends Model
     protected $casts = [
         "date_debut" => "datetime",
         "date_fin" => "datetime",
-        "financement" => "array"
+        //"financement" => "array"
     ];
     public function categorie_projet(): BelongsTo
     {
@@ -41,12 +41,12 @@ class Projet extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function realisateur(): BelongsToMany
+    public function realisateurs()
     {
-        return $this->BelongsToMany(Realisateur::class);
+        return $this->belongsToMany(Realisateur::class, 'projet_realisateurs', 'id_projet', 'id_realisateur');
     }
 
 
@@ -66,6 +66,7 @@ class Projet extends Model
     public function add_pojet($request)
     {
         $i = 0;
+
         //dd($request->all());
         $request->file('fichier_projet');
         foreach ($request->file('fichier_projet') as $file) {

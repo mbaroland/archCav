@@ -1,17 +1,17 @@
 @extends('accueil')
 @section('content1')
-    <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
-       <div class="col-md-12">                  
+    <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16  bg-white">
+       <div class="col-md-12">
             <div class="row align-items-center my-4">
                 <div class="col">
                     <h2 class="block text-gray-700 font-bold">MISE À JOUR DU COMPTE</h2>
                 </div>
-                
-            </div>  
+
+            </div>
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
-            
+
             <ul>
                 @foreach ($errors->all() as $error)
                     <li class="text-red-600">{{ $error }}</li>
@@ -19,8 +19,8 @@
             </ul>
         </div>
     @endif
-    
-    
+
+
         <div class="card-body">
             <form method="POST" action="{{ route('users.update', $user->id) }}">
                 @csrf
@@ -30,7 +30,7 @@
                     <label for="name" class="block text-sm font-medium text-gray-700">{{ __('Name') }}</label>
                     <input type="text" name="name" id="name" placeholder="Name" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('name', $user->name) }}" />
                 </div>
-                
+
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">{{ __('Email') }}</label>
                     <input type="text" name="email" id="email" placeholder="Email" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('email', $user->email) }}" />
@@ -69,9 +69,9 @@
                     </button>
                 </div>
             </form>
-        
+
         </div>
-    
+
 </div>
 </div>
 

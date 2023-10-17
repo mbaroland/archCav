@@ -38,7 +38,8 @@
                     </div>
                     <div class="container mx-auto mt-4">
                         <label for="nom" class="block text-gray-700 font-semibold">Nom du Projet</label>
-                        <input type="text" id="nom" name="titre_projet" class="form-input w-full rounded-lg">
+                        <input type="text" id="nom" name="titre_projet" class="form-input w-full rounded-lg"
+                            value="{{ old('titre_projet') }}">
 
                         @error('titre_projet')
                             <span class="text-red-600 text-xs">{{ $message }}</span>
@@ -48,8 +49,8 @@
                     </div>
                     <div class="container mx-auto mt-4">
                         <label for="description" class="block text-gray-700 font-semibold">Objectif Global</label>
-                        <textarea name="objectif_global" rows="4"
-                            class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"></textarea>
+                        <textarea name="objectif_global" rows="4" value="{{ old('objectif_global') }}"
+                            class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">{{ old('objectif_global') }}</textarea>
                         @error('objectif_global')
                             <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
@@ -57,8 +58,8 @@
 
                     <div class="container mx-auto mt-4">
                         <label for="description" class="block text-gray-700 font-semibold">Objectifs Specifiques</label>
-                        <textarea name="objectif_specifiques" rows="4"
-                            class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500"></textarea>
+                        <textarea name="objectif_specifiques" rows="4" value="{{ old('objectif_specifiques') }}"
+                            class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">{{ old('objectif_specifiques') }}</textarea>
                         @error('objectif_specifiques')
                             <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
@@ -72,7 +73,7 @@
                         @foreach ($realisateurs as $realisateur)
                             <label>
                                 <input type="checkbox" name="financement[]" value="{{ $realisateur->id }}"
-                                    class="name">
+                                class="name" {{ in_array($realisateur->id, old('financement', [])) ? 'checked' : '' }}>
                                 {{ $realisateur->nom_realisateur }}
                             </label>
                             <br>
@@ -86,7 +87,8 @@
 
                     <div class="mb-4">
                         <label for="nom" class="block text-gray-700 font-semibold">Budget</label>
-                        <input type="text" name="budjet" class="form-input w-full rounded-lg">
+                        <input type="text" name="budjet" class="form-input w-full rounded-lg"
+                            value="{{ old('budjet') }}">
                         @error('budjet')
                             <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
@@ -95,7 +97,8 @@
 
                     <div class="mb-4">
                         <label for="nom" class="block text-gray-700 font-semibold">Zone</label>
-                        <input type="text" name="zone" class="form-input w-full rounded-lg">
+                        <input type="text" name="zone" class="form-input w-full rounded-lg"
+                            value="{{ old('zone') }}">
                         @error('zone')
                             <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
@@ -103,7 +106,7 @@
 
                     <div class="container mx-auto mt-4">
                         <label for="date" class="block text-gray-600 font-medium">Date de début du Projet :</label>
-                        <input type="date" name="date_debut"
+                        <input type="date" name="date_debut" value="{{ old('date_debut') }}"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">
                         @error('date_debut')
                             <span class="text-red-600 text-xs">{{ $message }}</span>
@@ -112,7 +115,7 @@
 
                     <div class="container mx-auto mt-4">
                         <label for="date" class="block text-gray-600 font-medium">Date de fin du Projet :</label>
-                        <input type="date" name="date_fin"
+                        <input type="date" name="date_fin" value="{{ old('date_fin') }}"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">
                         @error('date_fin')
                             <span class="text-red-600 text-xs">{{ $message }}</span>
@@ -131,7 +134,7 @@
                           file:bg-violet-50 file:text-violet-700
                           hover:file:bg-violet-100
                         "
-                                name="fichier_projet[]" multiple />
+                                name="fichier_projet[]" value="{{ old('fichier_projet') }}" multiple />
                         </label>
                     </div>
                 </div>
@@ -148,6 +151,48 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('modal');
+        const closeButton = document.getElementById('close-modal');
+
+        closeButton.addEventListener('click', function() {
+            modal.classList.add('hidden');
+        });
+
+        // Enregistrez les valeurs actuelles des champs avant la soumission du formulaire
+        const form = document.querySelector('form');
+        const fieldsToPreserve = ['id_categorie', 'titre_projet', 'objectif_global', 'objectif_specifiques',
+            'budjet', 'zone', 'date_debut', 'date_fin', 'financement'
+        ];
+
+        const fieldValues = {};
+
+        fieldsToPreserve.forEach(fieldName => {
+            const field = form.querySelector(`[name="${fieldName}"]`);
+            fieldValues[fieldName] = field.value;
+        });
+
+        form.addEventListener('submit', function(event) {
+            // Empêchez la soumission du formulaire par défaut
+            event.preventDefault();
+
+            // En cas d'erreur de soumission du formulaire, rétablissez les valeurs précédemment enregistrées dans les champs
+            fieldsToPreserve.forEach(fieldName => {
+                const field = form.querySelector(`[name="${fieldName}"]`);
+                field.value = fieldValues[fieldName];
+            });
+
+            // Maintenant, vous pouvez soumettre le formulaire manuellement si nécessaire
+            // form.submit();
+        });
+    });
+</script>
 
 
 <script>

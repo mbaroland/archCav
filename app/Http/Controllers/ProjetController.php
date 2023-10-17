@@ -28,22 +28,21 @@ class ProjetController extends Controller
         $fichier = Fichier::all();
         $partenaire = Realisateur::all();
         $realisateurs = Realisateur::latest()->get();
-    
-        if(count($projets)>0){
-
-        foreach ($projets as $projet) {
-
-            $utilisateur = User::find($projet->id_user);
-        }
-        
-        
-
-        return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs','utilisateur'));
-    }
-    else {
         return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs'));
-        }
-    
+
+        // if (count($projets) > 0) {
+
+        //     foreach ($projets as $projet) {
+
+        //         $utilisateur = User::find($projet->id_user);
+        //     }
+
+
+
+        //     return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs', 'utilisateur'));
+        // } else {
+
+        // }
     }
 
     /**
@@ -66,6 +65,7 @@ class ProjetController extends Controller
 
 
         $request['id_user'] = Auth::user()->id;
+      
         $request->validate(Projet::rules());
         //dd($request->all());
 
@@ -82,7 +82,8 @@ class ProjetController extends Controller
             'date_fin' => $request->input('date_fin'),
         ]);
         //$projets = Projet::create($request ->all());
-
+        // dd($request->input('financement'));
+        $projets->realisateurs()->attach($request->input('financement'));
         $projets->add_pojet($request);
 
         return redirect()->route('projet.index')->with('success', 'Projet ajouté avec succès.');
@@ -98,10 +99,9 @@ class ProjetController extends Controller
         $partenaire = Realisateur::all();
         $projets = Projet::latest()->get();
         $categorie_projets = CategorieProjet::latest()->get();
-      
-        $utilisateur = User::find($projet->id_user);
-        return view('projet.show', compact('categorie_projets', 'projet', 'projets','utilisateur','partenaire'));
 
+        $utilisateur = User::find($projet->id_user);
+        return view('projet.show', compact('categorie_projets', 'projet', 'projets', 'utilisateur', 'partenaire'));
     }
 
     /**
@@ -122,10 +122,13 @@ class ProjetController extends Controller
 
         $fichier = Fichier::find($projet->id);
 
-        $partenaire = Realisateur::all();
-        $part = Realisateur::find($projet->id);
+        $partenaires = Realisateur::all();
+        $part = $projet->realisateurs;
 
-        return view('projet.edit', compact('partenaire' ,'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier','part'));
+
+        // dd($projet->realisateurs);
+
+        return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part'));
     }
 
     /**
@@ -138,7 +141,11 @@ class ProjetController extends Controller
 
         $projet->update($request->all());
 
-        $projet->add_pojet($request);
+        if ($request->file('fichier_projet') !== null) {
+            $projet->add_pojet($request);
+        }
+
+
 
 
         return redirect()->route('projet.index')->with('success', 'projet mis à jour avec succès.');
@@ -151,7 +158,7 @@ class ProjetController extends Controller
         //dd($categorie_projet);
         $fichiers = Fichier::where("id_projet", $projet->id)->get();
         foreach ($fichiers as $fichier) {
-            if (Fichier::exists( $fichier->nom_fichier)) {
+            if (Fichier::exists($fichier->nom_fichier)) {
                 Storage::delete($fichier->nom_fichier);
             }
         }

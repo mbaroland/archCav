@@ -84,7 +84,7 @@
                 </thead>
                 <tbody>
 
-                    @if (isset($projets) && isset($utilisateur) && count($projets) > 0)
+                    @if (isset($projets) && count($projets) > 0)
                         @foreach ($projets as $projet)
                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                 <th scope="row"
@@ -96,8 +96,9 @@
                                     <a href="{{ route('projet.show', $projet) }}">{{ $projet->objectif_global }}</a>
                                 </td>
                                 <td class="px-6 py-4">
-                                    @foreach ($projet->financement as $financement)
-                                        {{ $partenaire->where('id', $financement)->first()->nom_realisateur }}
+                                    @foreach ($projet->realisateurs as $financement)
+                                        {{-- {{ $partenaire->where('id', $financement)->first()->nom_realisateur }} --}}
+                                        {{ $financement->nom_realisateur }}
                                     @endforeach
 
                                     {{-- {{ $projet->getRealisateursList() }} --}}
@@ -114,7 +115,7 @@
                                 <td class="px-6 py-4">
                                     {{ $projet->find_duration() }} mois
                                 </td>
-                                <td class="px-6 py-4">{{ $utilisateur->name }} <br> {{ $utilisateur->prenom }}</td>
+                                <td class="px-6 py-4">{{$projet->user->name }} <br> {{ $projet->user->prenom }}</td>
 
                                 @can('projet-create')
                                     <td class="px-6 py-4 flex justify-center">
