@@ -114,7 +114,10 @@
 
                                         </div>
                                         </div> -->
+                                        <div class="container mx-auto mt-4">
+                                            <label for="nom" class="block text-gray-700 font-semibold">archives projet</label>
 
+                                        </div>
 
                     @foreach ($projet->fichiers as $fichier)
                         <a href="/preview?file=/storage/{{ $fichier->nom_fichier }}" target='blank'>

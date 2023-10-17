@@ -5,7 +5,7 @@
                 @csrf
 
                 <div class="container mx-auto mt-4">
-                    <label for="date" class="block text-gray-600 font-medium"> catégorie archive</label> <input
+                    <label for="date" class="block text-gray-600 font-medium"> catégorie document</label> <input
                         type="text" id="nom" name="nom_type" class="form-input w-full rounded-lg"
                         value="{{ $type_archive->nom_type }}">
                 </div>

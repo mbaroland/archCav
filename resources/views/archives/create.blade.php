@@ -1,6 +1,6 @@
 @extends('accueil')
 @section('content1')
-        <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16">
+        <div class="p-4 border-0 border-gray-200 rounded-lg dark:border-gray-700 mt-16 bg-white">
 
             <form action="{{ route('archive.store') }}" class="space-y-4" method="POST" enctype="multipart/form-data">
                 @csrf
