@@ -65,7 +65,7 @@ class ProjetController extends Controller
 
 
         $request['id_user'] = Auth::user()->id;
-      
+
         $request->validate(Projet::rules());
         //dd($request->all());
 
@@ -144,10 +144,12 @@ class ProjetController extends Controller
         if ($request->file('fichier_projet') !== null) {
             $projet->add_pojet($request);
         }
+  
 
+        $projet->realisateurs()->detach($request->input('financement'));
+        $projet->realisateurs()->attach($request->input('financement'));
 
-
-
+       // dd($request);
         return redirect()->route('projet.index')->with('success', 'projet mis à jour avec succès.');
     }
     /**
