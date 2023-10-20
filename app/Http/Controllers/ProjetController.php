@@ -53,6 +53,7 @@ class ProjetController extends Controller
         $projets = Projet::latest()->get();
         $categorie_projets = CategorieProjet::latest()->get();
         $realisateurs = Realisateur::latest()->get();
+        
 
         return view('projet.create', compact('projets', 'categorie_projets', 'realisateurs'));
     }
@@ -67,6 +68,8 @@ class ProjetController extends Controller
         $request['id_user'] = Auth::user()->id;
 
         $request->validate(Projet::rules());
+
+        
         //dd($request->all());
 
         $projets = Projet::create([
@@ -81,6 +84,11 @@ class ProjetController extends Controller
             'date_debut' => $request->input('date_debut'),
             'date_fin' => $request->input('date_fin'),
         ]);
+
+
+        if ($request->file('fichier_projet') !== null) {
+            $projets->add_pojet($request);
+        }
         //$projets = Projet::create($request ->all());
         // dd($request->input('financement'));
         $projets->realisateurs()->attach($request->input('financement'));

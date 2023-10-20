@@ -1275,6 +1275,7 @@
         },
         {
             "name": "laravel/framework",
+
             "version": "v10.28.0",
             "source": {
                 "type": "git",
@@ -1285,6 +1286,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/09137f50f715c1efc649788a26092dcb1ec4ab6e",
                 "reference": "09137f50f715c1efc649788a26092dcb1ec4ab6e",
+
                 "shasum": ""
             },
             "require": {
@@ -1471,7 +1473,9 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+
             "time": "2023-10-10T13:01:37+00:00"
+
         },
         {
             "name": "laravel/jetstream",
@@ -1544,7 +1548,10 @@
         },
         {
             "name": "laravel/prompts",
+
             "version": "v0.1.11",
+
+
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
@@ -1552,8 +1559,10 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://api.github.com/repos/laravel/prompts/zipball/cce65a90e64712909ea1adc033e1d88de8455ffd",
                 "reference": "cce65a90e64712909ea1adc033e1d88de8455ffd",
+
                 "shasum": ""
             },
             "require": {
@@ -1595,9 +1604,11 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
+
                 "source": "https://github.com/laravel/prompts/tree/v0.1.11"
             },
             "time": "2023-10-03T01:07:35+00:00"
+
         },
         {
             "name": "laravel/sanctum",
