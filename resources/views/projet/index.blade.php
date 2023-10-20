@@ -60,7 +60,7 @@
                             OBJECTIF GLOBAL
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            FINANCEMENT
+                        PARTENAIRES
                         </th>
                         <th scope="col" class="px-6 py-3">
                             BUDGET

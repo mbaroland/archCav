@@ -85,6 +85,11 @@
                                     class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
                                     Partenaires</a>
                             @endcan
+                            @can('projet-list')
+                                <a href="{{ route('zone.index') }}"
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
+                                    Zones</a>
+                            @endcan
                         </div>
 
                     </div>
