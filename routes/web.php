@@ -5,6 +5,7 @@ use App\Http\Controllers\CategorieProjetController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\RealisateurController;
 use App\Http\Controllers\TypeArchiveController;
+use App\Http\Controllers\ZoneController;
 use App\Models\Archive;
 use App\Models\Realisateur;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +69,21 @@ Route::middleware([
         }
 
     );
+
+    Route::prefix('zone')->group(
+        function () {
+            // categorie_projet
+            Route::get('/index', [zonecontroller::class, 'index'])->name('zone.index');
+            Route::DELETE('/destroy/{zone}', [zonecontroller::class, 'destroy'])->name('zone.destroy');
+            Route::post('/store', [zonecontroller::class, 'store'])->name('zone.store');
+            Route::get('/{zone}/edit', [zonecontroller::class, 'edit'])->name('zone.edit');
+            Route::post('/{zone}/update', [zonecontroller::class, 'update'])->name('zone.update');
+        }
+
+    );
+
+
+
     Route::prefix('archive')->group(function () {
         //archive
         Route::get('/index', [ArchiveController::class, 'index'])->name('archive.index');

@@ -38,6 +38,12 @@ class Projet extends Model
 
         return $this->belongsTo(CategorieProjet::class);
     }
+    public function zone(): BelongsTo
+    {
+
+        return $this->belongsTo(Zone::class);
+    }
+
 
     public function user()
     {
