@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Zone;
 use Illuminate\Http\Request;
 
@@ -11,11 +10,10 @@ class Zonecontroller extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //dd('help');
-        $zones = Zone::all();
+    {//dd('help');
+       $zone= Zone::all();
 
-        return view('zones.index', compact('zones'));
+       return view('zones.index', compact('zone'));
     }
 
     /**
@@ -23,7 +21,8 @@ class Zonecontroller extends Controller
      */
     public function create()
     {
-        return view('zones.create');
+        return view("zones.create");
+
     }
 
     /**
@@ -31,8 +30,7 @@ class Zonecontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $zones = Zone::create($request->all());
+        $zone = Zone::create($request->all());
         return redirect()->route('zones.index')->with('success', '');
     }
 
@@ -47,11 +45,11 @@ class Zonecontroller extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Zone $zone)
+    public function edit(string $id)
     {
-        $zone = Zone::latest()->first();
-        //ddd($zone);
-        return view('zones.edit', compact('zone'));
+        //
+        $zone = Zone::latest()->get();
+        return view('zone.edit', compact('zone'));
     }
 
     /**
@@ -59,6 +57,7 @@ class Zonecontroller extends Controller
      */
     public function update(Request $request, Zone $zone)
     {
+        //
 
         $zone->update($request->all());
 
@@ -70,7 +69,6 @@ class Zonecontroller extends Controller
      */
     public function destroy(Zone $zone)
     {
-        //
         $zone->delete();
 
         return redirect()->route('zones.index')->with('success', 'Axe stratégique mis à jour avec succès.');

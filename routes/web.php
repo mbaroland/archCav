@@ -5,7 +5,7 @@ use App\Http\Controllers\CategorieProjetController;
 use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\RealisateurController;
 use App\Http\Controllers\TypeArchiveController;
-use App\Http\Controllers\ZoneController;
+use App\Http\Controllers\Zonecontroller;
 use App\Models\Archive;
 use App\Models\Realisateur;
 use Illuminate\Support\Facades\Route;
@@ -73,15 +73,17 @@ Route::middleware([
     Route::prefix('zone')->group(
         function () {
             // categorie_projet
-            Route::get('/index', [zonecontroller::class, 'index'])->name('zone.index');
-            Route::DELETE('/destroy/{zone}', [zonecontroller::class, 'destroy'])->name('zone.destroy');
+            Route::get('/index', [zonecontroller::class, 'index'])->name('zones.index');
+            Route::DELETE('/destroy/{zone}', [zonecontroller::class, 'destroy'])->name('zones.destroy');
             Route::post('/store', [zonecontroller::class, 'store'])->name('zone.store');
-            Route::get('/{zone}/edit', [zonecontroller::class, 'edit'])->name('zone.edit');
-            Route::post('/{zone}/update', [zonecontroller::class, 'update'])->name('zone.update');
+            Route::get('/{zone}/edit', [zonecontroller::class, 'edit'])->name('zones.edit');
+            Route::put('/{zone}/update', [zonecontroller::class, 'update'])->name('zones.update');
+            Route::get('/create', [zonecontroller::class, 'create'])->name('zones.create');
         }
 
     );
 
+    // Route::get('/zone/index', [zonecontroller::class, 'index'])->name('zones.index');
 
 
     Route::prefix('archive')->group(function () {
