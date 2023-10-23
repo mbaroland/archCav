@@ -70,10 +70,22 @@
         </div>
 
 
-        <div class="mb-4">
-            <label for="nom" class="block text-gray-700 font-semibold">Zone</label>
-            <input type="text" name="zone" class="form-input w-full rounded-lg" value="{{ $projet->zone }}">
-        </div>
+         <div class="container mx-auto mt-4">
+                        <label for="select-box" class="block text-gray-700 font-semibold">Zone</label>
+                        <select name="zones"
+                            class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 bg-white text-gray-700">
+                            
+                            @if (isset($zones) && !empty($zones))
+                                @foreach ($zones as $zone)
+                                    <option value="{{ $zones->id }}" class="py-2">{{ $zones->nom_categorie }}
+                                    </option>
+                                @endforeach
+                            @else
+                                <option value="" disabled selected>Aucune zones disponible</option>
+                            @endif
+                        </select>
+
+                    </div>
 
         <div class="container mx-auto mt-4">
             <label for="date" class="block text-gray-600 font-medium">Date de début du Projet :</label>

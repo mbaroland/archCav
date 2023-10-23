@@ -7,6 +7,7 @@ use App\Models\Fichier;
 use App\Models\Projet;
 use App\Models\Realisateur;
 use App\Models\User;
+use App\Models\Zone;
 use Faker\Core\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,11 +25,12 @@ class ProjetController extends Controller
     {
         $projets = Projet::latest()->get();
         $categorie_projets = CategorieProjet::latest()->get();
+        $zones = Zone::latest()->get();
 
         $fichier = Fichier::all();
         $partenaire = Realisateur::all();
         $realisateurs = Realisateur::latest()->get();
-        return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs'));
+        return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs','zones'));
 
         // if (count($projets) > 0) {
 
@@ -53,9 +55,10 @@ class ProjetController extends Controller
         $projets = Projet::latest()->get();
         $categorie_projets = CategorieProjet::latest()->get();
         $realisateurs = Realisateur::latest()->get();
+        $zones = Zone::latest()->get();
         
 
-        return view('projet.create', compact('projets', 'categorie_projets', 'realisateurs'));
+        return view('projet.create', compact('projets', 'categorie_projets', 'realisateurs','zones'));
     }
 
     /**
@@ -80,19 +83,23 @@ class ProjetController extends Controller
             'objectif_specifiques' => $request->input('objectif_specifiques'),
             'financement' => $request->input('financement'),
             'budjet' => $request->input('budjet'),
-            'zone' => $request->input('zone'),
+            'id_zone' => $request->input('zone'),
             'date_debut' => $request->input('date_debut'),
             'date_fin' => $request->input('date_fin'),
         ]);
+
+        
 
 
         if ($request->file('fichier_projet') !== null) {
             $projets->add_pojet($request);
         }
+        
         //$projets = Projet::create($request ->all());
         // dd($request->input('financement'));
         $projets->realisateurs()->attach($request->input('financement'));
-        $projets->add_pojet($request);
+        
+
 
         return redirect()->route('projet.index')->with('success', 'Projet ajouté avec succès.');
     }
@@ -103,13 +110,18 @@ class ProjetController extends Controller
     public function show(Projet $projet)
     {
         //
+        $zones = Zone::latest()->get();
         //ddd($projet);
         $partenaire = Realisateur::all();
         $projets = Projet::latest()->get();
         $categorie_projets = CategorieProjet::latest()->get();
 
         $utilisateur = User::find($projet->id_user);
-        return view('projet.show', compact('categorie_projets', 'projet', 'projets', 'utilisateur', 'partenaire'));
+                $zones = Zone::latest()->get();
+
+                $zone = Zone::find($projet->id_zone);
+
+        return view('projet.show', compact('categorie_projets', 'projet', 'projets', 'utilisateur', 'partenaire','zones','zone'));
     }
 
     /**
@@ -119,14 +131,19 @@ class ProjetController extends Controller
     {
         //
 
+        $zones = Zone::latest()->get();
+
         $projets = Projet::latest()->get();
         $categorie_projets = CategorieProjet::latest()->get();
+        
 
 
 
         $cat = CategorieProjet::all()->pluck('nom_categorie', 'id');
 
         $categorie_old = CategorieProjet::find($projet->id_categorie);
+
+        
 
         $fichier = Fichier::find($projet->id);
 
@@ -136,7 +153,7 @@ class ProjetController extends Controller
 
         // dd($projet->realisateurs);
 
-        return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part'));
+        return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part','zones'));
     }
 
     /**
