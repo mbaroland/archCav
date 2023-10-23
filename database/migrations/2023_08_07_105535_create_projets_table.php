@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('projets', function (Blueprint $table) {
             $table->id();
-            //$table->integer('id_zone');
+            $table->integer('id_zone');
             $table->integer('id_categorie');
             $table->integer('id_user');
             $table->string('titre_projet');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('objectif_specifiques');
             $table->string('financement')->nullable();
             $table->string('budjet');
-            $table->string('zone');
+            $table->string('zone')->nullable();
             $table->string('date_debut');
             $table->string('date_fin');
             $table->foreign('id_categorie')->references('id')->on('categorie_projets')->cascadeOnDelete();

@@ -16,13 +16,13 @@ class Projet extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom_categorie', 'id_categorie', 'id_user',
+        'nom_categorie', 'id_categorie', 'id_user','id_zone',
         'titre_projet',
         'objectif_global',
         'objectif_specifiques',
         //'financement',
         'budjet',
-        'zone',
+        //'zone',
         'date_debut',
         'date_fin',
 
@@ -41,7 +41,7 @@ class Projet extends Model
     public function zone(): BelongsTo
     {
 
-        return $this->belongsTo(Zone::class);
+        return $this->belongsTo(Zone::class,'id_zone');
     }
 
 

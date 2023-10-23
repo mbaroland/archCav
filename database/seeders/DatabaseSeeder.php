@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
                 PermissionTableSeeder::class,
                 CreateAdminUserSeeder::class,
                 CategorieProjetsTableSeeder::class,
+                ZonesTableSeeder::class,
                 ProjetsTableSeeder::class,
                 //ProjetRealisateursTableSeeder::class,
             ]

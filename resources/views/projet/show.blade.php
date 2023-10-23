@@ -65,7 +65,7 @@
 
                 </div>
                 <div class="container mx-auto mt-4 block">
-                    <p>{{ $projet->zone }}</p>
+                    <p>{{ $zone->nom_zone}}</p>
 
                 </div>
 
