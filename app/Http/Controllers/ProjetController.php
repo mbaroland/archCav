@@ -99,6 +99,8 @@ class ProjetController extends Controller
         // dd($request->input('financement'));
         $projets->realisateurs()->attach($request->input('financement'));
 
+       //$projets->zone()->attach($request->input('id_zone'));
+
         
 
 
