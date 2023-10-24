@@ -166,9 +166,20 @@ class ProjetController extends Controller
     public function update(Request $request, Projet $projet)
     {
         //
-
-
-        $projet->update($request->all());
+        $request['id_user'] = Auth::user()->id;
+        
+        $projet->update([
+            'id_categorie' => $request->input('id_categorie'),
+            'id_user' => $request->input('id_user'),
+            'titre_projet' => $request->input('titre_projet'),
+            'objectif_global' => $request->input('objectif_global'),
+            'objectif_specifiques' => $request->input('objectif_specifiques'),
+            'financement' => $request->input('financement'),
+            'budjet' => $request->input('budjet'),
+            'id_zone' => $request->input('zone'),
+            'date_debut' => $request->input('date_debut'),
+            'date_fin' => $request->input('date_fin'),
+        ]);
 
         if ($request->file('fichier_projet') !== null) {
             $projet->add_pojet($request);
