@@ -18,7 +18,7 @@ class Zone extends Model
     public function projets():HasMany
     {
 
-        return $this->hasMaHny(Projet::class,'id_zone');
+        return $this->hasMaHny(Projet::class);
     }
     
 }
