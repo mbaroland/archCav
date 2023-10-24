@@ -156,6 +156,7 @@ class ProjetController extends Controller
 
 
         // dd($projet->realisateurs);
+        $projet->realisateurs()->detach($part);
 
         return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part','zones','zone_old'));
     }
@@ -186,7 +187,8 @@ class ProjetController extends Controller
         }
   
 
-        $projet->realisateurs()->detach($request->input('financement'));
+        
+
         $projet->realisateurs()->attach($request->input('financement'));
 
        // dd($request);
