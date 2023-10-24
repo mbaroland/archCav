@@ -110,7 +110,7 @@
                                     {{ $projet->budjet }} FCFA
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $projet->zone }}
+                                    {{$projet->id_zone}}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $projet->find_duration() }} mois
