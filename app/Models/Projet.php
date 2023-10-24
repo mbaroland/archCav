@@ -41,7 +41,7 @@ class Projet extends Model
     public function zone(): BelongsTo
     {
 
-        return $this->belongsTo(Zone::class,'id_zone');
+        return $this->belongsTo(Zone::class);
     }
 
 

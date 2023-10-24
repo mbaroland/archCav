@@ -74,10 +74,10 @@
                         <label for="select-box" class="block text-gray-700 font-semibold">Zone</label>
                         <select name="zones"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 bg-white text-gray-700">
-                            
+                            <option value="{{ $projet->id_zone }}" class="py-2">{{ $zone_old->nom_zone }}</option>
                             @if (isset($zones) && !empty($zones))
                                 @foreach ($zones as $zone)
-                                    <option value="{{ $zones->id }}" class="py-2">{{ $zones->nom_categorie }}
+                                    <option value="{{ $zone->id }}" class="py-2">{{ $zone->nom_zone }}
                                     </option>
                                 @endforeach
                             @else

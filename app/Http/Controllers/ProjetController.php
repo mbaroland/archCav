@@ -98,6 +98,7 @@ class ProjetController extends Controller
         //$projets = Projet::create($request ->all());
         // dd($request->input('financement'));
         $projets->realisateurs()->attach($request->input('financement'));
+
         
 
 
@@ -143,6 +144,9 @@ class ProjetController extends Controller
 
         $categorie_old = CategorieProjet::find($projet->id_categorie);
 
+        $zon = Zone::all()->pluck('nom_projet', 'id');
+        $zone_old = Zone::find($projet->id_zone);
+
         
 
         $fichier = Fichier::find($projet->id);
@@ -153,7 +157,7 @@ class ProjetController extends Controller
 
         // dd($projet->realisateurs);
 
-        return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part','zones'));
+        return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part','zones','zone_old'));
     }
 
     /**
