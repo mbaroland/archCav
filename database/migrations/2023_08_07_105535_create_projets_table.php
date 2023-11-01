@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('date_debut');
             $table->string('date_fin');
             $table->foreign('id_categorie')->references('id')->on('categorie_projets')->cascadeOnDelete();
-         // $table->foreign('id_zone')->references('id')->on('zones')->cascadeOnDelete();
+            $table->foreign('id_zone')->references('id')->on('zones')->cascadeOnDelete();
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });

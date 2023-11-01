@@ -101,6 +101,9 @@ class ProjetController extends Controller
 
         $projets->realisateurs()->attach($request->input('financement'));
 
+       //$projets->zone()->attach($request->input('id_zone'));
+
+
 
 
         return redirect()->route('projet.index')->with('success', 'Projet ajouté avec succès.');
@@ -145,6 +148,9 @@ class ProjetController extends Controller
 
         $categorie_old = CategorieProjet::find($projet->id_categorie);
 
+        $zon = Zone::all()->pluck('nom_projet', 'id');
+        $zone_old = Zone::find($projet->id_zone);
+
 
 
         $fichier = Fichier::find($projet->id);
@@ -154,7 +160,9 @@ class ProjetController extends Controller
 
 
         // dd($projet->realisateurs);
-        return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part','zones'));
+        $projet->realisateurs()->detach($part);
+
+        return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part','zones','zone_old'));
     }
 
     /**
@@ -163,16 +171,28 @@ class ProjetController extends Controller
     public function update(Request $request, Projet $projet)
     {
         //
+        $request['id_user'] = Auth::user()->id;
 
-
-        $projet->update($request->all());
+        $projet->update([
+            'id_categorie' => $request->input('id_categorie'),
+            'id_user' => $request->input('id_user'),
+            'titre_projet' => $request->input('titre_projet'),
+            'objectif_global' => $request->input('objectif_global'),
+            'objectif_specifiques' => $request->input('objectif_specifiques'),
+            'financement' => $request->input('financement'),
+            'budjet' => $request->input('budjet'),
+            'id_zone' => $request->input('zone'),
+            'date_debut' => $request->input('date_debut'),
+            'date_fin' => $request->input('date_fin'),
+        ]);
 
         if ($request->file('fichier_projet') !== null) {
             $projet->add_pojet($request);
         }
 
 
-        $projet->realisateurs()->detach($request->input('financement'));
+
+
         $projet->realisateurs()->attach($request->input('financement'));
 
        // dd($request);

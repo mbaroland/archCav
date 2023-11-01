@@ -109,8 +109,22 @@
                                 <td class="px-6 py-4">
                                     {{ $projet->budjet }} FCFA
                                 </td>
+
                                 <td class="px-6 py-4">
-                                    {{$projet->zone  }}
+
+                                    {{$projet->id_zone}}
+
+                                @foreach ($zones as $zone)
+
+                                    @if ($projet->id_zone===$zone->id)
+
+                                       {{$zone->nom_zone}}
+
+
+                                    @endif
+
+                                @endforeach
+
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $projet->find_duration() }} mois
