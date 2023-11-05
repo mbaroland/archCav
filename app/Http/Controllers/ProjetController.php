@@ -30,7 +30,7 @@ class ProjetController extends Controller
         $fichier = Fichier::all();
         $partenaire = Realisateur::all();
         $realisateurs = Realisateur::latest()->get();
-        return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs','zones'));
+        return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs', 'zones'));
 
         // if (count($projets) > 0) {
 
@@ -56,9 +56,9 @@ class ProjetController extends Controller
         $categorie_projets = CategorieProjet::latest()->get();
         $realisateurs = Realisateur::latest()->get();
         $zones = Zone::latest()->get();
-        
 
-        return view('projet.create', compact('projets', 'categorie_projets', 'realisateurs','zones'));
+
+        return view('projet.create', compact('projets', 'categorie_projets', 'realisateurs', 'zones'));
     }
 
     /**
@@ -72,7 +72,7 @@ class ProjetController extends Controller
 
         $request->validate(Projet::rules());
 
-        
+
         //dd($request->all());
 
         $projets = Projet::create([
@@ -88,20 +88,22 @@ class ProjetController extends Controller
             'date_fin' => $request->input('date_fin'),
         ]);
 
-        
+
 
 
         if ($request->file('fichier_projet') !== null) {
             $projets->add_pojet($request);
         }
-        
+
         //$projets = Projet::create($request ->all());
         // dd($request->input('financement'));
+        // dd($request);
+
         $projets->realisateurs()->attach($request->input('financement'));
 
-       //$projets->zone()->attach($request->input('id_zone'));
+        //$projets->zone()->attach($request->input('id_zone'));
 
-        
+
 
 
         return redirect()->route('projet.index')->with('success', 'Projet ajouté avec succès.');
@@ -120,11 +122,11 @@ class ProjetController extends Controller
         $categorie_projets = CategorieProjet::latest()->get();
 
         $utilisateur = User::find($projet->id_user);
-                $zones = Zone::latest()->get();
+        $zones = Zone::latest()->get();
 
-                $zone = Zone::find($projet->id_zone);
+        $zone = Zone::find($projet->id_zone);
 
-        return view('projet.show', compact('categorie_projets', 'projet', 'projets', 'utilisateur', 'partenaire','zones','zone'));
+        return view('projet.show', compact('categorie_projets', 'projet', 'projets', 'utilisateur', 'partenaire', 'zones', 'zone'));
     }
 
     /**
@@ -138,7 +140,7 @@ class ProjetController extends Controller
 
         $projets = Projet::latest()->get();
         $categorie_projets = CategorieProjet::latest()->get();
-        
+
 
 
 
@@ -149,7 +151,7 @@ class ProjetController extends Controller
         $zon = Zone::all()->pluck('nom_projet', 'id');
         $zone_old = Zone::find($projet->id_zone);
 
-        
+
 
         $fichier = Fichier::find($projet->id);
 
@@ -160,7 +162,7 @@ class ProjetController extends Controller
         // dd($projet->realisateurs);
         $projet->realisateurs()->detach($part);
 
-        return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part','zones','zone_old'));
+        return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part', 'zones', 'zone_old'));
     }
 
     /**
@@ -170,7 +172,7 @@ class ProjetController extends Controller
     {
         //
         $request['id_user'] = Auth::user()->id;
-        
+
         $projet->update([
             'id_categorie' => $request->input('id_categorie'),
             'id_user' => $request->input('id_user'),
@@ -187,13 +189,13 @@ class ProjetController extends Controller
         if ($request->file('fichier_projet') !== null) {
             $projet->add_pojet($request);
         }
-  
 
-        
+
+
 
         $projet->realisateurs()->attach($request->input('financement'));
 
-       // dd($request);
+        // dd($request);
         return redirect()->route('projet.index')->with('success', 'projet mis à jour avec succès.');
     }
     /**
@@ -270,4 +272,12 @@ class ProjetController extends Controller
     // }
 
 
+
+
+    public function download($filename)
+    {
+        $filePath = public_path("storage/{$filename}");
+
+        return response()->download($filePath, $filename);
+    }
 }
