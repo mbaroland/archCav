@@ -77,8 +77,8 @@
                             @endcan
                             @can('type_projet-list')
                                 <a href="{{ route('categorie_projet.index') }}"
-                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">Axe
-                                    stratégique</a>
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
+                                    axes stratégiques/domaines d'interventions</a>
                             @endcan
                             @can('projet-list')
                                 <a href="{{ route('partenaires.index') }}"
