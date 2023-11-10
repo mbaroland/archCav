@@ -121,3 +121,5 @@ Route::post('partenaires/store', [RealisateurController::class, 'store'])->name(
 Route::DELETE('/destroy/{realisateur}', [RealisateurController::class, 'destroy'])->name('partenaires.destroy');
 Route::get('/{realisateur}/edit', [RealisateurController::class, 'edit'])->name('realisateur.edit');
 Route::post('/{realisateur}/update', [RealisateurController::class, 'update'])->name('realisateur.update');
+
+Route::get('/download/{filename}', [ProjetController::class, 'download'])->name('file_download');
