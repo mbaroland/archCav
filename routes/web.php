@@ -33,6 +33,10 @@ Route::get('/preview', function () {
     return view('projet.preview');
 })->name('preview');
 
+// Route::get('/preview' ,[projetController::class, 'afficherPDF'])->name('preview');
+
+//Route::get('/preview/{$filename}', [projetController::class, 'preview'])->name('preview');
+
 Route::middleware([
     'auth:web',
     config('jetstream.auth_session'),

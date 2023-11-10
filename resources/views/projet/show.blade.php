@@ -96,24 +96,6 @@
 
                     <div class="container mx-auto mt-4 block">
 
-                    <!-- <div class="dropdown">
-                                    <div class="dropdown-content">
-
-                        @foreach ($projet->fichiers as $fichier)
-    <div class="dropdown">
-                            <p>{{ substr($fichier->nom_fichier, 8) }}</p>
-                                    <div class="dropdown-content">
-
-                                        <a  href="/storage/{{ $fichier->nom_fichier }}" download="{{ substr($fichier->nom_fichier, 8) }}">
-                                                        {{ substr($fichier->nom_fichier, 8) }}
-
-                                                        </a>
-
-                                                    <embed src="/storage/{{ $fichier->nom_fichier }}" type="application/pdf" width="600" height="800">
-    @endforeach
-
-                                        </div>
-                                        </div> -->
                                         <div class="container mx-auto mt-4">
                                             <label for="nom" class="block text-gray-700 font-semibold">archives projet</label>
 
@@ -127,6 +109,16 @@
                         </a>
                         <hr>
                     @endforeach
+
+
+
+                    <!-- @foreach ($projet->fichiers as $fichier)
+    <a href="/preview?file={{$fichier->nom_fichier}}">
+        <p>{{ substr($fichier->nom_fichier, 8) }}</p>
+    </a>
+    <hr>
+@endforeach  -->
+
 
                 </div>
 
@@ -174,4 +166,17 @@
     </div>
 
     @include('archives.style')
+
+
+
+
+    <script>
+    function openFile(fileUrl) {
+        // Ouvre le fichier dans une nouvelle fenêtre du navigateur
+        window.open(fileUrl, '_blank');
+    }
+</script>
+
+
+    
 @endsection
