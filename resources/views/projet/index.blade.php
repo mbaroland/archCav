@@ -60,7 +60,7 @@
                             OBJECTIF GLOBAL
                         </th>
                         <th scope="col" class="px-6 py-3">
-                        PARTENAIRES
+                            PARTENAIRES
                         </th>
                         <th scope="col" class="px-6 py-3">
                             BUDGET
@@ -112,24 +112,19 @@
 
                                 <td class="px-6 py-4">
 
-                                    {{$projet->id_zone}}
+                                    {{ $projet->id_zone }}
 
-                                @foreach ($zones as $zone)
-
-                                    @if ($projet->id_zone===$zone->id)
-
-                                       {{$zone->nom_zone}}
-
-
-                                    @endif
-
-                                @endforeach
+                                    @foreach ($zones as $zone)
+                                        @if ($projet->id_zone === $zone->id)
+                                            {{ $zone->nom_zone }}
+                                        @endif
+                                    @endforeach
 
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $projet->find_duration() }} mois
                                 </td>
-                                <td class="px-6 py-4">{{$projet->user->name }} <br> {{ $projet->user->prenom }}</td>
+                                <td class="px-6 py-4">{{ $projet->user->name }} <br> {{ $projet->user->prenom }}</td>
 
                                 @can('projet-create')
                                     <td class="px-6 py-4 flex justify-center">
