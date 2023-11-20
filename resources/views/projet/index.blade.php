@@ -127,7 +127,7 @@
 
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $projet->find_duration() }} mois
+                                    {{ $projet->find_duration() }}
                                 </td>
                                 <td class="px-6 py-4">{{$projet->user->name }} <br> {{ $projet->user->prenom }}</td>
 

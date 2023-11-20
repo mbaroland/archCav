@@ -62,13 +62,49 @@ class Projet extends Model
     }
 
 
+    // public function find_duration()
+    // {
+    //     $debut = Carbon::parse($this->date_debut);
+    //     $fin = Carbon::parse($this->date_fin);
+    //     $duration = $debut->diffInMonths($fin);
+    //     return ($duration);
+    // }
+
     public function find_duration()
     {
         $debut = Carbon::parse($this->date_debut);
         $fin = Carbon::parse($this->date_fin);
-        $duration = $debut->diffInMonths($fin);
-        return ($duration);
+    
+        $mois = $debut->diffInMonths($fin);
+        $joursRestants = $fin->diffInDays($debut->addMonths($mois));
+    
+        // Si les jours restants sont supérieurs à 2, ajouter un mois
+        if ($joursRestants > 2) {
+            $mois++;
+        }
+    
+        return $mois;
     }
+    
+    public function find_d()
+{
+    $debut = Carbon::parse($this->date_debut);
+    $fin = Carbon::parse($this->date_fin);
+
+    $mois = $debut->diffInMonths($fin);
+    $joursRestants = $fin->diffInDays($debut->addMonths($mois));
+
+    // Si les jours restants sont supérieurs à 5, ajouter un mois
+    if ($joursRestants > 5) {
+        $mois++;
+        $joursRestants = $fin->diffInDays($debut->addMonths($mois));
+    }
+
+    return ['mois' => $mois, 'jours' => $joursRestants];
+}
+
+
+
     public function add_pojet($request)
     {
         $i = 0;
