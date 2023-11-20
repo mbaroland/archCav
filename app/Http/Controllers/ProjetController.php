@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Response;
+use PDF;
 
 
 
@@ -246,31 +248,40 @@ class ProjetController extends Controller
 
 
 
+    public function preview($filename)
+    {
+        // Récupérez le chemin complet du fichier dans votre système de stockage
+        $filePath = Storage::disk('public')->path($filename);
+    
+        // Vérifiez si le fichier existe
+        if (file_exists($filePath)) {
+            // Obtenez le type MIME du fichier (par exemple, 'application/pdf' pour les fichiers PDF)
+            $mimeType = mime_content_type($filePath);
+    
+            // Créez une réponse HTTP avec le contenu du fichier
+            return response()->stream(function () use ($filePath) {
+                readfile($filePath);
+            }, 200, [
+                'Content-Type' => $mimeType,
+                'Content-Disposition' => 'inline; filename="' . basename($filePath) . '"',
+            ]);
+        } else {
+            // Gérez le cas où le fichier n'existe pas
+            return response()->json(['message' => 'Fichier introuvable'], 404);
+        }
+    }
+
+    public function afficherPDF(Request $request){
+
+        $filePath = Storage::disk('public')->path($request->file);
+        $pdf = PDF::loadFile($filePath);
+        $pdf->stream();
+        ddd($pdf);
+    }
+    
 
 
-
-
-
-    // function getPreviewIconForFile($fileExtension, $filePath)
-    // {
-    //     if ($fileExtension === 'pdf') {
-    //         // Chemin de l'aperçu généré
-    //         $previewPath = "/storage/previews/preview_$fileExtension.png";
-
-    //         // Vérifiez si l'aperçu existe, sinon générez-le
-    //         if (!file_exists(public_path($previewPath))) {
-    //             // Utilisez Ghostscript pour extraire la première page du PDF
-    //             $command = "gs -dNOPAUSE -sDEVICE=pngalpha -r300 -o " . public_path($previewPath) . " " . public_path($filePath) . "[0]";
-    //             shell_exec($command);
-    //         }
-
-    //         return $previewPath;
-    //     } else {
-    //         // Pour d'autres types de fichiers, utilisez l'icône générique
-    //         return 'logo.png'; // Utilisez une icône générique par défaut
-    //     }
-    // }
-
+   
 
 
 

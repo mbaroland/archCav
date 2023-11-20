@@ -139,6 +139,16 @@
                         <hr>
                     @endforeach
 
+
+
+                    <!-- @foreach ($projet->fichiers as $fichier)
+    <a href="/preview?file={{$fichier->nom_fichier}}">
+        <p>{{ substr($fichier->nom_fichier, 8) }}</p>
+    </a>
+    <hr>
+@endforeach  -->
+
+
                 </div>
 
 
