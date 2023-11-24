@@ -65,8 +65,10 @@
 
                 </div>
                 <div class="container mx-auto mt-4 block">
-                    <p>{{ $zone->nom_zone }}</p>
-
+                @foreach ($projet->zones as $zone)
+                        {{-- {{ $partenaire->where('id', $financement)->first()->nom_realisateur }} --}}
+                        {{ $zone->nom_zone }}
+                    @endforeach
                 </div>
 
                 <div class="container mx-auto mt-4">
@@ -130,14 +132,14 @@
 
 
                     @foreach ($projet->fichiers as $fichier)
-                        <a href="/storage/{{ $fichier->nom_fichier }}" target='_blank'>
-                            <p>{{ substr($fichier->nom_fichier, 8) }}</p>
-                        </a>
-                        {{-- <a href="{{ $fichier->nom_fichier }}" class="download-button">
-                            /storage/{{ $fichier->nom_fichier }}
-                        </a> --}}
-                        <hr>
-                    @endforeach
+    <a href="/storage/{{ $fichier->nom_fichier }}" target='_blank' class="flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-current text-indigo-600">
+            <path d="M21 8v12.993A1 1 0 0 1 20.007 22H3.993A.993.993 0 0 1 3 21.008V2.992C3 2.455 3.449 2 4.002 2h10.995L21 8zm-2 1h-5V4H5v16h14V9zM8 7h3v2H8V7zm0 4h8v2H8v-2zm0 4h8v2H8v-2z"></path>
+        </svg>
+        <p class="text-indigo-600">{{ substr($fichier->nom_fichier, 8) }}</p>
+    </a>
+    <hr class="my-2">
+@endforeach
 
 
 

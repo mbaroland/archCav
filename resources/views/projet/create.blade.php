@@ -26,12 +26,12 @@
                         <select name="id_categorie"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 bg-white text-gray-700">
                             @if (isset($categorie_projets) && !empty($categorie_projets))
-                                @foreach ($categorie_projets as $categorie)
-                                    <option value="{{ $categorie->id }}" class="py-2">{{ $categorie->nom_categorie }}
-                                    </option>
-                                @endforeach
+                            @foreach ($categorie_projets as $categorie)
+                            <option value="{{ $categorie->id }}" class="py-2">{{ $categorie->nom_categorie }}
+                            </option>
+                            @endforeach
                             @else
-                                <option value="" disabled selected>Aucune catégorie disponible</option>
+                            <option value="" disabled selected>Aucune catégorie disponible</option>
                             @endif
                         </select>
 
@@ -42,7 +42,7 @@
                             value="{{ old('titre_projet') }}">
 
                         @error('titre_projet')
-                            <span class="text-red-600 text-xs">{{ $message }}</span>
+                        <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
 
 
@@ -52,7 +52,7 @@
                         <textarea name="objectif_global" rows="4" value="{{ old('objectif_global') }}"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">{{ old('objectif_global') }}</textarea>
                         @error('objectif_global')
-                            <span class="text-red-600 text-xs">{{ $message }}</span>
+                        <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -61,7 +61,7 @@
                         <textarea name="objectif_specifiques" rows="4" value="{{ old('objectif_specifiques') }}"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">{{ old('objectif_specifiques') }}</textarea>
                         @error('objectif_specifiques')
-                            <span class="text-red-600 text-xs">{{ $message }}</span>
+                        <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -71,16 +71,16 @@
                             :</label>
                         <br>
                         @foreach ($realisateurs as $realisateur)
-                            <label>
-                                <input type="checkbox" name="financement[]" value="{{ $realisateur->id }}"
-                                class="name" {{ in_array($realisateur->id, old('financement', [])) ? 'checked' : '' }}>
-                                {{ $realisateur->nom_realisateur }}
-                            </label>
-                            <br>
+                        <label>
+                            <input type="checkbox" name="financement[]" value="{{ $realisateur->id }}" class="name" {{
+                                in_array($realisateur->id, old('financement', [])) ? 'checked' : '' }}>
+                            {{ $realisateur->nom_realisateur }}
+                        </label>
+                        <br>
                         @endforeach
                     </div>
                     @error('financement')
-                        <span class="text-red-600 text-xs">{{ $message }}</span>
+                    <span class="text-red-600 text-xs">{{ $message }}</span>
                     @enderror
 
 
@@ -90,14 +90,14 @@
                         <input type="text" name="budjet" class="form-input w-full rounded-lg"
                             value="{{ old('budjet') }}">
                         @error('budjet')
-                            <span class="text-red-600 text-xs">{{ $message }}</span>
+                        <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
-
+                    <!-- 
                     <div class="container mx-auto mt-4">
                         <label for="select-box" class="block text-gray-700 font-semibold">Zone</label>
-                        <select name="zone"
+                        <select name="zone" multiple
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500 bg-white text-gray-700">
                            
                             @if (isset($zones) && !empty($zones))
@@ -110,7 +110,28 @@
                             @endif
                         </select>
 
+                    </div> -->
+
+
+
+                    <div class="container mx-auto mt-4">
+                        <label class="block text-gray-700 font-semibold">Zones</label>
+
+                        @if (isset($zones) && !empty($zones))
+                        @foreach ($zones as $zone)
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="zone[]" value="{{ $zone->id }}" {{ in_array($zone->id,old('zone', [])
+                            ) ? 'checked' : '' }} class="form-checkbox text-indigo-600 h-5 w-5">
+                            <span class="ml-2">{{ $zone->nom_zone }}</span>
+                        </label>
+                        <br />
+                        @endforeach
+                        @else
+                        <p>Aucune zone disponible</p>
+                        @endif
                     </div>
+
+
 
 
                     <div class="container mx-auto mt-4">
@@ -118,7 +139,7 @@
                         <input type="date" name="date_debut" value="{{ old('date_debut') }}"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">
                         @error('date_debut')
-                            <span class="text-red-600 text-xs">{{ $message }}</span>
+                        <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -127,7 +148,7 @@
                         <input type="date" name="date_fin" value="{{ old('date_fin') }}"
                             class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-500">
                         @error('date_fin')
-                            <span class="text-red-600 text-xs">{{ $message }}</span>
+                        <span class="text-red-600 text-xs">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -135,15 +156,13 @@
                         <label class="block text-gray-600 font-medium">
                             Fichiers associés au Projet
                             <span class="sr-only">Choose profile photo</span>
-                            <input type="file"
-                                class="block w-full text-sm text-slate-500
+                            <input type="file" class="block w-full text-sm text-slate-500
                           file:mr-4 file:py-2 file:px-4
                           file:rounded-full file:border-0
                           file:text-sm file:font-semibold
                           file:bg-violet-50 file:text-violet-700
                           hover:file:bg-violet-100
-                        "
-                                name="fichier_projet[]" value="{{ old('fichier_projet') }}" multiple />
+                        " name="fichier_projet[]" value="{{ old('fichier_projet') }}" multiple />
                         </label>
                     </div>
                 </div>
@@ -166,11 +185,11 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const modal = document.getElementById('modal');
         const closeButton = document.getElementById('close-modal');
 
-        closeButton.addEventListener('click', function() {
+        closeButton.addEventListener('click', function () {
             modal.classList.add('hidden');
         });
 
@@ -187,7 +206,7 @@
             fieldValues[fieldName] = field.value;
         });
 
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function (event) {
             // Empêchez la soumission du formulaire par défaut
             event.preventDefault();
 
@@ -205,11 +224,11 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const modal = document.getElementById('projet-modal');
         const closeButton = document.getElementById('close-modal');
 
-        closeButton.addEventListener('click', function() {
+        closeButton.addEventListener('click', function () {
             modal.classList.add('hidden');
             alert('hmmm');
         });
