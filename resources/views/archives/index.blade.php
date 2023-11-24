@@ -63,7 +63,7 @@
                                             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">Visualiser</button>
                                         <div class="dropdown-content">
                                             @foreach ($archive->fichiers as $fichier)
-                                                <a href="/preview?file=/storage/{{ $fichier->nom_fichier }}" target='blank'>
+                                                <a href="/storage/{{ $fichier->nom_fichier }}" target='_blank'>
                                                     <p>{{ substr($fichier->nom_fichier, 9) }}</p>
 
                                                 </a>
