@@ -6,8 +6,8 @@
             @method('put')
 
             <div class="container mx-auto mt-4">
-                <label for="date" class="block text-gray-600 font-medium"> catégorie document</label> <input type="text"
-                    id="nom" name="nom_zone" class="form-input w-full rounded-lg" value="{{ $zone->nom_zone }}">
+                <label for="date" class="block text-gray-600 font-medium"> ZOnes</label> <input type="text"
+                    id="id_zone" name="nom_zone" class="form-input w-full rounded-lg" value="{{ $zone->nom_zone }}">
             </div>
     </div>
 

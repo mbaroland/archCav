@@ -57,10 +57,10 @@
                             TITRE
                         </th>
                         <!-- <th scope="col" class="px-6 py-3">
-                            OBJECTIF GLOBAL
-                        </th> -->
+                                                    OBJECTIF GLOBAL
+                                                </th> -->
                         <th scope="col" class="px-6 py-3">
-                        PARTENAIRES
+                            PARTENAIRES
                         </th>
                         <th scope="col" class="px-6 py-3">
                             BUDGET
@@ -73,11 +73,11 @@
                         </th>
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            CHARRGE DU PROJET
+                            CHARGE DU PROJET
                         </th>
                         @can('projet-create')
                             <th scope="col" class="px-6 py-3">
-                                ACTION
+
                             </th>
                         @endcan
                     </tr>
@@ -87,14 +87,13 @@
                     @if (isset($projets) && count($projets) > 0)
                         @foreach ($projets as $projet)
                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                     <a href="{{ route('projet.show', $projet) }}">{{ $projet->titre_projet }}</a>
 
                                 </th>
                                 <!-- <td class="px-6 py-4">
-                                    <a href="{{ route('projet.show', $projet) }}">{{ $projet->objectif_global }}</a>
-                                </td> -->
+                                                            <a href="{{ route('projet.show', $projet) }}">{{ $projet->objectif_global }}</a>
+                                                        </td> -->
                                 <td class="px-6 py-4">
                                     @foreach ($projet->realisateurs as $financement)
                                         {{-- {{ $partenaire->where('id', $financement)->first()->nom_realisateur }} --}}
@@ -127,11 +126,12 @@
 
                                 @endforeach
 
+
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $projet->find_duration() }}
+                                    {{ $projet->find_duration() }} Mois
                                 </td>
-                                <td class="px-6 py-4">{{$projet->user->name }} <br> {{ $projet->user->prenom }}</td>
+                                <td class="px-6 py-4">{{ $projet->user->name }} <br> {{ $projet->user->prenom }}</td>
 
                                 @can('projet-create')
                                     <td class="px-6 py-4 flex justify-center">
@@ -195,10 +195,10 @@
     <script>
         new DataTable('#table', {
             // Options de configuration de DataTables
-            lengthChange: false, // Désactiver la sélection du nombre de lignes
+            lengthChange: true, // Désactiver la sélection du nombre de lignes
             info: false,
             dom: '<"custom-search"f>t',
-            paging: false,
+            paging: true,
             language: {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",
                 "search": "",

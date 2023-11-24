@@ -49,7 +49,7 @@ class Zonecontroller extends Controller
      */
     public function edit(Zone $zone)
     {
-        $zone = Zone::latest()->first();
+        //$zone = Zone::latest()->first();
         //ddd($zone);
         return view('zones.edit', compact('zone'));
     }
