@@ -6,17 +6,20 @@
 
 
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="container mx-auto mt-4">
-
-
-
-                <label for="nom" class="block text-gray-700 font-semibold">PROJET : </label>
-                <h1 class='text-2xl font-bold'>{{ $projet->titre_projet }}</h1>
-
-            </div>
-        </div>
+    
         <div class="flex ">
             <div class="mb-4">
+                <div class="container mx-auto mt-4 block">
+
+
+
+<label for="nom" class="block text-gray-700 font-semibold">PROJET : </label>
+<h1 class='text-2xl font-bold'>{{ $projet->titre_projet }}</h1>
+
+
+</div>
+
+            
                 <div class="container mx-auto mt-4">
                     <label for="nom" class="block text-gray-700 font-semibold">OBJECTIF GLOBAL :</label>
 
@@ -117,9 +120,10 @@
                                                                         </div>
                                                                         </div> -->
                     <div class="container mx-auto mt-4">
-                        <label for="nom" class="block text-gray-700 font-semibold">archives projet</label>
+                    <label for="nom" class="block text-gray-700 font-semibold">FICHIERS DU PROJET :</label>
 
-                    </div>
+
+                </div>
 
                     {{-- @foreach ($projet->fichiers as $fichier)
                         <a href="/preview?file=/storage/{{ $fichier->nom_fichier }}" target='blank'>
@@ -130,7 +134,7 @@
                         <hr>
                     @endforeach --}}
 
-
+                    <div class="container mx-auto mt-4 block">
                     @foreach ($projet->fichiers as $fichier)
     <a href="/storage/{{ $fichier->nom_fichier }}" target='_blank' class="flex items-center space-x-2">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 fill-current text-indigo-600">
@@ -141,6 +145,7 @@
     <hr class="my-2">
 @endforeach
 
+</div>
 
 
                     <!-- @foreach ($projet->fichiers as $fichier)

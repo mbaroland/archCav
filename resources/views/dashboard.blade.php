@@ -73,21 +73,21 @@
                             <!-- Contenu du sous-menu "Projets" -->
                             @can('projet-list')
                                 <a href="{{ route('projet.index') }}"
-                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">Projets</a>
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-300">Projets</a>
                             @endcan
                             @can('type_projet-list')
                                 <a href="{{ route('categorie_projet.index') }}"
-                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700">
                                     axes stratégiques/domaines d'interventions</a>
                             @endcan
                             @can('projet-list')
                                 <a href="{{ route('partenaires.index') }}"
-                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700">
                                     Partenaires</a>
                             @endcan
                             @can('projet-list')
                                 <a href="{{ route('zones.index') }}"
-                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700">
                                     Zones</a>
                             @endcan
                         </div>
@@ -121,11 +121,11 @@
                             <!-- Contenu du sous-menu "Archives" -->
                             @can('archive-create')
                                 <a href="{{ route('archive.index') }}"
-                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">Documents</a>
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700">Documents</a>
                             @endcan
                             @can('type_archive-list')
                                 <a href="{{ route('type_archive.index') }}"
-                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300">Types
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700">Types
                                     Documents</a>
                             @endcan
                         </div>
@@ -146,7 +146,7 @@
                             <span class=" ml-4 whitespace-nowrap">Users/Roles</span>
 
                             {{-- @if (isset($projets) && count($projets) > 0)
-             <span class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">{{ count($projets) }}</span>
+             <span class="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300 ">{{ count($projets) }}</span>
              @else
              <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300"></span>
 
@@ -156,12 +156,12 @@
                             <!-- Contenu du sous-menu "Users" -->
                             @can('user-list')
                                 <a href="{{ route('users.index') }}"
-                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
                                     @click="openRoles = false">Users</a>
                             @endcan
                             @can('role-create')
                                 <a href="{{ route('roles.index') }}"
-                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
+                                    class="block p-2 text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700"
                                     @click="openRoles = false">Roles</a>
                             @endcan
                         </div>
