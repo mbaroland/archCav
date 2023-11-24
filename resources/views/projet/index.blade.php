@@ -112,16 +112,18 @@
 
                                 <td class="px-6 py-4">
 
-                                    {{$projet->id_zone}}
+                                   
+                              
+                                @foreach ($projet->zones as $zone)
+                                {{$zone->nom_zone}}
 
-                                @foreach ($zones as $zone)
-
-                                    @if ($projet->id_zone===$zone->id)
+                                    <!-- @if ($projet->id_zone===$zone->id)
 
                                        {{$zone->nom_zone}}
 
 
-                                    @endif
+                                    @endif -->
+                                   
 
                                 @endforeach
 
@@ -171,7 +173,7 @@
 
 
 
-
+   
 
     <style>
         .custom-search input[type="search"] {
@@ -224,7 +226,7 @@
             modal.classList.add('hidden');
         });
 
-        modal.addEventListener('click', (e) => {
+        modal.addEventListener('cli96ck', (e) => {
             if (e.target === modal) {
                 modal.classList.add('hidden');
             }

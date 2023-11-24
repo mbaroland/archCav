@@ -32,6 +32,8 @@ class ProjetController extends Controller
         $fichier = Fichier::all();
         $partenaire = Realisateur::all();
         $realisateurs = Realisateur::latest()->get();
+        $zones = Zone::latest()->get();
+       // dd($projets->zones());
         return view('projet.index', compact('partenaire', 'projets', 'categorie_projets', 'realisateurs', 'zones'));
 
         // if (count($projets) > 0) {
@@ -58,6 +60,7 @@ class ProjetController extends Controller
         $categorie_projets = CategorieProjet::latest()->get();
         $realisateurs = Realisateur::latest()->get();
         $zones = Zone::latest()->get();
+        
 
 
         return view('projet.create', compact('projets', 'categorie_projets', 'realisateurs', 'zones'));
@@ -67,8 +70,9 @@ class ProjetController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
 
+    {
+        // dd($request->all());
 
         $request['id_user'] = Auth::user()->id;
 
@@ -103,7 +107,8 @@ class ProjetController extends Controller
 
         $projets->realisateurs()->attach($request->input('financement'));
 
-        //$projets->zone()->attach($request->input('id_zone'));
+        $projets->zones()->attach($request->input('zone'));
+
 
 
 
@@ -162,7 +167,9 @@ class ProjetController extends Controller
 
 
         // dd($projet->realisateurs);
+
         $projet->realisateurs()->detach($part);
+        $projet->zones()->detach($projet->zones);
 
         return view('projet.edit', compact('partenaires', 'projets', 'categorie_projets', 'projet', 'categorie_old', 'fichier', 'part', 'zones', 'zone_old'));
     }
@@ -197,6 +204,8 @@ class ProjetController extends Controller
 
         $projet->realisateurs()->attach($request->input('financement'));
 
+        $projet->zones()->attach($request->input('zone'));
+
         // dd($request);
         return redirect()->route('projet.index')->with('success', 'projet mis à jour avec succès.');
     }
@@ -212,6 +221,7 @@ class ProjetController extends Controller
                 Storage::delete($fichier->nom_fichier);
             }
         }
+
 
         $projet->delete();
         return redirect()->route('projet.index')->with('success', 'projet supprimé avec succès.');

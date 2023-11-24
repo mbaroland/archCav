@@ -15,10 +15,15 @@ class Zone extends Model
     protected $primaryKey='id';
     protected $table = "zones";
 
-    public function projets():HasMany
-    {
+    // public function projets():HasMany
+    // {
 
-        return $this->hasMaHny(Projet::class);
+    //     return $this->hasMaHny(Projet::class);
+    // }
+
+    public function projets()
+    {
+        return $this->belongsToMany(Projet::class, 'projet_zones', 'id_projet', 'id_zone');
     }
     
 }
