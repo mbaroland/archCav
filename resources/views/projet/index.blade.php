@@ -57,10 +57,10 @@
                             TITRE
                         </th>
                         <!-- <th scope="col" class="px-6 py-3">
-                            OBJECTIF GLOBAL
-                        </th> -->
+                                                    OBJECTIF GLOBAL
+                                                </th> -->
                         <th scope="col" class="px-6 py-3">
-                        PARTENAIRES
+                            PARTENAIRES
                         </th>
                         <th scope="col" class="px-6 py-3">
                             BUDGET
@@ -73,11 +73,11 @@
                         </th>
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            CHARRGE DU PROJET
+                            CHARGE DU PROJET
                         </th>
                         @can('projet-create')
                             <th scope="col" class="px-6 py-3">
-                                ACTION
+
                             </th>
                         @endcan
                     </tr>
@@ -87,14 +87,13 @@
                     @if (isset($projets) && count($projets) > 0)
                         @foreach ($projets as $projet)
                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
                                     <a href="{{ route('projet.show', $projet) }}">{{ $projet->titre_projet }}</a>
 
                                 </th>
                                 <!-- <td class="px-6 py-4">
-                                    <a href="{{ route('projet.show', $projet) }}">{{ $projet->objectif_global }}</a>
-                                </td> -->
+                                                            <a href="{{ route('projet.show', $projet) }}">{{ $projet->objectif_global }}</a>
+                                                        </td> -->
                                 <td class="px-6 py-4">
                                     @foreach ($projet->realisateurs as $financement)
                                         {{-- {{ $partenaire->where('id', $financement)->first()->nom_realisateur }} --}}
@@ -106,7 +105,7 @@
 
 
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 budget"  >
                                     {{ $projet->budjet }} FCFA
                                 </td>
 
@@ -127,11 +126,12 @@
 
                                 @endforeach
 
+
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $projet->find_duration() }}
+                                    {{ $projet->find_duration() }} Mois
                                 </td>
-                                <td class="px-6 py-4">{{$projet->user->name }} <br> {{ $projet->user->prenom }}</td>
+                                <td class="px-6 py-4">{{ $projet->user->name }} <br> {{ $projet->user->prenom }}</td>
 
                                 @can('projet-create')
                                     <td class="px-6 py-4 flex justify-center">
@@ -195,18 +195,160 @@
     <script>
         new DataTable('#table', {
             // Options de configuration de DataTables
-            lengthChange: false, // Désactiver la sélection du nombre de lignes
+            lengthChange: true, // Désactiver la sélection du nombre de lignes
             info: false,
             dom: '<"custom-search"f>t',
-            paging: false,
+            paging: true,
             language: {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",
                 "search": "",
                 "searchPlaceholder": "rechercher"
             }
         });
+
+    
     </script>
 
+
+
+    <script>
+
+
+
+   document.addEventListener('DOMContentLoaded', function() {
+   
+    var budgetCells = document.querySelectorAll('.budget'); 
+    
+    budgetCells.forEach(function(budgetCell) {
+        var budgetValue = budgetCell.textContent.trim();
+        // console.log(budgetValue);
+        // console.log(budgetValue.length);
+        budgetValue = budgetValue.slice(0,-5)
+        // console.log(budgetValue);
+        // console.log(budgetValue.length);
+
+        switch (budgetValue.length) {
+            case 4:
+                budgetValue = budgetValue[0] + ' ' + budgetValue.substring(1);
+                // console.log(budgetValue);
+              
+                break;
+        
+            case 5:
+                budgetValue = budgetValue.substring(0, 2) + ' ' + budgetValue.substring(2);
+             
+                break;
+            case 6:
+                budgetValue = budgetValue.substring(0, 3) + ' ' + budgetValue.substring(3);
+               
+                break;
+            case 7:
+                budgetValue = budgetValue[0] + ' ' + budgetValue.substring(1, 4) + ' ' + budetValue.substring(4);
+             
+                break;
+            
+        }     
+        budgetCell.textContent = budgetValue + ' FCFA'
+
+        // if (budgetValue.length == 4) {
+        //     budgetValue = budgetValue[0] + ' ' + budgetValue.substring(1);
+        //     // console.log(budgetValue);
+        //     budgetCell.textContent = budgetValue + ' FCFA'
+        // }
+        
+    });
+
+  
+});
+
+
+
+
+
+
+
+
+    //     if (budgetValue) {
+    //         budgetCell.textContent = formatBudget(budgetValue) + ' FCFA';
+    //     }
+    //  });
+        // Formater le nombre en fonction du nombre de chiffres
+        // if (budjetValue.length === 4) {
+        //     budjetValue = budjetValue[0] + ' ' + budjetValue.substring(1);
+        // } else if (budjetValue.length === 5) {
+        //     budjetValue = budjetValue.substring(0, 2) + ' ' + budjetValue.substring(2);
+        // } else if (budjetValue.length === 6) {
+        //     budjetValue = budjetValue.substring(0, 3) + ' ' + budjetValue.substring(3);
+        // } else if (budjetValue.length === 7) {
+        //     budjetValue = budjetValue[0] + ' ' + budjetValue.substring(1, 4) + ' ' + budjetValue.substring(4);
+        // }
+
+        // // Mettre à jour le contenu de la cellule
+        // budjetCell.textContent = budjetValue + ' FCFA';
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+ <script>
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     var budgetCell = document.getElementById('budgetCell');
+    //     var budgetValue = budgetCell.textContent.trim();
+
+    //     if (budgetValue) {
+    //         budgetCell.textContent = formatBudget(budgetValue) + ' FCFA';
+    //     }
+    // });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var budjetCells = document.querySelectorAll('.budjetCells');
+// console.log(budjetCells)
+
+        budjetCells.forEach(budjetCell=>{
+            var budjetValue = budjetCell.textContent.trim();
+// console.log(1)
+            if (budjetValue) {
+                budjetCell.textContent = formatBudjet(budjetValue) + ' FCFA';
+            }
+        })
+      10235698 FCFA 
+    });
+
+    function formatBudjet(value) {
+        var formattedValue = parseFloat(value.replace(/[^\d.-]/g, '')); 
+        var suffix = '';
+
+        if (formattedValue >= 1000000000) {
+            formattedValue /= 1000000000;
+            suffix = ' ';
+        } else if (formattedValue >= 1000000) {
+            formattedValue /= 1000000;
+            suffix = ' ';
+        } else if (formattedValue >= 1000) {
+            formattedValue /= 1000;
+            suffix = ' ';
+        }
+
+        return addSpaces(formattedValue) + suffix;
+    }
+
+    function addSpaces(value) {
+        return value.toLocaleString();
+    }
+</script> -->
+ 
 
 
 
@@ -237,14 +379,16 @@
 
     <script>
         let errors = '{!! $errors !!}';
-        console.log(errors);
-        console.log(errors.length);
+        // console.log(errors);
+        // console.log(errors.length);
 
         if ((errors.length) > 2) {
             console.log(errors.length);
             modal.classList.remove('hidden');
-        }
-    </script>
+        }           
+            </script>
+
+
 
 
 @endsection
